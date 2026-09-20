@@ -1,0 +1,45 @@
+name: Update index data
+
+on:
+  schedule:
+    # 日本の取引時間（平日 9:05〜16:05 JST）は1時間ごと。cron は UTC で書く。
+    - cron: '5 0-7 * * 1-5'
+    # 米国の取引時間帯（平日 23:05〜翌 7:05 JST）は約2時間ごと
+    - cron: '5 14,16,18,20,22 * * 1-5'
+  workflow_dispatch:   # 手動実行ボタン用（Actions タブの「Run workflow」）
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Update data
+        run: python scripts/update_data.py
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/latest.json
+          if git diff --cached --quiet; then
+            echo "変更なし：コミットしません"
+          else
+            git commit -m "data: update"
+            git push
+          fi
