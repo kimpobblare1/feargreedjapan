@@ -38,6 +38,7 @@ MIN_POINTS = 120      # 比較できるデータがこれ未満なら、その�
 HISTORY_DAYS = 30     # 推移グラフに出す営業日数
 BOND_DURATION = 9.0   # 10年国債の価格変動を利回り変化から概算するときの年数
 MIN_WEIGHT = 0.6      # 取れた指標のウェイト合計がこれ未満なら、指数を出さない
+SMOOTH_DAYS = 3       # 日々の細かな振れを抑えるため、直近3営業日の平均を「その日の値」にする
 
 WEIGHTS = {"momentum": 0.25, "vol": 0.25, "strength": 0.15, "rsi": 0.15, "fx": 0.10, "safe": 0.10}
 NAMES = {
@@ -337,7 +338,7 @@ def to_scores(raw, invert=False, start=0, window=WINDOW):
     return out
 
 
-def compute_jp(n225, topix=None, fx=None, jgb=None, window=WINDOW, mode="pct"):
+def compute_jp(n225, topix=None, fx=None, jgb=None, window=WINDOW, mode="pct", smooth_days=SMOOTH_DAYS):
     """日本株の指数を計算。戻り値: (jpブロック, [(日付, スコア)...]) 。計算できなければ (None, [])。"""
     dates = [d for d, _ in n225]
     c = [v for _, v in n225]
@@ -408,6 +409,15 @@ def compute_jp(n225, topix=None, fx=None, jgb=None, window=WINDOW, mode="pct"):
     if not hist or hist[-1][0] != dates[-1]:
         return None, []
 
+    # 直近 smooth_days 営業日の平均を、その日の指数とする（parts は平滑化前の各指標スコア）
+    if smooth_days > 1:
+        comp = [h[1] for h in hist]
+        sm = []
+        for i in range(len(comp)):
+            w = comp[max(0, i - smooth_days + 1):i + 1]
+            sm.append(sum(w) / len(w))
+        hist = [(d, sm[i], parts) for i, (d, _s, parts) in enumerate(hist)]
+
     def at(k):
         return int(round(hist[-k][1])) if len(hist) >= k else None
 
@@ -418,9 +428,11 @@ def compute_jp(n225, topix=None, fx=None, jgb=None, window=WINDOW, mode="pct"):
             missing.append(NAMES[k])
         else:
             win = sorted(v for v in raw[k][max(0, n - window):n] if v is not None)
+            recent = [h[2][k] for h in hist[-smooth_days:] if k in h[2]]
+            value = int(round(sum(recent) / len(recent))) if (smooth_days > 1 and recent) else int(round(s))
             inds.append({
                 "name": NAMES[k],
-                "value": int(round(s)),
+                "value": value,
                 # ↓ 診断用：0〜100に換算する前の実測値と、過去1年の分布
                 "raw": round(raw[k][n - 1], 2),
                 "median": round(win[len(win) // 2], 2),
@@ -456,7 +468,7 @@ VARIANTS = [
 def compare_methods(n225, topix, fx, jgb):
     series = {}
     for key, _, kw in VARIANTS:
-        jp, hist = compute_jp(n225, topix, fx, jgb, **kw)
+        jp, hist = compute_jp(n225, topix, fx, jgb, smooth_days=1, **kw)
         series[key] = [(d, s) for d, s, _p in hist] if jp else []
     dates = [d for d, _ in series["A"]]
     if not dates:
@@ -540,7 +552,7 @@ def main():
                 log("     %-10s 現在 %8.2f | 過去1年 中央値 %8.2f（最小 %8.2f 〜 最大 %8.2f）→ %d点"
                     % (ind["name"], ind["raw"], ind["median"], ind["low"], ind["high"], ind["value"]))
 
-    if n225:
+    if n225 and os.environ.get("FG_COMPARE") == "1":     # 診断用：既定ではオフ（ログを短く保つ）
         try:
             compare_methods(n225, topix, fx, jgb)
         except Exception as e:  # noqa: BLE001
