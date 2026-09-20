@@ -1,0 +1,19 @@
+{
+  // Cloudflare のダッシュボードで作った Worker の名前と、必ず同じにしてください
+  "name": "feargreedjapan",
+
+  // 動作の基準日（新しめの日付なら問題ありません）
+  "compatibility_date": "2026-09-12",
+
+  // 公開するのは public フォルダの中身だけです（scripts や .github などは公開されません）
+  "assets": {
+    "directory": "./public",
+    // /about.html は /about に統一（検索エンジン向けの正規URLと一致させる）
+    "html_handling": "auto-trailing-slash",
+    // 存在しないページでは public/404.html を表示
+    "not_found_handling": "404-page"
+  },
+
+  // xxx.workers.dev の確認用URLを有効にする（独自ドメイン接続後は false にしてよい）
+  "workers_dev": true
+}

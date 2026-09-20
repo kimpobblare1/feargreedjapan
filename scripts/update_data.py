@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Fear & Greed Japan - データ更新スクリプト
-GitHub Actions から定期実行され、data/latest.json を作り直します。
+GitHub Actions から定期実行され、public/data/latest.json を作り直します。
 
   日本株 : Yahoo Finance（日経225・TOPIX連動ETF・ドル円）と財務省の国債金利CSVから独自に算出
   米国株 : CNN Business の公表値をそのまま取得
@@ -25,7 +25,7 @@ import requests
 
 JST = timezone(timedelta(hours=9))
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT_PATH = os.path.join(ROOT, "data", "latest.json")
+OUT_PATH = os.path.join(ROOT, "public", "data", "latest.json")
 
 UA = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -500,7 +500,7 @@ def main():
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=1)
         f.write("\n")
-    log("✅ data/latest.json を更新しました（%s JST）" % payload["updated_at_jst"])
+    log("✅ public/data/latest.json を更新しました（%s JST）" % payload["updated_at_jst"])
     return 0
 
 
