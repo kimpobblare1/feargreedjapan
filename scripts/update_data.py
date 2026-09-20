@@ -49,6 +49,16 @@ NAMES = {
     "safe": "安全資産への選好",
 }
 
+# 比較シナリオ用：「絶対基準」の目盛り（この範囲を0〜100に対応させる）
+ABS_RANGE = {
+    "momentum": (-8.0, 8.0),    # 125日線との乖離率(%)
+    "vol": (10.0, 40.0),        # 20日変動率(%)  ※低いほど強欲
+    "strength": (-8.0, 8.0),    # 20営業日騰落率(%)
+    "rsi": (30.0, 70.0),        # RSI（一般的な売られすぎ・買われすぎの目安）
+    "fx": (-4.0, 4.0),          # ドル円の20営業日変化(%)
+    "safe": (-10.0, 10.0),      # 株と国債の騰落率の差(%)
+}
+
 TOPIX_ETFS = ["1306.T", "1475.T", "2557.T"]   # TOPIX指数そのものは取得できないため、連動ETFで代用
 
 JGB_URLS = [
@@ -300,13 +310,26 @@ def pct_rank(window, x):
     return 100.0 * (less + 0.5 * eq) / n
 
 
-def to_scores(raw, invert=False, start=0):
+def abs_scores(raw, key, start=0):
+    """固定の目盛りで0〜100に換算（過去の分布には依存しない）"""
+    lo, hi = ABS_RANGE[key]
     out = [None] * len(raw)
     for i in range(start, len(raw)):
         x = raw[i]
         if x is None:
             continue
-        w = [v for v in raw[max(0, i - WINDOW + 1):i + 1] if v is not None]
+        p = max(0.0, min(100.0, (x - lo) / (hi - lo) * 100.0))
+        out[i] = 100.0 - p if key == "vol" else p
+    return out
+
+
+def to_scores(raw, invert=False, start=0, window=WINDOW):
+    out = [None] * len(raw)
+    for i in range(start, len(raw)):
+        x = raw[i]
+        if x is None:
+            continue
+        w = [v for v in raw[max(0, i - window + 1):i + 1] if v is not None]
         if len(w) < MIN_POINTS:
             continue
         s = pct_rank(w, x)
@@ -314,7 +337,7 @@ def to_scores(raw, invert=False, start=0):
     return out
 
 
-def compute_jp(n225, topix=None, fx=None, jgb=None):
+def compute_jp(n225, topix=None, fx=None, jgb=None, window=WINDOW, mode="pct"):
     """日本株の指数を計算。戻り値: (jpブロック, [(日付, スコア)...]) 。計算できなければ (None, [])。"""
     dates = [d for d, _ in n225]
     c = [v for _, v in n225]
@@ -358,7 +381,16 @@ def compute_jp(n225, topix=None, fx=None, jgb=None):
 
     n = len(dates)
     start = max(0, n - (HISTORY_DAYS + 5))
-    scores = {k: to_scores(raw[k], invert=(k == "vol"), start=start) for k in WEIGHTS}
+    def score_for(k):
+        if mode == "abs":
+            return abs_scores(raw[k], k, start)
+        rel = to_scores(raw[k], invert=(k == "vol"), start=start, window=window)
+        if mode == "pct":
+            return rel
+        ab = abs_scores(raw[k], k, start)          # mode == "mix"：相対と絶対の平均
+        return [(a + b) / 2 if (a is not None and b is not None) else None for a, b in zip(rel, ab)]
+
+    scores = {k: score_for(k) for k in WEIGHTS}
 
     hist = []
     for i in range(start, n):
@@ -385,7 +417,7 @@ def compute_jp(n225, topix=None, fx=None, jgb=None):
         if s is None:
             missing.append(NAMES[k])
         else:
-            win = sorted(v for v in raw[k][max(0, n - WINDOW):n] if v is not None)
+            win = sorted(v for v in raw[k][max(0, n - window):n] if v is not None)
             inds.append({
                 "name": NAMES[k],
                 "value": int(round(s)),
@@ -408,6 +440,50 @@ def compute_jp(n225, topix=None, fx=None, jgb=None):
         "stale": False,
     }
     return jp, hist[-HISTORY_DAYS:]   # [(日付, スコア, {指標: スコア}), ...]
+
+
+# ════════════════════════════════════════════
+#  診断：算出方法の比較（ログにだけ出す。公開データには影響しない）
+# ════════════════════════════════════════════
+VARIANTS = [
+    ("A", "現行（過去1年の中での位置）", dict(window=250, mode="pct")),
+    ("B", "過去3年の中での位置", dict(window=750, mode="pct")),
+    ("C", "相対(1年)と絶対基準の平均", dict(window=250, mode="mix")),
+    ("D", "絶対基準のみ", dict(mode="abs")),
+]
+
+
+def compare_methods(n225, topix, fx, jgb):
+    series = {}
+    for key, _, kw in VARIANTS:
+        jp, hist = compute_jp(n225, topix, fx, jgb, **kw)
+        series[key] = [(d, s) for d, s, _p in hist] if jp else []
+    dates = [d for d, _ in series["A"]]
+    if not dates:
+        return
+    log("=== 算出方法の比較（診断用） ===")
+    for key, name, _ in VARIANTS:
+        log("  %s : %s" % (key, name))
+
+    def stats(vals):
+        ch = [abs(vals[i] - vals[i - 1]) for i in range(1, len(vals))]
+        return (vals[-1], min(vals), max(vals), sum(ch) / len(ch) if ch else 0.0, max(ch) if ch else 0.0)
+
+    def smooth(vals, k=3):
+        return [sum(vals[max(0, i - k + 1):i + 1]) / len(vals[max(0, i - k + 1):i + 1]) for i in range(len(vals))]
+
+    log("  方式 | 最新 | 30日の最小〜最大 | 1日の平均変動 | 1日の最大変動  （右側は3日平均にした場合）")
+    for key, _, _ in VARIANTS:
+        v = [s for _, s in series[key]]
+        if len(v) < 3:
+            continue
+        a, b = stats(v), stats(smooth(v))
+        log("   %s   | %3.0f  | %3.0f 〜 %3.0f       | %4.1f          | %4.1f    →  最新%3.0f  平均変動%4.1f  最大変動%4.1f"
+            % (key, a[0], a[1], a[2], a[3], a[4], b[0], b[3], b[4]))
+    log("  日付       |   A   B   C   D")
+    for i, d in enumerate(dates):
+        row = "".join("%4.0f" % series[k][i][1] if i < len(series[k]) else "   -" for k, _, _ in VARIANTS)
+        log("  %s |%s" % (d, row))
 
 
 # ════════════════════════════════════════════
@@ -463,6 +539,12 @@ def main():
             if "raw" in ind:
                 log("     %-10s 現在 %8.2f | 過去1年 中央値 %8.2f（最小 %8.2f 〜 最大 %8.2f）→ %d点"
                     % (ind["name"], ind["raw"], ind["median"], ind["low"], ind["high"], ind["value"]))
+
+    if n225:
+        try:
+            compare_methods(n225, topix, fx, jgb)
+        except Exception as e:  # noqa: BLE001
+            log("  （比較の診断に失敗しました: %s）" % e)
 
     log("=== 米国株（CNN）を取得 ===")
     us, us_hist_map = None, {}
