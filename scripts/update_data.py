@@ -75,6 +75,30 @@ def log(msg):
 # ════════════════════════════════════════════
 #  データ取得
 # ════════════════════════════════════════════
+def fix_splits(series):
+    """
+    ETFの分割・併合などで、1日に価格が急変している（＝過去の価格が調整されていない）場合に、
+    それ以前の価格を新しい価格の水準に合わせて補正する。
+    日経225・為替・ETFの1日の値動きが±37%を超えることは通常ありえないため、そこを分割の目印にする。
+    戻り値: (補正後の系列, 補正した箇所のリスト[(日付, 倍率)])
+    """
+    out = [[d, v] for d, v in series]
+    fixes = []
+    for i in range(len(out) - 1, 0, -1):
+        prev, cur = out[i - 1][1], out[i][1]
+        if prev <= 0 or cur <= 0:
+            continue
+        r = prev / cur
+        if r >= 1.6 or r <= 1 / 1.6:
+            n = float(round(r)) if r >= 1 else 1.0 / round(1.0 / r)
+            if n <= 0 or abs(r / n - 1) > 0.25:
+                n = r
+            for j in range(i):
+                out[j][1] /= n
+            fixes.append((out[i][0], n))
+    return [(d, v) for d, v in out], fixes
+
+
 def fetch_yahoo(symbol, rng="3y"):
     """Yahoo Finance の日足終値を [(YYYY-MM-DD, 終値), ...] で返す（古い順）。失敗時は例外。"""
     last_err = "unknown"
@@ -101,6 +125,9 @@ def fetch_yahoo(symbol, rng="3y"):
                 if len(out) < 30:
                     last_err = "データ不足（%d件）" % len(out)
                     continue
+                out, fixes = fix_splits(out)
+                for d, n in fixes:
+                    log("  ⚠ %s: %s に分割らしき急変（約%g倍）を検出し、過去の価格を補正しました" % (symbol, d, n))
                 return out
             except Exception as e:  # noqa: BLE001
                 last_err = str(e)
