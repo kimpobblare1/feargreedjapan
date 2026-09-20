@@ -51,6 +51,24 @@
   .sc-foot strong { color: var(--ink); }
   @media (max-width: 640px) { .scoreboard { grid-template-columns: 1fr; } .sc-num { font-size: 64px; } }
 </style>
+<style>
+  .pn-top { display: flex; justify-content: space-between; gap: 12px; margin: -4px 0 16px; font-size: 13.5px; }
+  .pn-top a { color: var(--c-eg); text-decoration: none; font-weight: 700; padding: 4px 0; }
+  .pn-top a:hover { text-decoration: underline; }
+  .post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 40px; }
+  .pn { display: flex; flex-direction: column; gap: 5px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); }
+  a.pn:hover { border-color: var(--ink-soft); }
+  .pn.next { text-align: right; }
+  .pn-dir { font-size: 12.5px; font-weight: 700; color: var(--c-eg); }
+  .pn-date { font-size: 13px; color: var(--muted); }
+  .pn-title { font-size: 14.5px; font-weight: 700; line-height: 1.65; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .pn-sc { font-size: 13px; color: var(--ink-soft); }
+  .pn.empty { background: transparent; border-style: dashed; }
+  .pn.empty .pn-dir, .pn.empty .pn-title { color: var(--muted); font-weight: 500; }
+  .pn-back { text-align: center; margin-top: 14px; font-size: 14px; }
+  .pn-back a { color: var(--c-eg); text-underline-offset: 3px; }
+  @media (max-width: 640px) { .post-nav { grid-template-columns: 1fr; } .pn.next { text-align: left; } }
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -71,7 +89,7 @@
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "2026年9月18日の市況",
+      "name": "9月18日の市況",
       "item": "https://feargreedjapan.com/blog/20260918"
     }
   ]
@@ -325,7 +343,7 @@
 <main>
   <div class="wrap">
     <article class="article wide">
-      <nav class="crumbs" aria-label="パンくずリスト"><a href="/">ホーム</a><span>&gt;</span><a href="/blog">ブログ</a><span>&gt;</span>2026年9月18日の市況</nav>
+      <nav class="crumbs" aria-label="パンくずリスト"><a href="/">ホーム</a><span>&gt;</span><a href="/blog">ブログ</a><span>&gt;</span>9月18日の市況</nav>
 <div class="post-label">市況ブログ ｜ 日本株・米国株 ｜ 2026年9月18日（金）の市場</div>
 <h1>日銀が1.25%へ利上げ、日経平均は65,018円で3日続伸<br><span style="font-size:.66em;font-weight:700;color:var(--ink-soft)">恐怖と強欲指数は日本32・米国29（9月18日）</span></h1>
 <div class="sc-asof">2026年9月18日（金）時点の恐怖と強欲指数</div>
@@ -411,6 +429,8 @@
 <div class="callout warn"><p>本記事は公開情報と当サイトの算出データに基づく情報提供であり、特定の金融商品の売買を勧誘・推奨するものではありません。投資に関する最終判断は、ご自身の責任で行ってください。</p></div>
 <div class="tags"><span>#恐怖と強欲指数</span><span>#日経平均</span><span>#日銀利上げ</span><span>#全国CPI</span><span>#日米市況</span><span>#ドル円</span><span>#S&amp;P500</span><span>#FOMC</span><span>#市況ブログ</span><span>#Fear &amp; Greed Index</span></div>
 <div class="lead-links"><a href="/archive">市況アーカイブを見る</a><a class="sub" href="/">ダッシュボードで最新の指数を見る</a></div>
+<nav class="post-nav" aria-label="前後の記事"><div class="pn prev empty"><span class="pn-dir">← 前の記事</span><span class="pn-title">これより前の記事はありません</span></div><div class="pn next empty"><span class="pn-dir">次の記事 →</span><span class="pn-title">次の記事は準備中です。次の営業日の市況をまとめ次第、公開します。</span></div></nav>
+<p class="pn-back"><a href="/blog">ブログ一覧へ戻る</a></p>
     </article>
 
     <div class="disclaimer">
