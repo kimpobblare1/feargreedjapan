@@ -37,6 +37,11 @@ jobs:
         continue-on-error: true
         run: python scripts/update_archive.py
 
+      # 指数別の統計データを作る（約20時間に1回だけ計算。失敗しても他の更新には影響しません）
+      - name: Update stats
+        continue-on-error: true
+        run: python scripts/update_stats.py
+
       - name: Commit if changed
         run: |
           git config user.name "github-actions[bot]"
