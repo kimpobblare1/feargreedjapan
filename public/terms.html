@@ -3,19 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>利用規約｜Fear & Greed Japan</title>
-<meta name="description" content="Fear &amp; Greed Japanの利用規約です。投資情報に関する注意、禁止事項、知的財産権、免責事項などを定めています。">
+<title>利用規約｜Fear &amp; Greed Index Japan</title>
+<meta name="description" content="Fear &amp; Greed Index Japanの利用規約です。投資情報に関する注意、禁止事項、知的財産権、免責事項などを定めています。">
 <link rel="canonical" href="https://feargreedjapan.com/terms">
-<meta property="og:title" content="利用規約｜Fear & Greed Japan">
-<meta property="og:description" content="Fear &amp; Greed Japanの利用規約です。投資情報に関する注意、禁止事項、知的財産権、免責事項などを定めています。">
+<meta property="og:title" content="利用規約｜Fear &amp; Greed Index Japan">
+<meta property="og:description" content="Fear &amp; Greed Index Japanの利用規約です。投資情報に関する注意、禁止事項、知的財産権、免責事項などを定めています。">
 <meta property="og:url" content="https://feargreedjapan.com/terms">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Fear &amp; Greed Japan">
+<meta property="og:site_name" content="Fear &amp; Greed Index Japan">
 <meta property="og:image" content="https://feargreedjapan.com/thumbnail.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="利用規約｜Fear &amp; Greed Index Japan">
+<meta name="twitter:description" content="Fear &amp; Greed Index Japanの利用規約です。投資情報に関する注意、禁止事項、知的財産権、免責事項などを定めています。">
+<meta name="twitter:image" content="https://feargreedjapan.com/thumbnail.png">
 <meta name="theme-color" content="#14284b">
-<link rel="icon" href="favicon.ico">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -40,12 +48,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 
-<!-- ▼ 오픈 전에 새 GA4 ID로 교체 (index.html 과 동일하게) -->
+<!-- ▼ 公開前に、新しいGA4のIDに置き換える（index.html と同じ値） -->
 <!--
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
 -->
-<!-- ▼ 애드센스 승인 후 활성화 (기존 계정의 pub ID 그대로 사용. 계정을 새로 만들지 않고 '사이트 추가'로 등록) -->
+<!-- ▼ AdSense承認後に有効化（既存アカウントのpub IDをそのまま使用。アカウントは新規作成せず「サイトを追加」で登録） -->
 <!--
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 -->
@@ -177,6 +185,65 @@
     .article p, .article li { font-size: 15.5px; }
     .faq .ans { padding-left: 20px; }
   }
+
+  .article.wide { max-width: 900px; }
+  .article h1 { text-wrap: balance; }
+  .article small.sub { color: var(--muted); font-size: 12.5px; }
+  .eyebrow { font-size: 13px; font-weight: 700; color: var(--c-eg); letter-spacing: .04em; margin-bottom: 8px; }
+
+  /* 区分チップ */
+  .chip { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; color: #fff; background: var(--c-n); white-space: nowrap; }
+  .chip.ef { background: var(--c-ef); } .chip.f { background: var(--c-f); } .chip.n { background: var(--c-n); }
+  .chip.g { background: var(--c-g); } .chip.eg { background: var(--c-eg); }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* 統計バー */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 24px 0 8px; }
+  .stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; }
+  .stat b { display: block; font-size: 24px; font-weight: 900; line-height: 1.3; font-variant-numeric: tabular-nums; }
+  .stat span { font-size: 12px; color: var(--muted); }
+
+  /* フィルター・ページャー */
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 4px; align-items: center; }
+  .filters .lab { font-size: 13px; color: var(--muted); margin-right: 4px; }
+  .filters button, .pager button { font: inherit; font-size: 13.5px; font-weight: 700; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); cursor: pointer; }
+  .filters button:hover, .pager button:hover { border-color: var(--ink-soft); }
+  .filters button[aria-pressed="true"], .pager button[aria-current="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .pager { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 24px 0 0; }
+  .pager button { min-width: 38px; padding: 6px 10px; border-radius: 8px; }
+
+  /* アーカイブの1日分 */
+  .day { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 20px; margin-top: 12px; }
+  .day-head { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+  .day-date { font-weight: 900; font-size: 16px; }
+  .day-score { font-size: 14px; color: var(--ink-soft); display: inline-flex; gap: 6px; align-items: center; }
+  .day-score b { font-size: 18px; font-variant-numeric: tabular-nums; color: var(--ink); }
+  .day p { margin-top: 8px; font-size: 14.5px; line-height: 1.85; color: #24365a; }
+  .day a.more { font-size: 13px; color: var(--c-eg); text-underline-offset: 3px; }
+  .note-small { font-size: 13px; color: var(--muted); margin-top: 16px; line-height: 1.8; }
+
+  /* ブログ一覧 */
+  .post-item { display: block; text-decoration: none; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; margin-top: 14px; }
+  .post-item:hover { border-color: var(--ink-soft); }
+  .post-meta { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; font-size: 13px; color: var(--muted); }
+  .post-title { font-size: 19px; font-weight: 900; line-height: 1.55; margin-top: 8px; color: var(--ink); }
+  .post-excerpt { font-size: 14.5px; color: var(--ink-soft); margin-top: 8px; line-height: 1.85; }
+
+  /* ブログ記事 */
+  .post-label { font-size: 13px; font-weight: 700; color: var(--c-eg); }
+  .summary-box { margin: 24px 0 8px; padding: 18px 22px; background: #eef3fb; border: 1px solid #d5e0f2; border-radius: var(--radius); }
+  .summary-box h2 { font-size: 15px !important; border: none !important; padding: 0 !important; margin: 0 0 8px !important; color: var(--ink-soft); }
+  .summary-box ul { margin: 0 0 0 1.2em; }
+  .summary-box li { font-size: 15.5px; padding: 3px 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  .tags span { font-size: 13px; color: var(--ink-soft); background: #eef2f8; padding: 4px 12px; border-radius: 999px; }
+  .sources { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); line-height: 1.9; }
+  .article table.doc td.r, .article table.doc th.r { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .article h3.tblcap { font-size: 15px; margin: 22px 0 6px; color: var(--ink-soft); }
+  .lead-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .lead-links a { font-size: 14px; font-weight: 700; text-decoration: none; padding: 9px 18px; border-radius: 8px; background: var(--ink); color: #fff; }
+  .lead-links a.sub { background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
+
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 </style>
 </head>
@@ -184,11 +251,13 @@
 
 <header class="site-header">
   <div class="inner">
-    <a class="brand" href="/">Fear &amp; Greed Japan<small>恐怖と強欲指数</small></a>
+    <a class="brand" href="/">Fear &amp; Greed Index Japan<small>恐怖と強欲指数</small></a>
     <nav class="nav" aria-label="メインメニュー">
       <a href="/">ダッシュボード</a>
-      <a href="/about">サイトについて</a>
+      <a href="/archive">市況アーカイブ</a>
+      <a href="/blog">ブログ</a>
       <a href="/guide">投資ガイド</a>
+      <a href="/about">サイトについて</a>
     </nav>
   </div>
 </header>
@@ -203,7 +272,7 @@
       <nav class="crumbs" aria-label="パンくずリスト"><a href="/">ホーム</a><span>&gt;</span>利用規約</nav>
 
       <h1>利用規約</h1>
-      <p class="lead">この利用規約は、Fear &amp; Greed Japan（以下「当サイト」）の利用条件を定めるものです。ご利用の前にお読みください。</p>
+      <p class="lead">この利用規約は、Fear &amp; Greed Index Japan（以下「当サイト」）の利用条件を定めるものです。ご利用の前にお読みください。</p>
 
       <nav class="toc" aria-label="目次">
         <h2>このページの内容</h2>
@@ -317,7 +386,7 @@
         <p>本規約は日本法に準拠します。本サービスに関して紛争が生じた場合は、東京地方裁判所を第一審の専属的合意管轄裁判所とします。</p>
       </section>
 
-      <p class="enact">制定日：<span class="todo">［要入力：公開日］</span></p>
+      <p class="enact">制定日：2026年9月20日</p>
 
     </article>
 
@@ -331,12 +400,15 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer-links">
-      <a href="/about">サイトについて</a>
+      <a href="/">ダッシュボード</a>
+      <a href="/archive">市況アーカイブ</a>
+      <a href="/blog">ブログ</a>
       <a href="/guide">投資ガイド</a>
+      <a href="/about">サイトについて</a>
       <a href="/terms">利用規約</a>
       <a href="/privacy">プライバシーポリシー</a>
     </div>
-    <p class="footer-copy">© 2026 Fear &amp; Greed Japan. All rights reserved.<br>「日経225」は株式会社日本経済新聞社の登録商標です。本サイトは同社とは関係ありません。</p>
+    <p class="footer-copy">© 2026 Fear &amp; Greed Index Japan. All rights reserved.<br>「日経225」は株式会社日本経済新聞社の登録商標です。本サイトは同社とは関係ありません。</p>
   </div>
 </footer>
 

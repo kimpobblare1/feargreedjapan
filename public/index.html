@@ -3,45 +3,121 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fear & Greed Japan｜日本株・米国株の恐怖と強欲指数を毎日更新</title>
-<meta name="description" content="日経225を基にした日本株の恐怖と強欲指数と、米国株（S&P500）の恐怖と強欲指数を毎日確認できます。投資家心理の温度感を0〜100の数値で可視化します。">
+<title>日経平均 恐怖と強欲指数 リアルタイム｜日本・米国 Nikkei Fear &amp; Greed Index</title>
+<meta name="description" content="日本のNikkeiと米国S&amp;P500の恐怖と強欲指数をリアルタイムで確認できます。騰落率、変動性、安全資産需要など6つの指標を総合した日米の投資心理ダッシュボード。">
 <link rel="canonical" href="https://feargreedjapan.com/">
-<meta property="og:title" content="Fear & Greed Japan｜日本株・米国株の恐怖と強欲指数">
-<meta property="og:description" content="日経225を基にした日本株の恐怖と強欲指数を、米国株と並べて毎日確認できます。">
+<meta property="og:title" content="日経平均 恐怖と強欲指数 リアルタイム｜日本・米国 Nikkei Fear &amp; Greed Index">
+<meta property="og:description" content="日本のNikkeiと米国S&amp;P500の恐怖と強欲指数をリアルタイムで確認できます。騰落率、変動性、安全資産需要など6つの指標を総合した日米の投資心理ダッシュボード。">
 <meta property="og:url" content="https://feargreedjapan.com/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Fear & Greed Japan">
+<meta property="og:site_name" content="Fear &amp; Greed Index Japan">
 <meta property="og:image" content="https://feargreedjapan.com/thumbnail.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Fear & Greed Japan｜日本株・米国株の恐怖と強欲指数">
-<meta name="twitter:description" content="日経225を基にした日本株の恐怖と強欲指数を毎日確認できます。">
+<meta name="twitter:title" content="日経平均 恐怖と強欲指数 リアルタイム｜日本・米国 Nikkei Fear &amp; Greed Index">
+<meta name="twitter:description" content="日本のNikkeiと米国S&amp;P500の恐怖と強欲指数をリアルタイムで確認できます。騰落率、変動性、安全資産需要など6つの指標を総合した日米の投資心理ダッシュボード。">
 <meta name="twitter:image" content="https://feargreedjapan.com/thumbnail.png">
 <meta name="theme-color" content="#14284b">
-<link rel="icon" href="favicon.ico">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "Fear & Greed Japan",
-  "alternateName": "日本株 恐怖と強欲指数",
+  "name": "Fear & Greed Index Japan",
+  "alternateName": "日経平均 恐怖と強欲指数",
   "url": "https://feargreedjapan.com/",
   "inLanguage": "ja",
-  "description": "日経225を基にした日本株の恐怖と強欲指数と、米国株の恐怖と強欲指数を毎日確認できる投資家心理ダッシュボード"
+  "description": "日本のNikkeiと米国S&P500の恐怖と強欲指数をリアルタイムで確認できる、日米の投資心理ダッシュボード"
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "日本株の恐怖と強欲指数は、どんなデータで計算していますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "日経225、TOPIX連動ETF、ドル円、日本の10年国債利回りを使い、6つの指標を「過去1年の中での位置」で0〜100に換算して加重平均し、直近3営業日の平均を表示しています。くわしくは、このページ下部の「指数の算出方法」をご覧ください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "日本株と米国株で、指数の水準が違うのはなぜですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "米国株はCNN Businessが公表する7指標の指数、日本株は当サイト独自の6指標の指数です。構成も計算方法も異なるため、水準を直接比べるのではなく、それぞれの推移や区分の変化を見るのが適しています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "指数が「恐怖」のとき、株価は必ず下がりますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ。恐怖と強欲指数は現在の心理を示すもので、株価の将来を示すものではありません。恐怖の水準でも株価が上がる日はありますし、下落が続くこともあります。日経平均が大きく上がった日でも、指数が「恐怖」にとどまることがあります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "指数を見て売買のタイミングを決めてもよいですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "指数は判断材料の1つです。業績や金利、為替、ご自身の資金計画とあわせて検討することが大切です。当サイトは、特定の金融商品の売買を勧誘・推奨するものではありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "新NISAで積立をしています。指数を気にした方がよいですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "積立投資は、一定額を定期的に購入して購入価格をならす考え方で、短期の心理指標とは目的が異なります。指数は「いまの市場の温度感を知るための参考情報」として見るのが一般的です。制度の詳細は、金融庁や金融機関の公式情報でご確認ください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "タイトルに「リアルタイム」とありますが、秒単位で更新されますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "秒単位の更新ではありません。日本の取引時間中は約1時間ごと、米国の取引時間中は約2時間ごとに自動で更新します。データ提供元の都合で遅れる場合があり、国債利回りなど一部のデータは前営業日のものを使います。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "日経平均VIやVIX指数とは何が違いますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "VIXや日経平均VIは、オプション価格から算出される「今後の予想変動率」で、不安という1つの側面を測ります。恐怖と強欲指数は、そうした要素を含む複数の指標をまとめた、総合的な心理の指数です。比較表は投資ガイドで解説しています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "過去の推移や、その日の解説はどこで見られますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "営業日ごとの記録は「市況アーカイブ」、その日のニュースと指標の内訳の解説は「ブログ」でご覧いただけます。"
+      }
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 
-<!-- ▼ 오픈 전에 새 GA4 ID로 교체 (한국 사이트와 분리 권장) -->
+<!-- ▼ 公開前に、新しいGA4のIDに置き換える（既存サイトとは別のプロパティを推奨） -->
 <!--
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
 -->
-<!-- ▼ 애드센스 승인 후 활성화 (기존 계정의 pub ID 그대로 사용. 계정을 새로 만들지 않고 '사이트 추가'로 등록) -->
+<!-- ▼ AdSense承認後に有効化（既存アカウントのpub IDをそのまま使用。アカウントは新規作成せず「サイトを追加」で登録） -->
 <!--
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 -->
@@ -379,17 +455,51 @@
     * { transition: none !important; scroll-behavior: auto !important; }
   }
 </style>
+<style>
+  .eyebrow { font-size: 13px; font-weight: 700; color: var(--c-eg); letter-spacing: .06em; margin-bottom: 10px; }
+  .chip { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; color: #fff; background: var(--c-n); white-space: nowrap; }
+  .chip.ef { background: var(--c-ef); } .chip.f { background: var(--c-f); } .chip.n { background: var(--c-n); }
+  .chip.g { background: var(--c-g); } .chip.eg { background: var(--c-eg); }
+  .content-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
+  .content-card p { color: var(--ink-soft); font-size: 15px; line-height: 1.95; margin-top: 12px; }
+  .content-card p:first-child { margin-top: 0; }
+  .content-card a.inline, .sec-lead a.inline { color: var(--c-eg); text-underline-offset: 3px; }
+  table.method th.w-s { width: 9.5em; white-space: nowrap; }
+  table.method td.top, table.method th.top { vertical-align: top; line-height: 1.75; }
+  .callout { margin-top: 18px; padding: 14px 18px; background: #eef3fb; border-left: 4px solid var(--ink); border-radius: 4px; }
+  .callout p { margin: 0; font-size: 14px; line-height: 1.85; color: var(--ink-soft); }
+  .callout.warn { background: #fff8ec; border-left-color: #d9a441; } .callout.warn p { color: #6a5320; }
+  .latest-card { display: block; text-decoration: none; }
+  .latest-card:hover { border-color: var(--ink-soft); }
+  .latest-card .meta { font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
+  .latest-card .ttl { font-size: 18px; font-weight: 900; line-height: 1.6; margin-top: 8px; color: var(--ink); }
+  .latest-card .ex { font-size: 14.5px; color: var(--ink-soft); margin-top: 8px; line-height: 1.85; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  .btn-row a { font-size: 14px; font-weight: 700; text-decoration: none; padding: 9px 18px; border-radius: 8px; background: var(--ink); color: #fff; }
+  .btn-row a.sub { background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
+  .faq { margin-top: 4px; }
+  .faq details { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); margin-top: 10px; }
+  .faq summary { cursor: pointer; padding: 16px 20px; font-weight: 700; font-size: 15.5px; line-height: 1.65; list-style: none; display: flex; gap: 12px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::before { content: 'Q'; color: var(--c-eg); font-weight: 900; }
+  .faq details[open] summary { border-bottom: 1px solid var(--line); }
+  .faq .ans { padding: 14px 20px 18px 48px; font-size: 15px; line-height: 1.9; color: var(--ink-soft); }
+  @media (max-width: 720px) { .faq .ans { padding-left: 20px; } .content-card { padding: 20px; } }
+</style>
+
 </head>
 
 <body>
 
 <header class="site-header">
   <div class="inner">
-    <a class="brand" href="/">Fear &amp; Greed Japan<small>恐怖と強欲指数</small></a>
+    <a class="brand" href="/">Fear &amp; Greed Index Japan<small>恐怖と強欲指数</small></a>
     <nav class="nav" aria-label="メインメニュー">
       <a href="/" aria-current="page">ダッシュボード</a>
-      <a href="/about">サイトについて</a>
+      <a href="/archive">市況アーカイブ</a>
+      <a href="/blog">ブログ</a>
       <a href="/guide">投資ガイド</a>
+      <a href="/about">サイトについて</a>
     </nav>
   </div>
 </header>
@@ -403,6 +513,7 @@
   <!-- ヒーロー -->
   <div class="wrap">
     <div class="hero">
+      <div class="eyebrow">日経平均・S&amp;P500 恐怖と強欲指数</div>
       <h1>いまの市場は、恐怖と強欲のどちらに傾いていますか。</h1>
       <p class="lead">日経225を基にした日本株の指数と、米国株（S&amp;P500）の指数を0〜100の数値で並べて確認できます。数値が低いほど恐怖、高いほど強欲に傾いた状態です。</p>
       <div class="status-line">
@@ -476,6 +587,41 @@
     </div>
   </section>
 
+  <!-- 最新の市況ブログ -->
+  <section class="block" id="latest">
+    <div class="wrap">
+      <h2>最新の市況ブログ</h2>
+      <p class="sec-lead">その日の日本株・米国株の動きと経済ニュースを、恐怖と強欲指数とあわせて表で整理しています。</p>
+      <a class="content-card latest-card" href="/blog/20260918">
+        <div class="meta"><span>2026年9月18日（金）</span><span>日本株 <strong>32</strong> <span class="chip f">恐怖</span></span><span>米国株 <strong>29</strong> <span class="chip f">恐怖</span></span></div>
+        <div class="ttl">日銀が1.25%へ利上げ、日経平均は65,018円で3日続伸｜恐怖と強欲指数は日本32・米国29（9月18日）</div>
+        <div class="ex">日銀が政策金利を1.25%へ引き上げ、日経平均は882円高の65,018円95銭で3日続伸。日米差は+3で、8月12日以降の28営業日で初めて日本が米国を上回りました。</div>
+      </a>
+      <div class="btn-row"><a href="/blog">ブログ一覧を見る</a><a class="sub" href="/archive">市況アーカイブを見る</a></div>
+    </div>
+  </section>
+
+  <!-- 恐怖と強欲指数とは -->
+  <section class="block" id="about-index">
+    <div class="wrap">
+      <h2>恐怖と強欲指数とは？</h2>
+      <div class="content-card">
+        <p>恐怖と強欲指数（Fear &amp; Greed Index）は、株式市場に参加する人たちの心理が「恐怖」と「強欲」のどちらに傾いているかを、0〜100の数値で表した指標です。数値が低いほど恐怖（売りが優勢になりやすい状態）、高いほど強欲（買いが優勢になりやすい状態）を示します。</p>
+        <p>もとになったのは、米国のCNN Businessが公表しているFear &amp; Greed Indexです。株価の勢い、値動きの大きさ、売買の偏り、債券市場の動きなど、性質の異なる複数の指標を1つの数値にまとめることで、市場の雰囲気を多面的に捉えられます。</p>
+        <p>当サイトでは、米国株はCNN Businessの公表値をそのまま表示し、日本株は日経225などのデータから独自に算出した値を表示しています。日本株の指数には、株価の動きに加えて、日本市場に影響しやすい為替（ドル円）と国債利回りも組み込んでいます。</p>
+        <div class="table-scroll" style="margin-top:20px"><table class="method">
+          <thead><tr><th>ポイント</th><th>内容</th></tr></thead>
+          <tbody>
+            <tr><th class="w-s top">何を表すか</th><td class="top">市場参加者の心理（勢い・不安・安全資産への動き）を数値にしたものです。株価の水準そのものではありません。</td></tr>
+            <tr><th class="w-s top">何に使うか</th><td class="top">いまの市場の温度感を知るための参考情報です。売買のタイミングを示すものではありません。</td></tr>
+            <tr><th class="w-s top">気をつける点</th><td class="top">過去のデータに基づく数値で、将来の値動きを予測・保証するものではありません。</td></tr>
+          </tbody>
+        </table></div>
+        <p style="margin-top:16px">くわしい読み方は<a class="inline" href="/guide">投資ガイド</a>、日々の記録は<a class="inline" href="/archive">市況アーカイブ</a>をご覧ください。</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ゾーン -->
   <section class="block" id="zones">
     <div class="wrap">
@@ -512,6 +658,128 @@
           <div class="zrange">75〜100</div>
           <div class="zdesc">楽観が極端に広がっている状態です。「他の人が強欲なときは慎重に」という投資格言がよく引き合いに出される水準です。</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 区間別の考え方ガイド -->
+  <section class="block" id="zone-guide">
+    <div class="wrap">
+      <h2>区間別の投資の考え方ガイド</h2>
+      <p class="sec-lead">指数の区分ごとに、一般に言われる市場の状態と、投資の判断材料として考えられる視点を整理しました。特定の売買を勧めるものではなく、ご自身の投資方針を考えるときの参考としてお使いください。</p>
+      <div class="method-card">
+        <div class="table-scroll">
+          <table class="method">
+            <thead><tr><th>区分</th><th>市場の状態</th><th>過去に見られた傾向</th><th>考え方の視点</th><th>注意点</th></tr></thead>
+            <tbody>
+              <tr><td class="top"><strong>極度の恐怖</strong><br>0〜24<br><span class="chip ef">EXTREME FEAR</span></td>
+                  <td class="top">不安が極端に強まり、売りが売りを呼びやすい状態です。</td>
+                  <td class="top">急落局面で観測され、その後に持ち直した例がある一方、下落が続いた例もあります。</td>
+                  <td class="top">「安いから買う」と決めつけず、生活資金や投資資金の余裕、分散の度合いを先に確認します。買い増しを検討する場合も、時期を分ける考え方があります。</td>
+                  <td class="top">底を見極めるのは困難です。この水準が長く続くこともあります。</td></tr>
+              <tr><td class="top"><strong>恐怖</strong><br>25〜44<br><span class="chip f">FEAR</span></td>
+                  <td class="top">慎重な姿勢が広がり、様子見が増える状態です。</td>
+                  <td class="top">値動きが荒くなりやすく、悪材料に敏感になりやすいとされます。</td>
+                  <td class="top">積立投資を続けている場合は、あらかじめ決めた方針を守るという考え方があります。新規の投資は資金配分を意識して検討します。</td>
+                  <td class="top">「恐怖」から「極度の恐怖」へ進むこともあります。</td></tr>
+              <tr><td class="top"><strong>中立</strong><br>45〜54<br><span class="chip n">NEUTRAL</span></td>
+                  <td class="top">恐怖と強欲が拮抗し、方向感を探っている状態です。</td>
+                  <td class="top">材料待ちで値動きが限られる場面が多いとされます。</td>
+                  <td class="top">指数以外の材料（業績、金利、為替、イベント）を中心に確認します。</td>
+                  <td class="top">「中立」は安全を意味しません。方向が変わる前の静けさのこともあります。</td></tr>
+              <tr><td class="top"><strong>強欲</strong><br>55〜74<br><span class="chip g">GREED</span></td>
+                  <td class="top">上昇への期待が高まり、買いが優勢な状態です。</td>
+                  <td class="top">上昇が続く局面と、過熱感から調整に転じる局面があります。</td>
+                  <td class="top">利益が出ている場合は、保有比率が当初の方針から大きくずれていないかを点検する人もいます。</td>
+                  <td class="top">強欲の水準でも上昇が続くことがあります。追いかけ買いには慎重さが求められます。</td></tr>
+              <tr><td class="top"><strong>極度の強欲</strong><br>75〜100<br><span class="chip eg">EXTREME GREED</span></td>
+                  <td class="top">楽観が極端に広がり、過熱感が意識される状態です。</td>
+                  <td class="top">過熱の後に調整が入った例がある一方、その後も上昇が続いた例もあります。</td>
+                  <td class="top">「他の人が強欲なときは慎重に」という投資格言がよく引き合いに出されます。大きな新規投資は、資金配分を見直してから検討します。</td>
+                  <td class="top">天井を見極めるのは困難です。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout warn"><p>上の表は、一般的な考え方の整理です。個別の金融商品の売買を勧誘・推奨するものではなく、将来の値動きを予測・保証するものでもありません。投資に関する最終判断は、ご自身の責任で行ってください。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 実践的な使い方 -->
+  <section class="block" id="howto">
+    <div class="wrap">
+      <h2>恐怖と強欲指数の実践的な使い方</h2>
+      <p class="sec-lead">数値を見るだけでなく、「何を、どの順番で見るか」を決めておくと、日々の値動きに振り回されにくくなります。</p>
+      <div class="method-card">
+        <div class="table-scroll">
+          <table class="method">
+            <thead><tr><th>手順</th><th>見るもの</th><th>ポイント</th></tr></thead>
+            <tbody>
+              <tr><th class="w-s top">1. 日米を並べて見る</th><td class="top">日本株と米国株の指数</td><td class="top">同じ方向か、離れているかを確認します。差が大きい日は、金融政策・為替・決算など、市場ごとの事情を調べます。</td></tr>
+              <tr><th class="w-s top">2. 変化の方向を見る</th><td class="top">前日・1週間前・1か月前との比較</td><td class="top">水準だけでなく、恐怖の中で持ち直しているのか、悪化しているのかを見ます。</td></tr>
+              <tr><th class="w-s top">3. 内訳を確認する</th><td class="top">構成する指標の点数</td><td class="top">指数を押し下げている（押し上げている）指標はどれか。1つの指標に偏っていないかを確認します。</td></tr>
+              <tr><th class="w-s top">4. 流れを見る</th><td class="top">直近30日の推移グラフ</td><td class="top">一時的な動きか、続いている流れかを判断します。区分をまたいだ日は、その理由を確認します。</td></tr>
+              <tr><th class="w-s top">5. 他の情報で補う</th><td class="top">決算・金利・為替・経済指標・ニュース</td><td class="top">指数は「なぜそうなったか」を教えてくれません。理由は他の情報で補います。</td></tr>
+              <tr><th class="w-s top">6. 自分のルールを決める</th><td class="top">投資期間・比率・追加投資の上限</td><td class="top">相場が荒れる前に、見直しの頻度や資金配分を決めておくと、感情に流されにくくなります。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 style="font-size:16px;font-weight:700;margin:28px 0 8px">よくある使い方の間違い</h3>
+        <div class="table-scroll">
+          <table class="method">
+            <thead><tr><th>ありがちな使い方</th><th>望ましい考え方</th></tr></thead>
+            <tbody>
+              <tr><td class="top">「恐怖だから買い、強欲だから売り」と機械的に判断する</td><td class="top">指数は将来を予測しません。判断材料の1つとして使います。</td></tr>
+              <tr><td class="top">毎日の小さな数値の上下に一喜一憂する</td><td class="top">区分の変化や、1週間・1か月の流れを見ます。</td></tr>
+              <tr><td class="top">この指数だけで売買を決める</td><td class="top">業績、割安・割高の度合い、資金計画など、他の情報もあわせて確認します。</td></tr>
+              <tr><td class="top">日本株と米国株の数値の高低を単純に比べる</td><td class="top">算出方法が異なります。それぞれの推移や区分の変化を見ます。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 注意事項 -->
+  <section class="block" id="cautions">
+    <div class="wrap">
+      <h2>投資をするときに必ず知っておきたい注意事項</h2>
+      <p class="sec-lead">恐怖と強欲指数を使う前に、投資全般に共通する基本事項と、当サイトの指数の特性を確認してください。</p>
+      <div class="method-card">
+        <div class="table-scroll">
+          <table class="method">
+            <thead><tr><th>項目</th><th>内容</th></tr></thead>
+            <tbody>
+              <tr><th class="w-s top">元本割れのリスク</th><td class="top">株式や投資信託は価格が変動し、投資した元本を割り込むことがあります。投資は余裕資金で行い、生活のための資金は別に確保しておくことが基本とされています。</td></tr>
+              <tr><th class="w-s top">指数は予測ではない</th><td class="top">恐怖と強欲指数は現在の市場心理を示すもので、将来の値動きを予測・保証するものではありません。</td></tr>
+              <tr><th class="w-s top">過去は将来を保証しない</th><td class="top">極度の恐怖の後に反発した例があっても、同じ結果になるとは限りません。</td></tr>
+              <tr><th class="w-s top">単独で判断しない</th><td class="top">業績、財務、割安・割高の度合い、金利や為替の動き、ご自身の資金計画とあわせて検討します。</td></tr>
+              <tr><th class="w-s top">当サイトの日本株指数の特性</th><td class="top">当サイト独自の算出で、各指標を過去1年の中での相対的な位置として評価し、直近3営業日の平均で表示します。CNNの指数とは構成が異なり、水準を直接比べることはできません。データの遅延や欠落が生じる場合があります。</td></tr>
+              <tr><th class="w-s top">為替リスク</th><td class="top">米国株など外貨建ての資産は、円換算の損益が為替の変動の影響を受けます。</td></tr>
+              <tr><th class="w-s top">レバレッジ・信用取引</th><td class="top">少ない資金で大きな取引ができる反面、損失が投資した資金を上回ることがあります。仕組みとリスクを十分に理解してから判断します。</td></tr>
+              <tr><th class="w-s top">税金・制度の変更</th><td class="top">NISAなどの制度や税制は改正されることがあります。最新の情報は、金融庁や各金融機関の公式サイトでご確認ください。</td></tr>
+              <tr><th class="w-s top">情報の出どころ</th><td class="top">SNSやブログの情報は、真偽や利害関係が不明なことがあります。投資の勧誘や詐欺にも注意し、不安なときは登録のある金融機関や公的な相談窓口に相談してください。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout warn"><p>当サイトは、金融商品取引法に基づく投資助言・代理業その他の金融商品取引業を行うものではありません。掲載情報は参考情報であり、投資の最終判断はご自身の責任で行ってください。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- よくある質問 -->
+  <section class="block" id="faq">
+    <div class="wrap">
+      <h2>よくある質問</h2>
+      <div class="faq">
+        <details><summary>日本株の恐怖と強欲指数は、どんなデータで計算していますか？</summary><div class="ans">日経225、TOPIX連動ETF、ドル円、日本の10年国債利回りを使い、6つの指標を「過去1年の中での位置」で0〜100に換算して加重平均し、直近3営業日の平均を表示しています。くわしくは、このページ下部の「指数の算出方法」をご覧ください。</div></details>
+        <details><summary>日本株と米国株で、指数の水準が違うのはなぜですか？</summary><div class="ans">米国株はCNN Businessが公表する7指標の指数、日本株は当サイト独自の6指標の指数です。構成も計算方法も異なるため、水準を直接比べるのではなく、それぞれの推移や区分の変化を見るのが適しています。</div></details>
+        <details><summary>指数が「恐怖」のとき、株価は必ず下がりますか？</summary><div class="ans">いいえ。恐怖と強欲指数は現在の心理を示すもので、株価の将来を示すものではありません。恐怖の水準でも株価が上がる日はありますし、下落が続くこともあります。日経平均が大きく上がった日でも、指数が「恐怖」にとどまることがあります。</div></details>
+        <details><summary>指数を見て売買のタイミングを決めてもよいですか？</summary><div class="ans">指数は判断材料の1つです。業績や金利、為替、ご自身の資金計画とあわせて検討することが大切です。当サイトは、特定の金融商品の売買を勧誘・推奨するものではありません。</div></details>
+        <details><summary>新NISAで積立をしています。指数を気にした方がよいですか？</summary><div class="ans">積立投資は、一定額を定期的に購入して購入価格をならす考え方で、短期の心理指標とは目的が異なります。指数は「いまの市場の温度感を知るための参考情報」として見るのが一般的です。制度の詳細は、金融庁や金融機関の公式情報でご確認ください。</div></details>
+        <details><summary>タイトルに「リアルタイム」とありますが、秒単位で更新されますか？</summary><div class="ans">秒単位の更新ではありません。日本の取引時間中は約1時間ごと、米国の取引時間中は約2時間ごとに自動で更新します。データ提供元の都合で遅れる場合があり、国債利回りなど一部のデータは前営業日のものを使います。</div></details>
+        <details><summary>日経平均VIやVIX指数とは何が違いますか？</summary><div class="ans">VIXや日経平均VIは、オプション価格から算出される「今後の予想変動率」で、不安という1つの側面を測ります。恐怖と強欲指数は、そうした要素を含む複数の指標をまとめた、総合的な心理の指数です。比較表は投資ガイドで解説しています。</div></details>
+        <details><summary>過去の推移や、その日の解説はどこで見られますか？</summary><div class="ans">営業日ごとの記録は「市況アーカイブ」、その日のニュースと指標の内訳の解説は「ブログ」でご覧いただけます。</div></details>
       </div>
     </div>
   </section>
@@ -571,12 +839,15 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer-links">
-      <a href="/about">サイトについて</a>
+      <a href="/">ダッシュボード</a>
+      <a href="/archive">市況アーカイブ</a>
+      <a href="/blog">ブログ</a>
       <a href="/guide">投資ガイド</a>
+      <a href="/about">サイトについて</a>
       <a href="/terms">利用規約</a>
       <a href="/privacy">プライバシーポリシー</a>
     </div>
-    <p class="footer-copy">© 2026 Fear &amp; Greed Japan. All rights reserved.<br>「日経225」は株式会社日本経済新聞社の登録商標です。本サイトは同社とは関係ありません。</p>
+    <p class="footer-copy">© 2026 Fear &amp; Greed Index Japan. All rights reserved.<br>「日経225」は株式会社日本経済新聞社の登録商標です。本サイトは同社とは関係ありません。</p>
   </div>
 </footer>
 
@@ -605,7 +876,7 @@ function zoneOf(score) {
 const getColor = s => zoneOf(s).color;
 const getLabel = s => zoneOf(s).label;
 
-/* ───────── サンプルデータ（시안 확인용, 실제 값 아님） ───────── */
+/* ───────── サンプルデータ（デザイン確認用。実際の値ではありません） ───────── */
 function buildSample() {
   const history = [];
   const base = new Date();
@@ -673,7 +944,7 @@ function drawGauge(svgId, score) {
     return el;
   };
 
-  // 5구간 (구간 경계는 0/25/45/55/75/100 → 각도로 환산)
+  // 5つの区分（境界は 0/25/45/55/75/100 → 角度に換算）
   const bounds = [0, 25, 45, 55, 75, 100];
   ZONES.forEach((z, i) => {
     const a = 180 - (bounds[i] / 100) * 180;
@@ -681,14 +952,14 @@ function drawGauge(svgId, score) {
     mk('path', { d: arc(a - 0.6, b + 0.6, r), stroke: z.color, 'stroke-width': sw, fill: 'none', opacity: 0.28 });
   });
 
-  // 활성 구간 강조
+  // 現在の区分を強調
   const s = Math.max(0, Math.min(100, score));
   const zi = ZONES.findIndex(z => Math.round(s) <= z.max);
   const za = 180 - (bounds[zi] / 100) * 180;
   const zb = 180 - (bounds[zi + 1] / 100) * 180;
   mk('path', { d: arc(za - 0.6, zb + 0.6, r), stroke: ZONES[zi].color, 'stroke-width': sw, fill: 'none' });
 
-  // 눈금 라벨 (0, 25, 50, 75, 100)
+  // 目盛りのラベル（0, 25, 50, 75, 100）
   [0, 25, 50, 75, 100].forEach(v => {
     const deg = 180 - (v / 100) * 180;
     const p = polar(deg, r + 20);
@@ -696,9 +967,9 @@ function drawGauge(svgId, score) {
     t.textContent = v;
   });
 
-  // 바늘
+  // 針
   const needleDeg = 180 - (s / 100) * 180;
-  const tip = polar(needleDeg, r - sw / 2 - 2);   // 색 띠 안쪽 가장자리까지 닿도록
+  const tip = polar(needleDeg, r - sw / 2 - 2);   // 色の帯の内側の縁まで届くように
   const bl = polar(needleDeg + 90, 6), br = polar(needleDeg - 90, 6);
   mk('polygon', {
     points: `${tip.x},${tip.y} ${cx + (bl.x - cx)},${cy + (bl.y - cy)} ${cx + (br.x - cx)},${cy + (br.y - cy)}`,
@@ -728,7 +999,7 @@ function renderIndicators(id, list) {
   });
 }
 
-/* ───────── ゲージ카드 갱신 ───────── */
+/* ───────── ゲージカードの更新 ───────── */
 function updateCard(prefix, d) {
   if (!d || d.score === null || d.score === undefined) {
     document.getElementById('gauge-' + prefix).innerHTML = '';
@@ -797,14 +1068,14 @@ function drawHistory() {
   const X = i => padL + (i / (historyData.length - 1)) * cw;
   const Y = v => padT + ch - (v / 100) * ch;
 
-  // 구간 배경 띠
+  // 区分の背景の帯
   const bounds = [0, 25, 45, 55, 75, 100];
   ZONES.forEach((z, i) => {
     ctx.fillStyle = z.color + '10';
     ctx.fillRect(padL, Y(bounds[i + 1]), cw, Y(bounds[i]) - Y(bounds[i + 1]));
   });
 
-  // 가이드선
+  // ガイド線
   [25, 50, 75].forEach(v => {
     ctx.beginPath();
     ctx.strokeStyle = '#dfe5ee';
@@ -817,7 +1088,7 @@ function drawHistory() {
     ctx.fillText(v, padL - 6, Y(v) + 4);
   });
 
-  // 날짜 라벨
+  // 日付のラベル
   ctx.textAlign = 'center';
   ctx.fillStyle = '#6b7a94';
   const step = Math.ceil(historyData.length / 6);
@@ -948,7 +1219,7 @@ async function fetchAll() {
 window.addEventListener('load', () => {
   drawHistory();
   fetchAll();
-  setInterval(fetchAll, 3600000); // 1시간마다 갱신
+  setInterval(fetchAll, 3600000); // 1時間ごとに更新
 });
 </script>
 </body>
