@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サイトについて｜Fear & Greed Japan</title>
+<meta name="description" content="Fear &amp; Greed Japanは、日本株と米国株の投資家心理を0〜100の数値で毎日確認できる情報サイトです。指数の算出元、データの出典、運営方針、運営者情報を掲載しています。">
+<link rel="canonical" href="https://feargreedjapan.com/about.html">
+<meta property="og:title" content="サイトについて｜Fear & Greed Japan">
+<meta property="og:description" content="Fear &amp; Greed Japanは、日本株と米国株の投資家心理を0〜100の数値で毎日確認できる情報サイトです。指数の算出元、データの出典、運営方針、運営者情報を掲載しています。">
+<meta property="og:url" content="https://feargreedjapan.com/about.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Fear &amp; Greed Japan">
+<meta property="og:image" content="https://feargreedjapan.com/thumbnail.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#14284b">
+<link rel="icon" href="favicon.ico">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "ホーム",
+      "item": "https://feargreedjapan.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "サイトについて",
+      "item": "https://feargreedjapan.com/about.html"
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<!-- ▼ 오픈 전에 새 GA4 ID로 교체 (index.html 과 동일하게) -->
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+-->
+<!-- ▼ 애드센스 승인 후 활성화 (기존 계정의 pub ID 그대로 사용. 계정을 새로 만들지 않고 '사이트 추가'로 등록) -->
+<!--
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+-->
+
+<style>
+  :root {
+    --ink: #14284b; --ink-soft: #3a4d70; --paper: #f6f8fb; --surface: #ffffff;
+    --line: #dfe5ee; --muted: #6b7a94;
+    --c-ef: #b3261e; --c-f: #d9822b; --c-n: #8a94a6; --c-g: #3b8f6b; --c-eg: #1f6fb2;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP','Hiragino Kaku Gothic ProN','Yu Gothic',Meiryo,sans-serif;
+    background: var(--paper); color: var(--ink);
+    line-height: 1.8; font-size: 15px; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--c-eg); outline-offset: 2px; }
+
+  .site-header { background: var(--ink); color: #fff; }
+  .site-header .inner {
+    max-width: 1080px; margin: 0 auto; padding: 0 24px; height: 60px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .brand { font-weight: 900; font-size: 18px; letter-spacing: .02em; text-decoration: none; color: #fff; white-space: nowrap; }
+  .brand small { font-weight: 500; font-size: 12px; opacity: .7; margin-left: 10px; }
+  .nav { display: flex; gap: 4px; }
+  .nav a { color: #cdd7ea; text-decoration: none; font-size: 14px; font-weight: 500; padding: 8px 14px; border-radius: 6px; }
+  .nav a:hover { background: rgba(255,255,255,.08); color: #fff; }
+  .nav a[aria-current="page"] { color: #fff; background: rgba(255,255,255,.14); }
+  @media (max-width: 720px) {
+    .site-header .inner { height: auto; padding: 12px 16px; flex-direction: column; align-items: flex-start; gap: 8px; }
+    .brand small { display: none; }
+    .nav { flex-wrap: wrap; }
+    .nav a { padding: 6px 10px; font-size: 13px; }
+  }
+
+  .notice-bar { background: #eaf0f9; border-bottom: 1px solid var(--line); color: var(--ink-soft); font-size: 12.5px; text-align: center; padding: 8px 16px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  @media (max-width: 720px) { .wrap { padding: 0 16px; } }
+
+  /* ── 記事レイアウト ── */
+  .article { max-width: 760px; margin: 0 auto; padding: 40px 0 8px; }
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 20px; }
+  .crumbs a { text-decoration: none; }
+  .crumbs a:hover { text-decoration: underline; }
+  .crumbs span { margin: 0 6px; }
+
+  .article h1 { font-size: clamp(26px, 4vw, 34px); font-weight: 900; line-height: 1.45; text-wrap: balance; }
+  .article .lead { margin-top: 16px; color: var(--ink-soft); font-size: 16px; line-height: 1.95; }
+
+  .toc { margin: 32px 0 8px; padding: 20px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+  .article .toc h2 { font-size: 14px; font-weight: 700; color: var(--ink-soft); margin: 0 0 8px; padding: 0; border: none; line-height: 1.6; }
+  .toc ol { padding-left: 1.4em; font-size: 14.5px; }
+  .toc li { padding: 3px 0; }
+  .toc a { text-decoration: none; color: var(--ink); }
+  .toc a:hover { text-decoration: underline; }
+
+  .article section { padding-top: 44px; scroll-margin-top: 16px; }
+  .article h2 { font-size: 22px; font-weight: 900; line-height: 1.5; padding-left: 14px; border-left: 5px solid var(--ink); margin-bottom: 16px; }
+  .article h3 { font-size: 17px; font-weight: 700; margin: 26px 0 8px; }
+  .article p { font-size: 16px; line-height: 1.95; color: #24365a; margin-top: 14px; }
+  .article section > h2 + p { margin-top: 0; }
+  .article ul { margin: 14px 0 0 1.3em; }
+  .article li { font-size: 16px; line-height: 1.9; color: #24365a; padding: 2px 0; }
+  .article a.inline { color: var(--c-eg); text-underline-offset: 3px; }
+
+  .table-scroll { overflow-x: auto; margin-top: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+  table.doc { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 520px; }
+  table.doc th, table.doc td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.7; }
+  table.doc tr:last-child th, table.doc tr:last-child td { border-bottom: none; }
+  table.doc thead th { background: #f2f5fa; color: var(--ink-soft); font-weight: 700; white-space: nowrap; }
+  table.doc tbody th { font-weight: 700; white-space: nowrap; background: #fafbfd; width: 9em; }
+  .article ol.clauses { margin: 12px 0 0 1.7em; }
+  .article ol.clauses > li { padding: 3px 0 3px .2em; }
+  .article ol.paren { list-style: none; counter-reset: p; margin: 12px 0 0; }
+  .article ol.paren > li { counter-increment: p; position: relative; padding-left: 2.8em; }
+  .article ol.paren > li::before { content: "(" counter(p) ")"; position: absolute; left: 0; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .enact { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+  @media (max-width: 720px) {
+    table.doc.stack { min-width: 0; }
+    table.doc.stack thead { display: none; }
+    table.doc.stack, table.doc.stack tbody, table.doc.stack tr, table.doc.stack th, table.doc.stack td { display: block; width: auto; }
+    table.doc.stack tr { padding: 12px 0; border-bottom: 1px solid var(--line); }
+    table.doc.stack tr:last-child { border-bottom: none; }
+    table.doc.stack tbody th { background: none; white-space: normal; border: none; padding: 2px 16px 6px; }
+    table.doc.stack td { border: none; padding: 4px 16px; }
+    table.doc.stack td::before { content: attr(data-label); display: block; font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 1px; }
+  }
+  table.doc.narrow { min-width: 0; }
+  table.doc.narrow tbody th { width: 8em; white-space: normal; }
+  @media (max-width: 720px) { table.doc.narrow tbody th { width: 6.5em; } }
+  .zone-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; vertical-align: baseline; }
+
+  .callout { margin-top: 20px; padding: 16px 20px; background: #eef3fb; border-left: 4px solid var(--ink); border-radius: 4px; }
+  .callout p { margin: 0; font-size: 15px; line-height: 1.85; }
+  .callout.warn { background: #fff8ec; border-left-color: #d9a441; }
+  .callout.warn p { color: #6a5320; }
+
+  .faq { margin-top: 8px; }
+  .faq details { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); margin-top: 10px; }
+  .faq summary { cursor: pointer; padding: 16px 20px; font-weight: 700; font-size: 16px; line-height: 1.6; list-style: none; display: flex; gap: 12px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::before { content: 'Q'; color: var(--c-eg); font-weight: 900; }
+  .faq details[open] summary { border-bottom: 1px solid var(--line); }
+  .faq .ans { padding: 14px 20px 18px 48px; font-size: 15.5px; line-height: 1.9; color: #24365a; }
+
+  .todo { background: #fff3a3; padding: 1px 6px; border-radius: 3px; font-weight: 700; color: #6b4e00; }
+
+  .cta { margin: 48px 0 0; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); text-align: center; }
+  .cta p { margin: 0 0 14px; font-size: 15px; }
+  .cta a { display: inline-block; background: var(--ink); color: #fff; text-decoration: none; font-weight: 700; padding: 12px 28px; border-radius: 6px; }
+  .cta a:hover { background: #0e1d38; }
+
+  .disclaimer { margin: 40px auto 0; max-width: 760px; padding: 20px 24px; background: #fff8ec; border: 1px solid #f0dcb6; border-radius: var(--radius); font-size: 13px; color: #6a5320; }
+  .disclaimer strong { display: block; margin-bottom: 4px; }
+
+  footer.site-footer { margin-top: 56px; background: var(--ink); color: #b9c6df; padding: 36px 0 28px; font-size: 13px; }
+  .footer-links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-bottom: 16px; }
+  .footer-links a { color: #dbe4f5; text-decoration: none; }
+  .footer-links a:hover { text-decoration: underline; }
+  .footer-copy { opacity: .8; font-size: 12px; }
+
+  @media (max-width: 720px) {
+    .article { padding-top: 28px; }
+    .article h2 { font-size: 20px; }
+    .article p, .article li { font-size: 15.5px; }
+    .faq .ans { padding-left: 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="/">Fear &amp; Greed Japan<small>恐怖と強欲指数</small></a>
+    <nav class="nav" aria-label="メインメニュー">
+      <a href="/">ダッシュボード</a>
+      <a href="/about.html" aria-current="page">サイトについて</a>
+      <a href="/guide.html">投資ガイド</a>
+    </nav>
+  </div>
+</header>
+
+<div class="notice-bar">
+  本サイトは投資判断の助言を目的としたものではありません。投資はご自身の判断と責任でお願いします。
+</div>
+
+<main>
+  <div class="wrap">
+    <article class="article">
+      <nav class="crumbs" aria-label="パンくずリスト"><a href="/">ホーム</a><span>&gt;</span>サイトについて</nav>
+
+      <h1>サイトについて</h1>
+      <p class="lead">Fear &amp; Greed Japanは、日本株と米国株の「投資家心理」を0〜100の数値で毎日確認できる情報サイトです。</p>
+
+      <nav class="toc" aria-label="目次">
+        <h2>このページの内容</h2>
+        <ol>
+        <li><a href="#purpose">このサイトの目的</a></li>
+        <li><a href="#indices">提供している指数</a></li>
+        <li><a href="#data">データの出典と取り扱い</a></li>
+        <li><a href="#policy">運営方針</a></li>
+        <li><a href="#operator">運営者情報</a></li>
+        <li><a href="#ip">商標・著作権について</a></li>
+        </ol>
+      </nav>
+
+      <section id="purpose">
+        <h2>このサイトの目的</h2>
+        <p>株価が上がったのか下がったのかは、ニュースやチャートですぐに確認できます。一方で、市場に参加している人たちが「いまどのくらい不安なのか」「どのくらい強気なのか」は、数字になっていないため目に見えにくいものです。</p>
+        <p>当サイトは、その市場の空気感を0〜100の数値にして、日本株と米国株を並べて見られるようにすることを目的としています。売買をおすすめするためのサイトではなく、いまの市場の温度感を知るための参考情報を提供するものです。</p>
+      </section>
+
+      <section id="indices">
+        <h2>提供している指数</h2>
+        <p>当サイトでは、次の2つの指数を表示しています。</p>
+        <div class="table-scroll">
+          <table class="doc narrow">
+            <tbody>
+              <tr><th>日本株の指数</th><td>当サイト独自の算出。日経225・TOPIX連動ETFなどが基準</td></tr>
+              <tr><th>米国株の指数</th><td>CNN Businessの公表値をそのまま表示。S&amp;P500などが基準</td></tr>
+              <tr><th>表示の更新</th><td>日本の取引時間中は約1時間ごと、米国の取引時間中は約2時間ごとに自動更新（休場日は更新なし）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>日本株の指数は、CNN Businessの指数の考え方を参考にしつつ、日本市場のデータで当サイトが独自に算出しています。そのため、米国株の指数とは指標の構成が異なり、数値の水準をそのまま比べることはできません。算出に使う指標とウェイトは、<a class="inline" href="/#method">ダッシュボードの「指数の算出方法」</a>で公開しています。</p>
+      </section>
+
+      <section id="data">
+        <h2>データの出典と取り扱い</h2>
+        <ul>
+          <li>日経225、TOPIX連動ETF、為替（ドル円）は Yahoo Finance の公開データ、国債利回りは財務省が公表するデータを利用しています。</li>
+          <li>米国株の指数は、CNN Businessが公表している「Fear &amp; Greed Index」の数値です。</li>
+          <li>データの取得元の都合により、表示が遅れたり、一時的に取得できなかったりすることがあります。取得できない場合は、その旨を画面に表示します。</li>
+          <li>算出方法や使用するデータを変更した場合は、当サイト上で明記します。</li>
+        </ul>
+        <div class="callout">
+          <p>表示内容に誤りや不自然な数値を見つけた場合は、下記の連絡先までお知らせください。確認のうえ、必要に応じて修正します。</p>
+        </div>
+      </section>
+
+      <section id="policy">
+        <h2>運営方針</h2>
+        <ul>
+          <li>特定の銘柄や金融商品の売買を勧誘・推奨しません。</li>
+          <li>将来の値動きを予測したり、断定したりする表現を避けます。</li>
+          <li>指数の算出方法を公開し、誰でも確認できる状態を保ちます。</li>
+          <li>当サイトは広告を掲載する場合があります。広告の内容が、指数や解説の内容に影響することはありません。</li>
+        </ul>
+      </section>
+
+      <section id="operator">
+        <h2>運営者情報</h2>
+        <div class="table-scroll">
+          <table class="doc narrow">
+            <tbody>
+              <tr><th>サイト名</th><td>Fear &amp; Greed Japan</td></tr>
+              <tr><th>運営者</th><td><span class="todo">［要入力：運営者名または屋号］</span></td></tr>
+              <tr><th>お問い合わせ</th><td><span class="todo">［要入力：連絡用メールアドレス］</span></td></tr>
+              <tr><th>開設</th><td>2026年</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>お問い合わせへの返信には、数日かかる場合があります。投資に関する個別のご相談にはお答えできません。</p>
+      </section>
+
+      <section id="ip">
+        <h2>商標・著作権について</h2>
+        <p>「日経平均株価」「日経225」に関する著作権、商標権その他の知的財産権は、株式会社日本経済新聞社に帰属します。「S&amp;P500」「CNN」などの名称は、それぞれの権利者の商標または登録商標です。</p>
+        <p>当サイトは、上記の各社とは関係がなく、各社の承認や提携を受けたものではありません。</p>
+      </section>
+
+      <div class="cta">
+        <p>指数の見方や使うときの注意点は、投資ガイドで解説しています。</p>
+        <a href="/guide.html">投資ガイドを読む</a>
+      </div>
+
+    </article>
+
+    <div class="disclaimer">
+      <strong>ご利用にあたっての注意</strong>
+      本サイトの情報は、投資家心理を数値化した参考情報であり、特定の金融商品の売買を勧誘・推奨するものではありません。指数は過去のデータに基づく参考値で、将来の値動きを予測・保証するものではありません。掲載データの正確性には努めていますが、遅延・誤り・欠落が生じる場合があります。投資に関する最終判断は、ご自身の責任で行ってください。
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="/about.html">サイトについて</a>
+      <a href="/guide.html">投資ガイド</a>
+      <a href="/terms.html">利用規約</a>
+      <a href="/privacy.html">プライバシーポリシー</a>
+    </div>
+    <p class="footer-copy">© 2026 Fear &amp; Greed Japan. All rights reserved.<br>「日経225」は株式会社日本経済新聞社の登録商標です。本サイトは同社とは関係ありません。</p>
+  </div>
+</footer>
+
+</body>
+</html>
