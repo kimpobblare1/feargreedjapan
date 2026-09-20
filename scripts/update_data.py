@@ -363,13 +363,15 @@ def compute_jp(n225, topix=None, fx=None, jgb=None):
     hist = []
     for i in range(start, n):
         tot = wsum = 0.0
+        parts = {}
         for k, w in WEIGHTS.items():
             s = scores[k][i]
             if s is not None:
                 tot += s * w
                 wsum += w
+                parts[k] = int(round(s))
         if wsum >= MIN_WEIGHT:
-            hist.append((dates[i], tot / wsum))
+            hist.append((dates[i], tot / wsum, parts))
 
     if not hist or hist[-1][0] != dates[-1]:
         return None, []
@@ -383,7 +385,16 @@ def compute_jp(n225, topix=None, fx=None, jgb=None):
         if s is None:
             missing.append(NAMES[k])
         else:
-            inds.append({"name": NAMES[k], "value": int(round(s))})
+            win = sorted(v for v in raw[k][max(0, n - WINDOW):n] if v is not None)
+            inds.append({
+                "name": NAMES[k],
+                "value": int(round(s)),
+                # ↓ 診断用：0〜100に換算する前の実測値と、過去1年の分布
+                "raw": round(raw[k][n - 1], 2),
+                "median": round(win[len(win) // 2], 2),
+                "low": round(win[0], 2),
+                "high": round(win[-1], 2),
+            })
 
     jp = {
         "score": at(1),
@@ -396,7 +407,7 @@ def compute_jp(n225, topix=None, fx=None, jgb=None):
         "notes": notes,
         "stale": False,
     }
-    return jp, hist[-HISTORY_DAYS:]
+    return jp, hist[-HISTORY_DAYS:]   # [(日付, スコア, {指標: スコア}), ...]
 
 
 # ════════════════════════════════════════════
@@ -448,6 +459,10 @@ def main():
             log("  ❌ 日本株の指数を計算できませんでした（データ不足）")
     if jp:
         log("  → 日本株の指数: %d（欠けた指標: %s）" % (jp["score"], ", ".join(jp["missing"]) or "なし"))
+        for ind in jp["indicators"]:
+            if "raw" in ind:
+                log("     %-10s 現在 %8.2f | 過去1年 中央値 %8.2f（最小 %8.2f 〜 最大 %8.2f）→ %d点"
+                    % (ind["name"], ind["raw"], ind["median"], ind["low"], ind["high"], ind["value"]))
 
     log("=== 米国株（CNN）を取得 ===")
     us, us_hist_map = None, {}
@@ -460,7 +475,7 @@ def main():
     if jp is None and prev_ok and prev_ok.get("jp"):
         jp = dict(prev_ok["jp"])
         jp["stale"] = True
-        jp_hist = [(h["date"], h["jp"]) for h in prev_ok.get("history", []) if h.get("jp") is not None]
+        jp_hist = [(h["date"], h["jp"], h.get("parts")) for h in prev_ok.get("history", []) if h.get("jp") is not None]
         log("  ⚠ 日本株は前回の値を残します（stale）")
     if us is None and prev_ok and prev_ok.get("us"):
         us = dict(prev_ok["us"])
@@ -477,11 +492,14 @@ def main():
     us_dates = sorted(us_hist_map)
     us_vals = [us_hist_map[d] for d in us_dates]
     if jp_hist:
-        aligned_us = align([d for d, _ in jp_hist], us_dates, us_vals, max_gap=5) if us_dates else [None] * len(jp_hist)
-        for (d, s), u in zip(jp_hist, aligned_us):
-            row = {"date": d, "jp": int(round(s)) if not isinstance(s, int) else s}
+        aligned_us = align([h[0] for h in jp_hist], us_dates, us_vals, max_gap=5) if us_dates else [None] * len(jp_hist)
+        for h, u in zip(jp_hist, aligned_us):
+            d, s = h[0], h[1]
+            row = {"date": d, "jp": int(round(s))}
             if u is not None:
                 row["us"] = int(u)
+            if len(h) > 2 and h[2]:
+                row["parts"] = h[2]
             history.append(row)
 
     payload = {"success": True, "jp": jp, "us": us, "history": history}
