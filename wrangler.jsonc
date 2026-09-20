@@ -15,5 +15,5 @@
   },
 
   // xxx.workers.dev の確認用URLを有効にする（独自ドメイン接続後は false にしてよい）
-  "workers_dev": true
+  "workers_dev": false
 }
