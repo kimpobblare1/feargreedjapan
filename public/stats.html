@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="HoU_nbY9is8mGhPZ6eENVWpMUnDZx3JJAhnjUdSYqHg" />
+<title>指数別の統計データ｜区分ごとのその後の日経平均の動き（試験公開）｜Fear &amp; Greed Index Japan</title>
+<meta name="description" content="日本株の恐怖と強欲指数が各区分にあった日の、その後5・20・60営業日の日経平均の動きを過去のデータで集計。中央値・上昇した割合・局面数とあわせて確認できます。">
+<link rel="canonical" href="https://feargreedjapan.com/stats">
+<meta property="og:title" content="指数別の統計データ｜区分ごとのその後の日経平均の動き（試験公開）｜Fear &amp; Greed Index Japan">
+<meta property="og:description" content="日本株の恐怖と強欲指数が各区分にあった日の、その後5・20・60営業日の日経平均の動きを過去のデータで集計。中央値・上昇した割合・局面数とあわせて確認できます。">
+<meta property="og:url" content="https://feargreedjapan.com/stats">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Fear &amp; Greed Index Japan">
+<meta property="og:image" content="https://feargreedjapan.com/thumbnail.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="指数別の統計データ｜区分ごとのその後の日経平均の動き（試験公開）｜Fear &amp; Greed Index Japan">
+<meta name="twitter:description" content="日本株の恐怖と強欲指数が各区分にあった日の、その後5・20・60営業日の日経平均の動きを過去のデータで集計。中央値・上昇した割合・局面数とあわせて確認できます。">
+<meta name="twitter:image" content="https://feargreedjapan.com/thumbnail.png">
+<meta name="theme-color" content="#14284b">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "ホーム",
+      "item": "https://feargreedjapan.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "統計データ",
+      "item": "https://feargreedjapan.com/stats"
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<!-- ▼ 公開前に、新しいGA4のIDに置き換える（index.html と同じ値） -->
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+-->
+<!-- ▼ AdSense承認後に有効化（既存アカウントのpub IDをそのまま使用。アカウントは新規作成せず「サイトを追加」で登録） -->
+<!--
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+-->
+
+<style>
+  :root {
+    --ink: #14284b; --ink-soft: #3a4d70; --paper: #f6f8fb; --surface: #ffffff;
+    --line: #dfe5ee; --muted: #6b7a94;
+    --c-ef: #b3261e; --c-f: #d9822b; --c-n: #8a94a6; --c-g: #3b8f6b; --c-eg: #1f6fb2;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP','Hiragino Kaku Gothic ProN','Yu Gothic',Meiryo,sans-serif;
+    background: var(--paper); color: var(--ink);
+    line-height: 1.8; font-size: 15px; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--c-eg); outline-offset: 2px; }
+
+  .site-header { background: var(--ink); color: #fff; }
+  .site-header .inner {
+    max-width: 1080px; margin: 0 auto; padding: 0 24px; height: 60px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .brand { font-weight: 900; font-size: 18px; letter-spacing: .02em; text-decoration: none; color: #fff; white-space: nowrap; }
+  .brand small { font-weight: 500; font-size: 12px; opacity: .7; margin-left: 10px; }
+  .nav { display: flex; gap: 4px; }
+  .nav a { color: #cdd7ea; text-decoration: none; font-size: 14px; font-weight: 500; padding: 8px 14px; border-radius: 6px; }
+  .nav a:hover { background: rgba(255,255,255,.08); color: #fff; }
+  .nav a[aria-current="page"] { color: #fff; background: rgba(255,255,255,.14); }
+  @media (max-width: 720px) {
+    .site-header .inner { height: auto; padding: 12px 16px; flex-direction: column; align-items: flex-start; gap: 8px; }
+    .brand small { display: none; }
+    .nav { flex-wrap: wrap; }
+    .nav a { padding: 6px 10px; font-size: 13px; }
+  }
+
+  .notice-bar { background: #eaf0f9; border-bottom: 1px solid var(--line); color: var(--ink-soft); font-size: 12.5px; text-align: center; padding: 8px 16px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  @media (max-width: 720px) { .wrap { padding: 0 16px; } }
+
+  /* ── 記事レイアウト ── */
+  .article { max-width: 760px; margin: 0 auto; padding: 40px 0 8px; }
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 20px; }
+  .crumbs a { text-decoration: none; }
+  .crumbs a:hover { text-decoration: underline; }
+  .crumbs span { margin: 0 6px; }
+
+  .article h1 { font-size: clamp(26px, 4vw, 34px); font-weight: 900; line-height: 1.45; text-wrap: balance; }
+  .article .lead { margin-top: 16px; color: var(--ink-soft); font-size: 16px; line-height: 1.95; }
+
+  .toc { margin: 32px 0 8px; padding: 20px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+  .article .toc h2 { font-size: 14px; font-weight: 700; color: var(--ink-soft); margin: 0 0 8px; padding: 0; border: none; line-height: 1.6; }
+  .toc ol { padding-left: 1.4em; font-size: 14.5px; }
+  .toc li { padding: 3px 0; }
+  .toc a { text-decoration: none; color: var(--ink); }
+  .toc a:hover { text-decoration: underline; }
+
+  .article section { padding-top: 44px; scroll-margin-top: 16px; }
+  .article h2 { font-size: 22px; font-weight: 900; line-height: 1.5; padding-left: 14px; border-left: 5px solid var(--ink); margin-bottom: 16px; }
+  .article h3 { font-size: 17px; font-weight: 700; margin: 26px 0 8px; }
+  .article p { font-size: 16px; line-height: 1.95; color: #24365a; margin-top: 14px; }
+  .article section > h2 + p { margin-top: 0; }
+  .article ul { margin: 14px 0 0 1.3em; }
+  .article li { font-size: 16px; line-height: 1.9; color: #24365a; padding: 2px 0; }
+  .article a.inline { color: var(--c-eg); text-underline-offset: 3px; }
+
+  .table-scroll { overflow-x: auto; margin-top: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+  table.doc { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 520px; }
+  table.doc th, table.doc td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.7; }
+  table.doc tr:last-child th, table.doc tr:last-child td { border-bottom: none; }
+  table.doc thead th { background: #f2f5fa; color: var(--ink-soft); font-weight: 700; white-space: nowrap; }
+  table.doc tbody th { font-weight: 700; white-space: nowrap; background: #fafbfd; width: 9em; }
+  .article ol.clauses { margin: 12px 0 0 1.7em; }
+  .article ol.clauses > li { padding: 3px 0 3px .2em; }
+  .article ol.paren { list-style: none; counter-reset: p; margin: 12px 0 0; }
+  .article ol.paren > li { counter-increment: p; position: relative; padding-left: 2.8em; }
+  .article ol.paren > li::before { content: "(" counter(p) ")"; position: absolute; left: 0; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .enact { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+  @media (max-width: 720px) {
+    table.doc.stack { min-width: 0; }
+    table.doc.stack thead { display: none; }
+    table.doc.stack, table.doc.stack tbody, table.doc.stack tr, table.doc.stack th, table.doc.stack td { display: block; width: auto; }
+    table.doc.stack tr { padding: 12px 0; border-bottom: 1px solid var(--line); }
+    table.doc.stack tr:last-child { border-bottom: none; }
+    table.doc.stack tbody th { background: none; white-space: normal; border: none; padding: 2px 16px 6px; }
+    table.doc.stack td { border: none; padding: 4px 16px; }
+    table.doc.stack td::before { content: attr(data-label); display: block; font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 1px; }
+  }
+  table.doc.narrow { min-width: 0; }
+  table.doc.narrow tbody th { width: 8em; white-space: normal; }
+  @media (max-width: 720px) { table.doc.narrow tbody th { width: 6.5em; } }
+  .zone-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; vertical-align: baseline; }
+
+  .callout { margin-top: 20px; padding: 16px 20px; background: #eef3fb; border-left: 4px solid var(--ink); border-radius: 4px; }
+  .callout p { margin: 0; font-size: 15px; line-height: 1.85; }
+  .callout.warn { background: #fff8ec; border-left-color: #d9a441; }
+  .callout.warn p { color: #6a5320; }
+
+  .faq { margin-top: 8px; }
+  .faq details { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); margin-top: 10px; }
+  .faq summary { cursor: pointer; padding: 16px 20px; font-weight: 700; font-size: 16px; line-height: 1.6; list-style: none; display: flex; gap: 12px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::before { content: 'Q'; color: var(--c-eg); font-weight: 900; }
+  .faq details[open] summary { border-bottom: 1px solid var(--line); }
+  .faq .ans { padding: 14px 20px 18px 48px; font-size: 15.5px; line-height: 1.9; color: #24365a; }
+
+  .todo { background: #fff3a3; padding: 1px 6px; border-radius: 3px; font-weight: 700; color: #6b4e00; }
+
+  .cta { margin: 48px 0 0; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); text-align: center; }
+  .cta p { margin: 0 0 14px; font-size: 15px; }
+  .cta a { display: inline-block; background: var(--ink); color: #fff; text-decoration: none; font-weight: 700; padding: 12px 28px; border-radius: 6px; }
+  .cta a:hover { background: #0e1d38; }
+
+  .disclaimer { margin: 40px auto 0; max-width: 760px; padding: 20px 24px; background: #fff8ec; border: 1px solid #f0dcb6; border-radius: var(--radius); font-size: 13px; color: #6a5320; }
+  .disclaimer strong { display: block; margin-bottom: 4px; }
+
+  footer.site-footer { margin-top: 56px; background: var(--ink); color: #b9c6df; padding: 36px 0 28px; font-size: 13px; }
+  .footer-links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-bottom: 16px; }
+  .footer-links a { color: #dbe4f5; text-decoration: none; }
+  .footer-links a:hover { text-decoration: underline; }
+  .footer-copy { opacity: .8; font-size: 12px; }
+
+  @media (max-width: 720px) {
+    .article { padding-top: 28px; }
+    .article h2 { font-size: 20px; }
+    .article p, .article li { font-size: 15.5px; }
+    .faq .ans { padding-left: 20px; }
+  }
+
+  .article.wide { max-width: 900px; }
+  .article h1 { text-wrap: balance; }
+  .article small.sub { color: var(--muted); font-size: 12.5px; }
+  .eyebrow { font-size: 13px; font-weight: 700; color: var(--c-eg); letter-spacing: .04em; margin-bottom: 8px; }
+
+  /* 区分チップ */
+  .chip { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; color: #fff; background: var(--c-n); white-space: nowrap; }
+  .chip.ef { background: var(--c-ef); } .chip.f { background: var(--c-f); } .chip.n { background: var(--c-n); }
+  .chip.g { background: var(--c-g); } .chip.eg { background: var(--c-eg); }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* 統計バー */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 24px 0 8px; }
+  .stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; }
+  .stat b { display: block; font-size: 24px; font-weight: 900; line-height: 1.3; font-variant-numeric: tabular-nums; }
+  .stat span { font-size: 12px; color: var(--muted); }
+
+  /* フィルター・ページャー */
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 4px; align-items: center; }
+  .filters .lab { font-size: 13px; color: var(--muted); margin-right: 4px; }
+  .filters button, .pager button { font: inherit; font-size: 13.5px; font-weight: 700; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); cursor: pointer; }
+  .filters button:hover, .pager button:hover { border-color: var(--ink-soft); }
+  .filters button[aria-pressed="true"], .pager button[aria-current="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .pager { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 24px 0 0; }
+  .pager button { min-width: 38px; padding: 6px 10px; border-radius: 8px; }
+
+  /* アーカイブの1日分 */
+  .day { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 20px; margin-top: 12px; }
+  .day-head { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+  .day-date { font-weight: 900; font-size: 16px; }
+  .day-score { font-size: 14px; color: var(--ink-soft); display: inline-flex; gap: 6px; align-items: center; }
+  .day-score b { font-size: 18px; font-variant-numeric: tabular-nums; color: var(--ink); }
+  .day p { margin-top: 8px; font-size: 14.5px; line-height: 1.85; color: #24365a; }
+  .day a.more { font-size: 13px; color: var(--c-eg); text-underline-offset: 3px; }
+  .note-small { font-size: 13px; color: var(--muted); margin-top: 16px; line-height: 1.8; }
+
+  /* ブログ一覧 */
+  .post-item { display: block; text-decoration: none; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; margin-top: 14px; }
+  .post-item:hover { border-color: var(--ink-soft); }
+  .post-meta { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; font-size: 13px; color: var(--muted); }
+  .post-title { font-size: 19px; font-weight: 900; line-height: 1.55; margin-top: 8px; color: var(--ink); }
+  .post-excerpt { font-size: 14.5px; color: var(--ink-soft); margin-top: 8px; line-height: 1.85; }
+
+  /* ブログ記事 */
+  .post-label { font-size: 13px; font-weight: 700; color: var(--c-eg); }
+  .summary-box { margin: 24px 0 8px; padding: 18px 22px; background: #eef3fb; border: 1px solid #d5e0f2; border-radius: var(--radius); }
+  .summary-box h2 { font-size: 15px !important; border: none !important; padding: 0 !important; margin: 0 0 8px !important; color: var(--ink-soft); }
+  .summary-box ul { margin: 0 0 0 1.2em; }
+  .summary-box li { font-size: 15.5px; padding: 3px 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  .tags span { font-size: 13px; color: var(--ink-soft); background: #eef2f8; padding: 4px 12px; border-radius: 999px; }
+  .sources { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); line-height: 1.9; }
+  .article table.doc td.r, .article table.doc th.r { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .article h3.tblcap { font-size: 15px; margin: 22px 0 6px; color: var(--ink-soft); }
+  .lead-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .lead-links a { font-size: 14px; font-weight: 700; text-decoration: none; padding: 9px 18px; border-radius: 8px; background: var(--ink); color: #fff; }
+  .lead-links a.sub { background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="/">Fear &amp; Greed Index Japan<small>恐怖と強欲指数</small></a>
+    <nav class="nav" aria-label="メインメニュー">
+      <a href="/">ダッシュボード</a>
+      <a href="/archive">市況アーカイブ</a>
+      <a href="/blog">ブログ</a>
+      <a href="/guide">投資ガイド</a>
+      <a href="/about">サイトについて</a>
+    </nav>
+  </div>
+</header>
+
+<div class="notice-bar">
+  本サイトは投資判断の助言を目的としたものではありません。投資はご自身の判断と責任でお願いします。
+</div>
+
+<main>
+  <div class="wrap">
+    <article class="article wide">
+      <nav class="crumbs" aria-label="パンくずリスト"><a href="/">ホーム</a><span>&gt;</span>統計データ</nav>
+
+      <h1>指数別の統計データ <span class="chip n" style="vertical-align:middle;font-size:12px">試験公開</span></h1>
+      <p class="lead">当サイトの日本株の恐怖と強欲指数が各区分にあった日に、その後の日経平均がどう動いたかを、過去のデータで集計しました。区分ごとの滞在日数、5・20・60営業日後の騰落率、全期間との差をまとめています。</p>
+      <div class="callout warn"><p><strong>これは過去の集計です。</strong>将来の値動きを予測・保証するものではなく、売買を推奨するものでもありません。数値は「そうなる」という意味ではなく、「過去にはこうだった」という記録です。</p></div>
+
+      <noscript><div class="callout warn"><p>この統計の表示にはJavaScriptが必要です。ブラウザの設定でJavaScriptを有効にしてください。</p></div></noscript>
+      <div class="stats" id="st-meta" aria-live="polite"></div>
+      <div id="st-empty"></div>
+
+      <section id="days" style="padding-top:28px">
+        <h2>① 区分ごとの滞在日数</h2>
+        <p>指数がどの区分にどれだけの日数あったかを示します。「局面」は、同じ区分が連続した1つの塊を1と数えたものです。</p>
+        <div class="table-scroll"><table class="doc" id="tbl-days"></table></div>
+      </section>
+
+      <section id="fwd" style="padding-top:28px">
+        <h2>② その後の日経平均の動き</h2>
+        <p>指数がその区分にあった日の終値から、一定の営業日後の終値までの騰落率を集計しました。見たい期間を選んでください。</p>
+        <div class="filters" id="hz" role="group" aria-label="見る期間"></div>
+        <div class="table-scroll"><table class="doc" id="tbl-fwd"></table></div>
+        <div class="table-scroll" style="margin-top:18px"><table class="doc">
+          <thead><tr><th>用語</th><th>意味</th></tr></thead>
+          <tbody>
+            <tr><th>中央値</th><td>結果を小さい順に並べたときの真ん中の値。極端な値の影響を受けにくい指標です。</td></tr>
+            <tr><th>全期間との差</th><td>その区分の中央値から、全営業日の中央値（下の「全期間」）を引いた値です。差が小さければ、その区分にあったことは結果にほとんど影響していなかったことになります。</td></tr>
+            <tr><th>上昇した割合</th><td>騰落率がプラスだった日の割合です。</td></tr>
+            <tr><th>下位10%〜上位10%</th><td>結果のばらつきを示します。下位10%の値以下だったのが全体の1割、上位10%の値以上だったのが全体の1割です。</td></tr>
+            <tr><th>参考程度</th><td>局面の数が10未満の区分に付けます。少ない出来事に左右されやすく、偶然の影響が大きくなります。</td></tr>
+          </tbody>
+        </table></div>
+      </section>
+
+      <section id="method" style="padding-top:28px">
+        <h2>③ 集計方法</h2>
+        <div class="table-scroll"><table class="doc">
+          <thead><tr><th>項目</th><th>内容</th></tr></thead>
+          <tbody>
+            <tr><th>指数の計算</th><td>当サイトの日本株の指数と同じ方法（6つの指標、過去1年の中での位置、直近3営業日の平均）で、過去の日経平均・ドル円・国債利回り・TOPIX連動ETFのデータから再計算しています。</td></tr>
+            <tr><th>先読みなし</th><td>各日の指数は、その日までのデータだけで計算しています。将来のデータは使っていません。</td></tr>
+            <tr><th>除外する期間</th><td>指数を計算できた最初の約1年は、比較する期間が短く値が不安定なため、集計から外しています。</td></tr>
+            <tr><th>見ている価格</th><td>日経平均の終値です。配当、売買コスト、税金は含みません。</td></tr>
+            <tr><th>「N営業日後」</th><td>その日の終値から、N営業日後の終値までの騰落率です。まだN営業日後が来ていない直近の日は、その期間の集計に含まれません。</td></tr>
+            <tr><th>更新</th><td>自動で約1日に1回、再計算します。</td></tr>
+          </tbody>
+        </table></div>
+      </section>
+
+      <section id="cautions" style="padding-top:28px">
+        <h2>④ 読むときの注意</h2>
+        <div class="table-scroll"><table class="doc">
+          <thead><tr><th>注意点</th><th>内容</th></tr></thead>
+          <tbody>
+            <tr><th>日数は独立した観測ではない</th><td>隣り合う日は、見ている期間が重なるため結果が似ます。日数が多くても、独立した出来事の数ではありません。「局面」の数を目安にしてください。</td></tr>
+            <tr><th>局面が少ない区分</th><td>極端な区分は出現が少なく、少数の出来事に左右されます。「参考程度」の表示がある区分は、特に慎重に見てください。</td></tr>
+            <tr><th>期間による偏り</th><td>集計した期間の相場環境（上昇が続いた時期が多いなど）の影響を受けます。</td></tr>
+            <tr><th>過去は将来を保証しない</th><td>過去にそうだった区分でも、今後同じ結果になるとは限りません。</td></tr>
+            <tr><th>算出方法の見直し</th><td>指数の計算方法を見直した場合、過去分を含めて数値が変わることがあります。</td></tr>
+            <tr><th>個別の売買判断ではない</th><td>この統計は、投資判断の材料の1つとして整理したものです。特定の金融商品の売買を勧誘・推奨するものではありません。</td></tr>
+          </tbody>
+        </table></div>
+        <p>指数の読み方は<a class="inline" href="/guide">投資ガイド</a>、日々の記録は<a class="inline" href="/archive">市況アーカイブ</a>をご覧ください。</p>
+      </section>
+
+    </article>
+
+    <div class="disclaimer">
+      <strong>ご利用にあたっての注意</strong>
+      本サイトの情報は、投資家心理を数値化した参考情報であり、特定の金融商品の売買を勧誘・推奨するものではありません。指数は過去のデータに基づく参考値で、将来の値動きを予測・保証するものではありません。掲載データの正確性には努めていますが、遅延・誤り・欠落が生じる場合があります。投資に関する最終判断は、ご自身の責任で行ってください。
+    </div>
+  </div>
+
+<script>
+(function () {
+  var DATA = null, hz = '20';
+  var LABELS = { '5': '5営業日後（約1週間）', '20': '20営業日後（約1か月）', '60': '60営業日後（約3か月）' };
+  function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt !== undefined) e.textContent = txt; return e; }
+  function pct(x, plus) { if (x === null || x === undefined) return '—'; var a = Math.abs(x).toFixed(2); return (x > 0 && plus !== false ? '+' : x < 0 ? '−' : '') + a + '%'; }
+  function diff(x) { if (x === null || x === undefined) return '—'; var a = Math.abs(x).toFixed(2); return (x > 0 ? '+' : x < 0 ? '−' : '±') + a + 'pt'; }
+  function ymd(s) { var a = s.split('-'); return a[0] + '年' + (+a[1]) + '月' + (+a[2]) + '日'; }
+  function cell(tag, txt, cls) { var c = el(tag, cls, txt); return c; }
+  function chip(z) { return el('span', 'chip ' + z.key, z.name); }
+  function head(tbl, cols) { tbl.textContent = ''; var t = el('thead'), r = el('tr'); cols.forEach(function (c, i) { var th = el('th', i ? 'r' : '', c); r.appendChild(th); }); t.appendChild(r); tbl.appendChild(t); var tb = el('tbody'); tbl.appendChild(tb); return tb; }
+
+  function meta() {
+    var box = document.getElementById('st-meta'); box.textContent = '';
+    [[ymd(DATA.period.start) + '〜' + ymd(DATA.period.end), '集計期間'], [DATA.period.days.toLocaleString('ja-JP') + '日', '集計した営業日数'], [ymd(DATA.as_of), '最新の対象日']]
+      .forEach(function (x) { var d = el('div', 'stat'); var b = el('b', '', x[0]); b.style.fontSize = '18px'; d.appendChild(b); d.appendChild(el('span', '', x[1])); box.appendChild(d); });
+  }
+
+  function days() {
+    var tb = head(document.getElementById('tbl-days'), ['区分', '日数', '割合', '局面の数', '1局面の平均日数']);
+    DATA.zones.forEach(function (z) {
+      var r = el('tr'), c0 = el('td'); c0.appendChild(chip(z)); c0.appendChild(document.createTextNode(' ' + z.range)); r.appendChild(c0);
+      [z.days.toLocaleString('ja-JP') + '日', z.share.toFixed(1) + '%', z.episodes + '回', z.avg_run === null ? '—' : z.avg_run.toFixed(1) + '日']
+        .forEach(function (t) { r.appendChild(cell('td', t, 'r')); });
+      tb.appendChild(r);
+    });
+  }
+
+  function fwd() {
+    var tb = head(document.getElementById('tbl-fwd'), ['区分', '対象日数', '中央値', '全期間との差', '平均', '上昇した割合', '下位10%〜上位10%']);
+    var base = DATA.baseline.fwd[hz];
+    var maxAbs = 0.01; DATA.zones.forEach(function (z) { var f = z.fwd[hz]; if (f) maxAbs = Math.max(maxAbs, Math.abs(f.median)); }); if (base) maxAbs = Math.max(maxAbs, Math.abs(base.median));
+    function bar(v) { var w = el('span'); w.style.cssText = 'display:inline-block;height:8px;border-radius:4px;vertical-align:middle;margin-right:8px;background:' + (v < 0 ? 'var(--c-ef)' : 'var(--ink-soft)') + ';width:' + Math.max(2, Math.round(Math.abs(v) / maxAbs * 56)) + 'px'; return w; }
+    DATA.zones.forEach(function (z) {
+      var f = z.fwd[hz], r = el('tr'), c0 = el('td'); c0.appendChild(chip(z));
+      if (z.episodes < 10) { var s = el('small', 'sub', ' 参考程度'); s.style.marginLeft = '6px'; s.style.color = 'var(--muted)'; s.style.whiteSpace = 'nowrap'; c0.appendChild(s); }
+      r.appendChild(c0);
+      if (!f) { for (var i = 0; i < 6; i++) r.appendChild(cell('td', '—', 'r')); tb.appendChild(r); return; }
+      r.appendChild(cell('td', f.n.toLocaleString('ja-JP') + '日', 'r'));
+      var m = el('td', 'r'); m.appendChild(bar(f.median)); m.appendChild(document.createTextNode(pct(f.median))); r.appendChild(m);
+      r.appendChild(cell('td', base ? diff(Math.round((f.median - base.median) * 100) / 100) : '—', 'r'));
+      r.appendChild(cell('td', pct(f.mean), 'r'));
+      r.appendChild(cell('td', f.win.toFixed(1) + '%', 'r'));
+      r.appendChild(cell('td', pct(f.p10, false) + ' 〜 ' + pct(f.p90), 'r'));
+      tb.appendChild(r);
+    });
+    if (base) {
+      var r = el('tr'); r.style.background = '#eef3fb'; var c0 = el('td'); c0.appendChild(el('strong', '', '全期間（比較用）')); r.appendChild(c0);
+      r.appendChild(cell('td', base.n.toLocaleString('ja-JP') + '日', 'r'));
+      var m = el('td', 'r'); m.appendChild(bar(base.median)); m.appendChild(document.createTextNode(pct(base.median))); r.appendChild(m);
+      r.appendChild(cell('td', '—', 'r')); r.appendChild(cell('td', pct(base.mean), 'r')); r.appendChild(cell('td', base.win.toFixed(1) + '%', 'r'));
+      r.appendChild(cell('td', pct(base.p10, false) + ' 〜 ' + pct(base.p90), 'r')); tb.appendChild(r);
+    }
+  }
+
+  function buttons() {
+    var box = document.getElementById('hz'); box.textContent = '';
+    box.appendChild(el('span', 'lab', '見る期間：'));
+    DATA.horizons.forEach(function (h) {
+      var b = el('button', '', LABELS[String(h)] || (h + '営業日後')); b.type = 'button'; b.setAttribute('aria-pressed', String(String(h) === hz));
+      b.addEventListener('click', function () { hz = String(h); buttons(); fwd(); }); box.appendChild(b);
+    });
+  }
+
+  fetch('/data/stats.json?t=' + Date.now(), { cache: 'no-store' })
+    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function (j) { if (!j.success) throw new Error('no data'); DATA = j; meta(); days(); buttons(); fwd(); })
+    .catch(function () {
+      document.getElementById('st-empty').appendChild(el('div', 'callout', '統計データを準備中です。自動更新の実行後（通常は公開の翌日まで）に表示されます。'));
+      ['days', 'fwd'].forEach(function (id) { var s = document.getElementById(id); if (s) s.style.display = 'none'; });
+    });
+})();
+</script>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="/">ダッシュボード</a>
+      <a href="/archive">市況アーカイブ</a>
+      <a href="/blog">ブログ</a>
+      <a href="/guide">投資ガイド</a>
+      <a href="/about">サイトについて</a>
+      <a href="/terms">利用規約</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+    <p class="footer-copy">© 2026 Fear &amp; Greed Index Japan. All rights reserved.<br>「日経225」は株式会社日本経済新聞社の登録商標です。本サイトは同社とは関係ありません。</p>
+  </div>
+</footer>
+
+</body>
+</html>

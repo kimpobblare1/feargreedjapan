@@ -25,6 +25,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://feargreedjapan.com/stats</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://feargreedjapan.com/guide</loc>
     <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
