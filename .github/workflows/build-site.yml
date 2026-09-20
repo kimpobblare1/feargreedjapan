@@ -1,0 +1,84 @@
+name: Build site
+
+# content/posts/ に記事ファイルを置くと、ブログ一覧・サイトマップ・前後リンクなどを自動で作り直します。
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/**'
+      - 'tools/**'
+  workflow_dispatch:
+    inputs:
+      reinstall:
+        description: 'bootstrap.json から tools/ と content/ を入れ直す（通常はオフ）'
+        type: boolean
+        default: false
+      prune:
+        description: '記事ファイルが無い古い記事ページを削除する（通常はオフ）'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-site
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # 初回だけ：bootstrap.json（ツール一式を1つにまとめたファイル）から tools/ と content/ を作る
+      - name: Install tools (first time only)
+        env:
+          REINSTALL: ${{ inputs.reinstall }}
+        run: |
+          if [ -f bootstrap.json ] && { [ ! -f tools/build_site.py ] || [ "$REINSTALL" = "true" ]; }; then
+            python - <<'PY'
+          import json, os
+          b = json.load(open('bootstrap.json', encoding='utf-8'))
+          for path, text in b['files'].items():
+              assert path.startswith(('tools/', 'content/')) and '..' not in path, path
+              os.makedirs(os.path.dirname(path), exist_ok=True)
+              with open(path, 'w', encoding='utf-8', newline='\n') as f:
+                  f.write(text)
+          print(len(b['files']), 'files installed')
+          PY
+          else
+            echo "ツールは導入済みです（入れ直しは行いません）"
+          fi
+
+      - name: Build pages
+        env:
+          ARGS: ${{ inputs.prune && '--prune' || '' }}
+        run: |
+          python tools/build_site.py $ARGS > build.log 2>&1 || { cat build.log; cat build.log >> "$GITHUB_STEP_SUMMARY"; exit 1; }
+          cat build.log
+          cat build.log >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public tools content
+          if git diff --cached --quiet; then
+            echo "変更なし：コミットしません"
+            exit 0
+          fi
+          git commit -m "build: update pages"
+          for i in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "push に失敗しました"
+          exit 1
