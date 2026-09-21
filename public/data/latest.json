@@ -63,9 +63,9 @@
  "us": {
   "score": 29,
   "previous_close": 29,
-  "previous_1_week": 33,
+  "previous_1_week": 31,
   "previous_1_month": 55,
-  "as_of": "2026-09-18",
+  "as_of": "2026-09-21",
   "indicators": [
    {
     "name": "市場モメンタム",
@@ -490,7 +490,7 @@
    }
   }
  ],
- "hash": "5439bf4509a908f3",
- "updated_at": "2026-09-20T12:53:25+00:00",
- "updated_at_jst": "2026年9月20日 21:53"
+ "hash": "aee1f4e743edcf51",
+ "updated_at": "2026-09-21T10:34:44+00:00",
+ "updated_at_jst": "2026年9月21日 19:34"
 }
