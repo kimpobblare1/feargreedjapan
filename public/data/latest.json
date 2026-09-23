@@ -62,10 +62,10 @@
  },
  "us": {
   "score": 35,
-  "previous_close": 34,
-  "previous_1_week": 28,
+  "previous_close": 35,
+  "previous_1_week": 27,
   "previous_1_month": 55,
-  "as_of": "2026-09-22",
+  "as_of": "2026-09-23",
   "indicators": [
    {
     "name": "市場モメンタム",
@@ -490,7 +490,7 @@
    }
   }
  ],
- "hash": "fc6d88a98d9a2c04",
- "updated_at": "2026-09-22T21:13:15+00:00",
- "updated_at_jst": "2026年9月23日 06:13"
+ "hash": "98e51e6852dceb8f",
+ "updated_at": "2026-09-23T04:22:59+00:00",
+ "updated_at_jst": "2026年9月23日 13:22"
 }
