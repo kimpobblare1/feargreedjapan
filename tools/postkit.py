@@ -79,3 +79,17 @@ def line_chart(dates, jp, us, label=""):
     out.append(f'<text x="{L + 170}" y="{T + 14}" font-size="12" font-weight="700" fill="#1f6fb2">━ 米国株（CNN）</text>')
     out.append("</svg>")
     return "".join(out)
+
+
+def operator_note(paragraphs):
+    """運営者のひとこと（記事の最後、まとめの前に置く）。paragraphs は段落の文字列のリスト"""
+    body = "".join(f'<p style="margin:10px 0 0;line-height:1.95">{t}</p>' for t in paragraphs)
+    return ('<section id="operator" style="margin-top:36px">'
+            '<div style="background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--ink);'
+            'border-radius:var(--radius);padding:20px 24px">'
+            '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">'
+            '<span style="font-weight:900;font-size:16px">運営者のひとこと</span>'
+            '<span style="font-size:12.5px;color:var(--muted)">Fear &amp; Greed Index Japan 運営事務局</span></div>'
+            f'{body}'
+            '<p style="margin:12px 0 0;font-size:12.5px;color:var(--muted)">※運営者の個人的な見方であり、特定の金融商品の売買を勧めるものではありません。</p>'
+            '</div></section>')
