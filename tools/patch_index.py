@@ -7,7 +7,7 @@ import sys
 PATH = sys.argv[1] if len(sys.argv) > 1 else "public/index.html"
 s = open(PATH, encoding="utf-8").read()
 
-TITLE = "日経平均 恐怖と強欲指数 リアルタイム｜日本・米国 Nikkei Fear &amp; Greed Index"
+TITLE = "日本 Nikkei Fear &amp; Greed Japan Index｜日経平均 恐怖と強欲指数 リアルタイム"
 DESC = "日本のNikkeiと米国S&amp;P500の恐怖と強欲指数をリアルタイムで確認できます。騰落率、変動性、安全資産需要など6つの指標を総合した日米の投資心理ダッシュボード。"
 SITE_NAME = "Fear &amp; Greed Index Japan"
 
