@@ -50,6 +50,7 @@ def build_archive():
 <script>
 (function () {
   var PER = 15, ALL = [], filter = 'all', page = 1;
+  var POSTMAP = __POSTMAP__;   // 取引日 → その日を扱った記事（ビルド時に埋め込み）
   var ZONES = [
     { k: 'ef', name: '極度の恐怖', max: 24 }, { k: 'f', name: '恐怖', max: 44 }, { k: 'n', name: '中立', max: 54 },
     { k: 'g', name: '強欲', max: 74 }, { k: 'eg', name: '極度の強欲', max: 100 }
@@ -97,7 +98,7 @@ def build_archive():
         s2.appendChild(el('span', '', '日米差 ' + sgn(e.jp - e.us))); h.appendChild(s2);
       }
       d.appendChild(h); d.appendChild(el('p', '', e.text || ''));
-      if (e.post) { var a = el('a', 'more', 'この日のブログを読む →'); a.href = e.post; d.appendChild(a); }
+      var link = POSTMAP[e.date]; if (link) { var a = el('a', 'more', 'この日のブログを読む →'); a.href = link; d.appendChild(a); }
       box.appendChild(d);
     });
     if (!rows.length) box.appendChild(el('p', 'note-small', '該当する日はありません。'));
@@ -131,7 +132,15 @@ def build_archive():
         wide=True,
         og_type="website",
     )
-    return html.replace("</main>", js + "</main>", 1)
+    # 取引日 → 記事。同じ取引日を扱う記事が複数あるとき（月曜の取引時間中の記事と、火曜朝の終値の記事など）は、
+    # 公開日が遅いほう（＝終値にもとづく記事）を優先する
+    pm = {}
+    for m in P.POSTS:
+        md = m.MARKET_DATE
+        if md not in pm or m.DATE_ISO > pm[md][0]:
+            pm[md] = (m.DATE_ISO, "/blog/" + m.DATE_ID)
+    postmap = json.dumps({k: v[1] for k, v in sorted(pm.items())}, ensure_ascii=False)
+    return html.replace("</main>", js.replace("__POSTMAP__", postmap) + "</main>", 1)
 
 
 # ═════════════════════════════════════════════
@@ -340,7 +349,7 @@ def build_post(m, prev, nxt):
         "headline": m.TITLE,
         "description": m.DESCRIPTION,
         "datePublished": m.PUBLISHED_ISO,
-        "dateModified": m.PUBLISHED_ISO,
+        "dateModified": modified(m),
         "inLanguage": "ja",
         "mainEntityOfPage": f"{SITE}/blog/{m.DATE_ID}",
         "image": f"{SITE}/thumbnail.png",
@@ -368,9 +377,15 @@ def build_post(m, prev, nxt):
 # ═════════════════════════════════════════════
 #  robots / sitemap / ads.txt
 # ═════════════════════════════════════════════
+def modified(m):
+    """記事の最終更新日：内容を訂正したときは記事ファイルに MODIFIED_ISO を書く（無ければ掲載日）"""
+    return max(m.PUBLISHED_ISO, getattr(m, "MODIFIED_ISO", m.PUBLISHED_ISO))
+
+
 def pages():
-    return ([("/", "daily", "1.0", PUBLISH_ISO), ("/archive", "daily", "0.8", PUBLISH_ISO), ("/blog", "daily", "0.8", PUBLISH_ISO)]
-            + [(f"/blog/{m.DATE_ID}", "monthly", "0.7", m.PUBLISHED_ISO) for m in reversed(P.POSTS)]
+    latest = max(modified(m) for m in P.POSTS)      # トップ・ブログ一覧・アーカイブは、新しい記事が出るたびに内容が変わる
+    return ([("/", "daily", "1.0", latest), ("/archive", "daily", "0.8", latest), ("/blog", "daily", "0.8", latest)]
+            + [(f"/blog/{m.DATE_ID}", "monthly", "0.7", modified(m)) for m in reversed(P.POSTS)]
             + [("/stats", "weekly", "0.6", PUBLISH_ISO)]
             + [("/guide", "monthly", "0.7", PUBLISH_ISO), ("/about", "yearly", "0.5", PUBLISH_ISO),
                ("/terms", "yearly", "0.3", PUBLISH_ISO), ("/privacy", "yearly", "0.3", PUBLISH_ISO)])

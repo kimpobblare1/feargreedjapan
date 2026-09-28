@@ -8,6 +8,8 @@
   記事ファイルに必要な項目：
     DATE_ISO, DATE_ID, PUBLISHED_ISO, TITLE, META_TITLE, DESCRIPTION, EXCERPT, TAGS, JP_SCORE, US_SCORE, build()
   （任意）CARD_EXCERPT：トップページ用の短い紹介文 / ALLOW_SHORT：文字数の下限チェックを免除
+  （任意）MARKET_DATE：記事が扱う取引日（例：火曜の朝に月曜の終値で書く記事は、月曜の日付）。省略時は DATE_ISO
+         ファイル名・DATE_ID は「公開する日」。市況アーカイブの「この日のブログを読む」は MARKET_DATE で結び付けます。
 """
 import datetime as _dt
 import glob
@@ -48,6 +50,14 @@ def _load():
             _fail("%s の DATE_ISO が日付の形式（YYYY-MM-DD）ではありません: %r" % (os.path.basename(path), m.DATE_ISO))
         if m.DATE_ID != m.DATE_ISO.replace("-", "") or name != "blog_post_" + m.DATE_ID:
             _fail("%s：ファイル名・DATE_ID・DATE_ISO の日付が一致していません" % os.path.basename(path))
+        md = getattr(m, "MARKET_DATE", m.DATE_ISO)
+        try:
+            _dt.date.fromisoformat(md)
+        except Exception:  # noqa: BLE001
+            _fail("%s の MARKET_DATE が日付の形式（YYYY-MM-DD）ではありません: %r" % (os.path.basename(path), md))
+        if md > m.DATE_ISO:
+            _fail("%s：MARKET_DATE（%s）が公開日（%s）より後になっています" % (os.path.basename(path), md, m.DATE_ISO))
+        m.MARKET_DATE = md
         for k in ("JP_SCORE", "US_SCORE"):
             if not isinstance(getattr(m, k), int) or not 0 <= getattr(m, k) <= 100:
                 _fail("%s の %s は 0〜100 の整数にしてください" % (os.path.basename(path), k))
