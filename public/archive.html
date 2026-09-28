@@ -310,6 +310,7 @@
 <script>
 (function () {
   var PER = 15, ALL = [], filter = 'all', page = 1;
+  var POSTMAP = {"2026-09-18": "/blog/20260918", "2026-09-21": "/blog/20260921", "2026-09-24": "/blog/20260924", "2026-09-25": "/blog/20260925"};   // 取引日 → その日を扱った記事（ビルド時に埋め込み）
   var ZONES = [
     { k: 'ef', name: '極度の恐怖', max: 24 }, { k: 'f', name: '恐怖', max: 44 }, { k: 'n', name: '中立', max: 54 },
     { k: 'g', name: '強欲', max: 74 }, { k: 'eg', name: '極度の強欲', max: 100 }
@@ -357,7 +358,7 @@
         s2.appendChild(el('span', '', '日米差 ' + sgn(e.jp - e.us))); h.appendChild(s2);
       }
       d.appendChild(h); d.appendChild(el('p', '', e.text || ''));
-      if (e.post) { var a = el('a', 'more', 'この日のブログを読む →'); a.href = e.post; d.appendChild(a); }
+      var link = POSTMAP[e.date]; if (link) { var a = el('a', 'more', 'この日のブログを読む →'); a.href = link; d.appendChild(a); }
       box.appendChild(d);
     });
     if (!rows.length) box.appendChild(el('p', 'note-small', '該当する日はありません。'));
