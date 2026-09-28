@@ -571,6 +571,13 @@ def main():
         jp["stale"] = True
         jp_hist = [(h["date"], h["jp"], h.get("parts")) for h in prev_ok.get("history", []) if h.get("jp") is not None]
         log("  ⚠ 日本株は前回の値を残します（stale）")
+    # ── 取得したデータが前回より古い日付で終わっている場合（データ提供元の一時的な欠け）は、前回の値を残す ──
+    if jp is not None and prev_ok and prev_ok.get("jp") and prev_ok["jp"].get("as_of"):
+        if (jp.get("as_of") or "") < prev_ok["jp"]["as_of"]:
+            log("  ⚠ 日本株：取得できたデータが %s までで、前回（%s）より古いため、前回の値を残します"
+                % (jp.get("as_of"), prev_ok["jp"]["as_of"]))
+            jp = dict(prev_ok["jp"])
+            jp_hist = [(h["date"], h["jp"], h.get("parts")) for h in prev_ok.get("history", []) if h.get("jp") is not None]
     if us is None and prev_ok and prev_ok.get("us"):
         us = dict(prev_ok["us"])
         us["stale"] = True
