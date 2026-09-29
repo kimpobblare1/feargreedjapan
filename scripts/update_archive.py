@@ -5,7 +5,8 @@
   public/data/latest.json の履歴（日本株・米国株の日次の指数）から、
   public/data/archive.json に「まだ記録していない日」を追記します。
 
-  ・過去に記録した日は書き換えません（「その日に公表した値」の記録として残すため）
+  ・latest.json の履歴（直近30営業日）にある日は、最新の計算（終値ベース）に合わせて更新します
+    （取引時間中に記録された値や、データの確定で変わった値を、確定値に直すため）。それより古い日は書き換えません
   ・コメントは、数値だけから作る定型文です（相場の予想や売買の助言は含みません）
   ・失敗しても、指数の更新（update_data.py）には影響しません
 """
@@ -95,45 +96,47 @@ def main():
 
     arc = load_json(ARCHIVE, {"entries": []})
     entries = arc.get("entries", [])
-    have = {e["date"] for e in entries}
-    added = 0
+    by_date = {e["date"]: e for e in entries}
+    added = updated = 0
     for i, h in enumerate(hist):
         d = h["date"]
-        if d in have:
-            continue
         prev = hist[i - 1] if i > 0 else None
         jp_prev = prev["jp"] if prev else None
         us = h.get("us")
         us_prev = prev.get("us") if prev else None
-        entry = {
-            "date": d,
+        vals = {
             "jp": int(round(h["jp"])),
             "jp_prev": None if jp_prev is None else int(round(jp_prev)),
             "us": None if us is None else int(round(us)),
             "us_prev": None if us_prev is None else int(round(us_prev)),
-            "text": make_text(h["jp"], jp_prev, us, us_prev),
         }
-        if os.path.exists(os.path.join(BLOG_DIR, d.replace("-", "") + ".html")):
-            entry["post"] = "/blog/" + d.replace("-", "")
-        entries.append(entry)
-        added += 1
-
-    # すでに記録済みの日でも、あとからブログ記事を追加した場合はリンクだけ付ける
-    for e in entries:
-        if "post" not in e and os.path.exists(os.path.join(BLOG_DIR, e["date"].replace("-", "") + ".html")):
-            e["post"] = "/blog/" + e["date"].replace("-", "")
+        e = by_date.get(d)
+        if e is None:
+            if i == 0:
+                continue          # 前日が分からない最初の日は、新しくは追加しない（既存の記録はそのまま）
+            e = {"date": d}
+            entries.append(e)
+            by_date[d] = e
             added += 1
+        elif all(e.get(k) == v for k, v in vals.items()):
+            continue
+        else:
+            # 取引時間中に記録した値や、データの確定で変わった値を、最新の計算（終値ベース）に合わせて更新する
+            updated += 1
+        e.update(vals)
+        e["text"] = make_text(h["jp"], jp_prev, us, us_prev)
+        e.pop("post", None)       # 記事へのリンクはサイト側（記事の MARKET_DATE）で結び付ける
 
     entries.sort(key=lambda e: e["date"])
-    if added == 0:
-        print("追加する日はありません。")
+    if added == 0 and updated == 0:
+        print("追加・更新する日はありません。")
         return 0
     out = {"updated": datetime.now(timezone.utc).isoformat(timespec="seconds"), "entries": entries}
     os.makedirs(os.path.dirname(ARCHIVE), exist_ok=True)
     with open(ARCHIVE, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=1)
         f.write("\n")
-    print("アーカイブを更新しました：追加 %d 件（合計 %d 日分）" % (added, len(entries)))
+    print("アーカイブを更新しました：追加 %d 件・更新 %d 件（合計 %d 日分）" % (added, updated, len(entries)))
     return 0
 
 
