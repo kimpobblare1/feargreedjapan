@@ -1,56 +1,56 @@
 {
  "success": true,
  "jp": {
-  "score": 39,
-  "previous_close": 38,
-  "previous_1_week": 25,
-  "previous_1_month": 19,
-  "as_of": "2026-09-28",
+  "score": 38,
+  "previous_close": 40,
+  "previous_1_week": 28,
+  "previous_1_month": 25,
+  "as_of": "2026-09-29",
   "indicators": [
    {
     "name": "市場モメンタム",
-    "value": 9,
-    "raw": 3.02,
-    "median": 12.84,
+    "value": 8,
+    "raw": 1.85,
+    "median": 12.81,
     "low": -1.16,
     "high": 26.06
    },
    {
     "name": "変動性",
-    "value": 90,
-    "raw": 19.04,
+    "value": 89,
+    "raw": 19.34,
     "median": 27.13,
     "low": 12.47,
     "high": 42.59
    },
    {
     "name": "株価の強さ",
-    "value": 26,
-    "raw": -0.29,
+    "value": 24,
+    "raw": -1.19,
     "median": 3.75,
     "low": -10.66,
     "high": 12.52
    },
    {
     "name": "短期の過熱感",
-    "value": 40,
-    "raw": 53.2,
-    "median": 56.95,
+    "value": 38,
+    "raw": 49.38,
+    "median": 56.91,
     "low": 34.58,
     "high": 77.56
    },
    {
     "name": "為替（円）",
-    "value": 21,
-    "raw": -1.99,
+    "value": 20,
+    "raw": -1.38,
     "median": 0.84,
     "low": -3.64,
     "high": 4.59
    },
    {
     "name": "安全資産への選好",
-    "value": 29,
-    "raw": 0.99,
+    "value": 28,
+    "raw": 0.34,
     "median": 5.37,
     "low": -11.71,
     "high": 19.17
@@ -99,19 +99,6 @@
   "stale": false
  },
  "history": [
-  {
-   "date": "2026-08-13",
-   "jp": 21,
-   "us": 66,
-   "parts": {
-    "momentum": 27,
-    "vol": 15,
-    "strength": 31,
-    "rsi": 46,
-    "fx": 8,
-    "safe": 27
-   }
-  },
   {
    "date": "2026-08-14",
    "jp": 24,
@@ -478,19 +465,32 @@
   },
   {
    "date": "2026-09-28",
-   "jp": 39,
+   "jp": 40,
    "us": 34,
    "parts": {
     "momentum": 8,
     "vol": 89,
     "strength": 24,
     "rsi": 38,
-    "fx": 13,
-    "safe": 26
+    "fx": 15,
+    "safe": 27
+   }
+  },
+  {
+   "date": "2026-09-29",
+   "jp": 38,
+   "us": 34,
+   "parts": {
+    "momentum": 5,
+    "vol": 88,
+    "strength": 18,
+    "rsi": 27,
+    "fx": 17,
+    "safe": 25
    }
   }
  ],
- "hash": "732d99158a18d058",
- "updated_at": "2026-09-28T20:30:14+00:00",
- "updated_at_jst": "2026年9月29日 05:30"
+ "hash": "0d6863c97136f8cb",
+ "updated_at": "2026-09-29T01:46:50+00:00",
+ "updated_at_jst": "2026年9月29日 10:46"
 }
