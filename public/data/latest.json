@@ -9,8 +9,8 @@
   "indicators": [
    {
     "name": "市場モメンタム",
-    "value": 9,
-    "raw": 4.18,
+    "value": 8,
+    "raw": 4.06,
     "median": 12.79,
     "low": -1.16,
     "high": 26.06
@@ -18,23 +18,23 @@
    {
     "name": "変動性",
     "value": 88,
-    "raw": 20.48,
+    "raw": 20.34,
     "median": 27.13,
     "low": 12.47,
     "high": 42.59
    },
    {
     "name": "株価の強さ",
-    "value": 24,
-    "raw": 0.4,
+    "value": 23,
+    "raw": 0.2,
     "median": 3.75,
     "low": -10.66,
     "high": 12.52
    },
    {
     "name": "短期の過熱感",
-    "value": 41,
-    "raw": 57.74,
+    "value": 40,
+    "raw": 57.41,
     "median": 56.91,
     "low": 34.58,
     "high": 77.56
@@ -42,7 +42,7 @@
    {
     "name": "為替（円）",
     "value": 15,
-    "raw": -1.91,
+    "raw": -1.96,
     "median": 0.84,
     "low": -3.64,
     "high": 4.59
@@ -50,7 +50,7 @@
    {
     "name": "安全資産への選好",
     "value": 29,
-    "raw": 2.3,
+    "raw": 2.19,
     "median": 5.37,
     "low": -11.71,
     "high": 19.17
@@ -61,7 +61,7 @@
   "stale": false
  },
  "us": {
-  "score": 32,
+  "score": 29,
   "previous_close": 32,
   "previous_1_week": 33,
   "previous_1_month": 54,
@@ -81,7 +81,7 @@
    },
    {
     "name": "プット／コール",
-    "value": 34
+    "value": 18
    },
    {
     "name": "市場の変動性",
@@ -466,7 +466,7 @@
   {
    "date": "2026-09-29",
    "jp": 39,
-   "us": 32,
+   "us": 29,
    "parts": {
     "momentum": 5,
     "vol": 89,
@@ -479,18 +479,18 @@
   {
    "date": "2026-09-30",
    "jp": 38,
-   "us": 32,
+   "us": 29,
    "parts": {
-    "momentum": 13,
+    "momentum": 12,
     "vol": 86,
-    "strength": 28,
-    "rsi": 53,
+    "strength": 27,
+    "rsi": 51,
     "fx": 13,
-    "safe": 34
+    "safe": 33
    }
   }
  ],
- "hash": "ddff456c95315d1a",
- "updated_at": "2026-09-30T05:09:13+00:00",
- "updated_at_jst": "2026年9月30日 14:09"
+ "hash": "ed608041fd6f8117",
+ "updated_at": "2026-09-30T12:19:58+00:00",
+ "updated_at_jst": "2026年9月30日 21:19"
 }
