@@ -61,7 +61,7 @@
   "stale": false
  },
  "us": {
-  "score": 45,
+  "score": 38,
   "previous_close": 45,
   "previous_1_week": 29,
   "previous_1_month": 39,
@@ -69,11 +69,11 @@
   "indicators": [
    {
     "name": "市場モメンタム",
-    "value": 64
+    "value": 48
    },
    {
     "name": "株価の強さ",
-    "value": 2
+    "value": 3
    },
    {
     "name": "株価の幅",
@@ -81,7 +81,7 @@
    },
    {
     "name": "プット／コール",
-    "value": 30
+    "value": 31
    },
    {
     "name": "市場の変動性",
@@ -89,11 +89,11 @@
    },
    {
     "name": "ジャンクボンド需要",
-    "value": 93
+    "value": 83
    },
    {
     "name": "安全資産への需要",
-    "value": 71
+    "value": 47
    }
   ],
   "stale": false
@@ -466,7 +466,7 @@
   {
    "date": "2026-10-07",
    "jp": 66,
-   "us": 45,
+   "us": 42,
    "parts": {
     "momentum": 26,
     "vol": 79,
@@ -479,7 +479,7 @@
   {
    "date": "2026-10-08",
    "jp": 63,
-   "us": 45,
+   "us": 38,
    "parts": {
     "momentum": 21,
     "vol": 81,
@@ -490,7 +490,7 @@
    }
   }
  ],
- "hash": "d29e23f23135cacf",
- "updated_at": "2026-10-08T13:12:39+00:00",
- "updated_at_jst": "2026年10月8日 22:12"
+ "hash": "7958e8230d2ee0b8",
+ "updated_at": "2026-10-08T19:49:24+00:00",
+ "updated_at_jst": "2026年10月9日 04:49"
 }
