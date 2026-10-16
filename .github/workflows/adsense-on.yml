@@ -1,0 +1,59 @@
+name: AdSense on
+
+# tools/adsense_on.py をアップロードすると1回だけ自動で動き、全ページの AdSense コードを有効にします。
+# （Actions 画面の「Run workflow」から手動でも実行できます）
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/adsense_on.py'
+      - '.github/workflows/adsense-on.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-site
+  cancel-in-progress: false
+
+jobs:
+  adsense:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Enable AdSense code
+        run: |
+          git pull --rebase origin main || true
+          python tools/adsense_on.py | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Rebuild pages
+        run: |
+          python tools/build_site.py > build.log 2>&1 || { cat build.log; cat build.log >> "$GITHUB_STEP_SUMMARY"; exit 1; }
+          cat build.log
+          cat build.log >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public tools scripts
+          if git diff --cached --quiet; then
+            echo "変更なし：すでに有効になっています"
+            exit 0
+          fi
+          git commit -m "adsense: enable AdSense code on all pages"
+          for i in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "push に失敗しました"
+          exit 1
