@@ -1,7 +1,7 @@
 {
  "success": true,
  "jp": {
-  "score": 34,
+  "score": 33,
   "previous_close": 41,
   "previous_1_week": 63,
   "previous_1_month": 24,
@@ -10,7 +10,7 @@
    {
     "name": "市場モメンタム",
     "value": 4,
-    "raw": 0.18,
+    "raw": -0.15,
     "median": 12.26,
     "low": -1.43,
     "high": 26.06
@@ -18,7 +18,7 @@
    {
     "name": "変動性",
     "value": 55,
-    "raw": 28.53,
+    "raw": 28.31,
     "median": 27.32,
     "low": 16.48,
     "high": 42.59
@@ -26,15 +26,15 @@
    {
     "name": "株価の強さ",
     "value": 38,
-    "raw": 2.16,
+    "raw": 2.04,
     "median": 3.49,
     "low": -10.66,
     "high": 12.52
    },
    {
     "name": "短期の過熱感",
-    "value": 18,
-    "raw": 44.64,
+    "value": 17,
+    "raw": 43.71,
     "median": 56.46,
     "low": 34.58,
     "high": 77.56
@@ -42,15 +42,15 @@
    {
     "name": "為替（円）",
     "value": 67,
-    "raw": 1.14,
+    "raw": 1.16,
     "median": 0.88,
     "low": -3.64,
     "high": 4.59
    },
    {
     "name": "安全資産への選好",
-    "value": 37,
-    "raw": 2.88,
+    "value": 36,
+    "raw": 2.53,
     "median": 5.2,
     "low": -11.71,
     "high": 19.17
@@ -63,9 +63,9 @@
  "us": {
   "score": 32,
   "previous_close": 32,
-  "previous_1_week": 40,
-  "previous_1_month": 28,
-  "as_of": "2026-10-15",
+  "previous_1_week": 46,
+  "previous_1_month": 27,
+  "as_of": "2026-10-16",
   "indicators": [
    {
     "name": "市場モメンタム",
@@ -73,11 +73,11 @@
    },
    {
     "name": "株価の強さ",
-    "value": 10
+    "value": 12
    },
    {
     "name": "株価の幅",
-    "value": 10
+    "value": 13
    },
    {
     "name": "プット／コール",
@@ -89,7 +89,7 @@
    },
    {
     "name": "ジャンクボンド需要",
-    "value": 51
+    "value": 50
    },
    {
     "name": "安全資産への需要",
@@ -478,19 +478,19 @@
   },
   {
    "date": "2026-10-16",
-   "jp": 34,
+   "jp": 33,
    "us": 32,
    "parts": {
     "momentum": 1,
-    "vol": 42,
-    "strength": 41,
-    "rsi": 11,
-    "fx": 59,
-    "safe": 38
+    "vol": 43,
+    "strength": 40,
+    "rsi": 10,
+    "fx": 60,
+    "safe": 37
    }
   }
  ],
- "hash": "82d0ac48ff1da405",
- "updated_at": "2026-10-16T04:08:30+00:00",
- "updated_at_jst": "2026年10月16日 13:08"
+ "hash": "93af02ca76214dda",
+ "updated_at": "2026-10-16T09:36:48+00:00",
+ "updated_at_jst": "2026年10月16日 18:36"
 }
