@@ -10,7 +10,7 @@
    {
     "name": "市場モメンタム",
     "value": 1,
-    "raw": -1.06,
+    "raw": -0.88,
     "median": 12.26,
     "low": -1.43,
     "high": 26.06
@@ -18,15 +18,15 @@
    {
     "name": "変動性",
     "value": 43,
-    "raw": 28.51,
+    "raw": 28.44,
     "median": 27.32,
     "low": 16.48,
     "high": 42.59
    },
    {
     "name": "株価の強さ",
-    "value": 35,
-    "raw": 1.71,
+    "value": 36,
+    "raw": 1.82,
     "median": 3.47,
     "low": -10.66,
     "high": 12.52
@@ -34,23 +34,23 @@
    {
     "name": "短期の過熱感",
     "value": 7,
-    "raw": 41.88,
+    "raw": 42.28,
     "median": 56.2,
     "low": 34.58,
     "high": 77.56
    },
    {
     "name": "為替（円）",
-    "value": 57,
-    "raw": 0.67,
+    "value": 58,
+    "raw": 0.75,
     "median": 0.88,
     "low": -3.64,
     "high": 4.59
    },
    {
     "name": "安全資産への選好",
-    "value": 31,
-    "raw": 1.79,
+    "value": 32,
+    "raw": 1.99,
     "median": 4.93,
     "low": -11.71,
     "high": 19.17
@@ -61,11 +61,11 @@
   "stale": false
  },
  "us": {
-  "score": 18,
-  "previous_close": 32,
+  "score": 20,
+  "previous_close": 18,
   "previous_1_week": 46,
-  "previous_1_month": 27,
-  "as_of": "2026-10-16",
+  "previous_1_month": 30,
+  "as_of": "2026-10-19",
   "indicators": [
    {
     "name": "市場モメンタム",
@@ -85,7 +85,7 @@
    },
    {
     "name": "市場の変動性",
-    "value": 4
+    "value": 17
    },
    {
     "name": "ジャンクボンド需要",
@@ -466,7 +466,7 @@
   {
    "date": "2026-10-16",
    "jp": 34,
-   "us": 18,
+   "us": 20,
    "parts": {
     "momentum": 1,
     "vol": 43,
@@ -479,18 +479,18 @@
   {
    "date": "2026-10-19",
    "jp": 26,
-   "us": 18,
+   "us": 20,
    "parts": {
     "momentum": 1,
     "vol": 42,
-    "strength": 37,
+    "strength": 38,
     "rsi": 7,
-    "fx": 44,
-    "safe": 31
+    "fx": 46,
+    "safe": 33
    }
   }
  ],
- "hash": "e3ba7dcf42c9579b",
- "updated_at": "2026-10-19T04:14:32+00:00",
- "updated_at_jst": "2026年10月19日 13:14"
+ "hash": "c25ce8f3757e3aec",
+ "updated_at": "2026-10-19T10:38:31+00:00",
+ "updated_at_jst": "2026年10月19日 19:38"
 }
