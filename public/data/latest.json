@@ -61,7 +61,7 @@
   "stale": false
  },
  "us": {
-  "score": 32,
+  "score": 31,
   "previous_close": 27,
   "previous_1_week": 27,
   "previous_1_month": 34,
@@ -69,15 +69,15 @@
   "indicators": [
    {
     "name": "市場モメンタム",
-    "value": 50
+    "value": 47
    },
    {
     "name": "株価の強さ",
-    "value": 16
+    "value": 15
    },
    {
     "name": "株価の幅",
-    "value": 19
+    "value": 18
    },
    {
     "name": "プット／コール",
@@ -479,7 +479,7 @@
   {
    "date": "2026-10-21",
    "jp": 23,
-   "us": 32,
+   "us": 31,
    "parts": {
     "momentum": 1,
     "vol": 42,
@@ -490,7 +490,7 @@
    }
   }
  ],
- "hash": "bcf77b10456c5ad6",
- "updated_at": "2026-10-21T18:33:00+00:00",
- "updated_at_jst": "2026年10月22日 03:33"
+ "hash": "807239c3996b0c94",
+ "updated_at": "2026-10-21T23:10:54+00:00",
+ "updated_at_jst": "2026年10月22日 08:10"
 }
