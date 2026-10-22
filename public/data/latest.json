@@ -10,15 +10,15 @@
    {
     "name": "市場モメンタム",
     "value": 0,
-    "raw": -3.39,
+    "raw": -4.13,
     "median": 12.24,
-    "low": -3.39,
+    "low": -4.13,
     "high": 26.06
    },
    {
     "name": "変動性",
     "value": 41,
-    "raw": 29.25,
+    "raw": 30.0,
     "median": 27.57,
     "low": 16.48,
     "high": 42.59
@@ -26,7 +26,7 @@
    {
     "name": "株価の強さ",
     "value": 22,
-    "raw": -1.75,
+    "raw": -2.29,
     "median": 3.34,
     "low": -10.66,
     "high": 12.52
@@ -34,15 +34,15 @@
    {
     "name": "短期の過熱感",
     "value": 4,
-    "raw": 38.03,
+    "raw": 36.59,
     "median": 55.9,
     "low": 34.58,
     "high": 75.52
    },
    {
     "name": "為替（円）",
-    "value": 39,
-    "raw": -0.37,
+    "value": 36,
+    "raw": -0.91,
     "median": 0.86,
     "low": -3.64,
     "high": 4.59
@@ -50,7 +50,7 @@
    {
     "name": "安全資産への選好",
     "value": 20,
-    "raw": -3.12,
+    "raw": -3.88,
     "median": 4.81,
     "low": -11.71,
     "high": 19.17
@@ -61,7 +61,7 @@
   "stale": false
  },
  "us": {
-  "score": 31,
+  "score": 29,
   "previous_close": 31,
   "previous_1_week": 30,
   "previous_1_month": 35,
@@ -73,11 +73,11 @@
    },
    {
     "name": "株価の強さ",
-    "value": 15
+    "value": 18
    },
    {
     "name": "株価の幅",
-    "value": 18
+    "value": 20
    },
    {
     "name": "プット／コール",
@@ -85,7 +85,7 @@
    },
    {
     "name": "市場の変動性",
-    "value": 50
+    "value": 26
    },
    {
     "name": "ジャンクボンド需要",
@@ -466,7 +466,7 @@
   {
    "date": "2026-10-21",
    "jp": 23,
-   "us": 31,
+   "us": 29,
    "parts": {
     "momentum": 1,
     "vol": 42,
@@ -479,18 +479,18 @@
   {
    "date": "2026-10-22",
    "jp": 20,
-   "us": 31,
+   "us": 29,
    "parts": {
     "momentum": 0,
-    "vol": 40,
-    "strength": 15,
-    "rsi": 3,
-    "fx": 28,
-    "safe": 13
+    "vol": 38,
+    "strength": 14,
+    "rsi": 1,
+    "fx": 21,
+    "safe": 12
    }
   }
  ],
- "hash": "0d74d22715d46b59",
- "updated_at": "2026-10-22T04:17:15+00:00",
- "updated_at_jst": "2026年10月22日 13:17"
+ "hash": "2cadc6d48e4e102d",
+ "updated_at": "2026-10-22T09:58:05+00:00",
+ "updated_at_jst": "2026年10月22日 18:58"
 }
