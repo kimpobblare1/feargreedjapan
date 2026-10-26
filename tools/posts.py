@@ -10,11 +10,17 @@
   （任意）CARD_EXCERPT：トップページ用の短い紹介文 / ALLOW_SHORT：文字数の下限チェックを免除
   （任意）MARKET_DATE：記事が扱う取引日（例：火曜の朝に月曜の終値で書く記事は、月曜の日付）。省略時は DATE_ISO
          ファイル名・DATE_ID は「公開する日」。市況アーカイブの「この日のブログを読む」は MARKET_DATE で結び付けます。
+  （任意）同じ日に2本目の記事（解説・データ分析など）を出すとき：
+         ファイル名を blog_post_YYYYMMDD-英小文字.py にし、DATE_ID も "YYYYMMDD-英小文字" にします（例：20261026-vix）。
+         ページのURLは /blog/20261026-vix になります。同じ日の通常の記事より前に並びます。
+  （任意）ARCHIVE_LINK = False：市況アーカイブの「この日のブログを読む」に結び付けない（解説記事向け）
+  （任意）CRUMB_LABEL：パンくずに出す名前（省略時は「○月○日の市況」）
 """
 import datetime as _dt
 import glob
 import importlib.util
 import os
+import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -48,8 +54,10 @@ def _load():
             _dt.date.fromisoformat(m.DATE_ISO)
         except Exception:  # noqa: BLE001
             _fail("%s の DATE_ISO が日付の形式（YYYY-MM-DD）ではありません: %r" % (os.path.basename(path), m.DATE_ISO))
-        if m.DATE_ID != m.DATE_ISO.replace("-", "") or name != "blog_post_" + m.DATE_ID:
-            _fail("%s：ファイル名・DATE_ID・DATE_ISO の日付が一致していません" % os.path.basename(path))
+        base = m.DATE_ISO.replace("-", "")
+        ok_id = m.DATE_ID == base or re.fullmatch(re.escape(base) + r"-[a-z0-9]+(?:-[a-z0-9]+)*", m.DATE_ID or "")
+        if not ok_id or len(m.DATE_ID) > 48 or name != "blog_post_" + m.DATE_ID:
+            _fail("%s：ファイル名・DATE_ID・DATE_ISO の日付が一致していません（2本目の記事は YYYYMMDD-英小文字 の形）" % os.path.basename(path))
         md = getattr(m, "MARKET_DATE", m.DATE_ISO)
         try:
             _dt.date.fromisoformat(md)
@@ -57,12 +65,12 @@ def _load():
             _fail("%s の MARKET_DATE が日付の形式（YYYY-MM-DD）ではありません: %r" % (os.path.basename(path), md))
         if md > m.DATE_ISO:
             _fail("%s：MARKET_DATE（%s）が公開日（%s）より後になっています" % (os.path.basename(path), md, m.DATE_ISO))
-        m.MARKET_DATE = md
+        m.MARKET_DATE = md if getattr(m, "ARCHIVE_LINK", True) else "1900-01-01"   # アーカイブに結び付けない記事
         for k in ("JP_SCORE", "US_SCORE"):
             if not isinstance(getattr(m, k), int) or not 0 <= getattr(m, k) <= 100:
                 _fail("%s の %s は 0〜100 の整数にしてください" % (os.path.basename(path), k))
         mods.append(m)
-    mods.sort(key=lambda m: m.DATE_ISO)
+    mods.sort(key=lambda m: (m.DATE_ISO, 1 if m.DATE_ID == m.DATE_ISO.replace("-", "") else 0))   # 同じ日は2本目の記事を先に
     ids = [m.DATE_ID for m in mods]
     if len(ids) != len(set(ids)):
         _fail("同じ日付の記事が2つあります")
@@ -89,6 +97,8 @@ def short_label(m):    # 9/18（金）
     return f"{mo}/{d}（{w}）"
 
 
-def crumb_label(m):    # 9月18日の市況
+def crumb_label(m):    # 9月18日の市況（CRUMB_LABEL があればそれを使う）
+    if getattr(m, "CRUMB_LABEL", None):
+        return m.CRUMB_LABEL
     y, mo, d, w = _d(m)
     return f"{mo}月{d}日の市況"
