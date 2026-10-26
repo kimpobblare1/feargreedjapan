@@ -1,57 +1,57 @@
 {
  "success": true,
  "jp": {
-  "score": 18,
-  "previous_close": 20,
-  "previous_1_week": 34,
-  "previous_1_month": 32,
-  "as_of": "2026-10-23",
+  "score": 15,
+  "previous_close": 17,
+  "previous_1_week": 26,
+  "previous_1_month": 35,
+  "as_of": "2026-10-26",
   "indicators": [
    {
     "name": "市場モメンタム",
     "value": 0,
-    "raw": -4.51,
-    "median": 12.19,
-    "low": -4.51,
+    "raw": -5.12,
+    "median": 12.16,
+    "low": -5.12,
     "high": 26.06
    },
    {
     "name": "変動性",
-    "value": 40,
-    "raw": 29.81,
-    "median": 27.63,
+    "value": 39,
+    "raw": 29.29,
+    "median": 27.67,
     "low": 16.48,
     "high": 42.59
    },
    {
     "name": "株価の強さ",
-    "value": 17,
-    "raw": -3.15,
+    "value": 11,
+    "raw": -4.56,
     "median": 3.34,
     "low": -10.66,
     "high": 12.52
    },
    {
     "name": "短期の過熱感",
-    "value": 3,
-    "raw": 35.95,
+    "value": 1,
+    "raw": 34.81,
     "median": 55.83,
     "low": 34.58,
     "high": 75.52
    },
    {
     "name": "為替（円）",
-    "value": 31,
-    "raw": -1.39,
-    "median": 0.85,
+    "value": 22,
+    "raw": -0.25,
+    "median": 0.84,
     "low": -3.64,
     "high": 4.59
    },
    {
     "name": "安全資産への選好",
-    "value": 16,
-    "raw": -4.91,
-    "median": 4.72,
+    "value": 9,
+    "raw": -6.69,
+    "median": 4.65,
     "low": -11.71,
     "high": 19.17
    }
@@ -100,21 +100,8 @@
  },
  "history": [
   {
-   "date": "2026-09-08",
-   "jp": 30,
-   "us": 39,
-   "parts": {
-    "momentum": 6,
-    "vol": 75,
-    "strength": 13,
-    "rsi": 16,
-    "fx": 1,
-    "safe": 15
-   }
-  },
-  {
    "date": "2026-09-09",
-   "jp": 29,
+   "jp": 28,
    "us": 38,
    "parts": {
     "momentum": 5,
@@ -134,7 +121,7 @@
     "vol": 77,
     "strength": 9,
     "rsi": 17,
-    "fx": 1,
+    "fx": 3,
     "safe": 10
    }
   },
@@ -160,46 +147,46 @@
     "vol": 77,
     "strength": 7,
     "rsi": 3,
-    "fx": 0,
+    "fx": 3,
     "safe": 5
    }
   },
   {
    "date": "2026-09-15",
-   "jp": 22,
+   "jp": 23,
    "us": 28,
    "parts": {
     "momentum": 1,
     "vol": 84,
     "strength": 10,
     "rsi": 3,
-    "fx": 3,
+    "fx": 8,
     "safe": 9
    }
   },
   {
    "date": "2026-09-16",
-   "jp": 25,
+   "jp": 26,
    "us": 27,
    "parts": {
     "momentum": 2,
     "vol": 90,
     "strength": 23,
     "rsi": 7,
-    "fx": 8,
+    "fx": 16,
     "safe": 19
    }
   },
   {
    "date": "2026-09-17",
-   "jp": 28,
+   "jp": 29,
    "us": 28,
    "parts": {
     "momentum": 3,
     "vol": 92,
     "strength": 18,
     "rsi": 9,
-    "fx": 16,
+    "fx": 14,
     "safe": 16
    }
   },
@@ -212,26 +199,26 @@
     "vol": 90,
     "strength": 21,
     "rsi": 25,
-    "fx": 15,
+    "fx": 14,
     "safe": 21
    }
   },
   {
    "date": "2026-09-24",
-   "jp": 34,
+   "jp": 35,
    "us": 36,
    "parts": {
     "momentum": 7,
     "vol": 90,
     "strength": 26,
     "rsi": 33,
-    "fx": 22,
+    "fx": 29,
     "safe": 29
    }
   },
   {
    "date": "2026-09-25",
-   "jp": 38,
+   "jp": 39,
    "us": 37,
    "parts": {
     "momentum": 11,
@@ -251,7 +238,7 @@
     "vol": 89,
     "strength": 24,
     "rsi": 38,
-    "fx": 15,
+    "fx": 16,
     "safe": 27
    }
   },
@@ -264,7 +251,7 @@
     "vol": 89,
     "strength": 19,
     "rsi": 31,
-    "fx": 16,
+    "fx": 13,
     "safe": 26
    }
   },
@@ -277,72 +264,72 @@
     "vol": 86,
     "strength": 27,
     "rsi": 51,
-    "fx": 14,
+    "fx": 21,
     "safe": 30
    }
   },
   {
    "date": "2026-10-01",
-   "jp": 42,
+   "jp": 43,
    "us": 29,
    "parts": {
     "momentum": 24,
     "vol": 75,
     "strength": 40,
     "rsi": 76,
-    "fx": 21,
+    "fx": 70,
     "safe": 50
    }
   },
   {
    "date": "2026-10-02",
-   "jp": 46,
+   "jp": 48,
    "us": 40,
    "parts": {
     "momentum": 19,
     "vol": 73,
     "strength": 31,
     "rsi": 67,
-    "fx": 69,
+    "fx": 70,
     "safe": 43
    }
   },
   {
    "date": "2026-10-05",
-   "jp": 54,
+   "jp": 57,
    "us": 44,
    "parts": {
     "momentum": 26,
     "vol": 81,
     "strength": 70,
     "rsi": 83,
-    "fx": 55,
+    "fx": 91,
     "safe": 78
    }
   },
   {
    "date": "2026-10-06",
-   "jp": 61,
+   "jp": 62,
    "us": 47,
    "parts": {
     "momentum": 29,
     "vol": 82,
     "strength": 76,
     "rsi": 89,
-    "fx": 91,
+    "fx": 94,
     "safe": 85
    }
   },
   {
    "date": "2026-10-07",
-   "jp": 66,
+   "jp": 67,
    "us": 42,
    "parts": {
     "momentum": 26,
     "vol": 79,
     "strength": 64,
     "rsi": 76,
-    "fx": 94,
+    "fx": 92,
     "safe": 78
    }
   },
@@ -355,7 +342,7 @@
     "vol": 81,
     "strength": 39,
     "rsi": 61,
-    "fx": 92,
+    "fx": 85,
     "safe": 51
    }
   },
@@ -381,26 +368,26 @@
     "vol": 79,
     "strength": 47,
     "rsi": 38,
-    "fx": 90,
+    "fx": 80,
     "safe": 49
    }
   },
   {
    "date": "2026-10-14",
-   "jp": 52,
+   "jp": 51,
    "us": 27,
    "parts": {
     "momentum": 11,
     "vol": 79,
     "strength": 45,
     "rsi": 38,
-    "fx": 79,
+    "fx": 62,
     "safe": 47
    }
   },
   {
    "date": "2026-10-15",
-   "jp": 41,
+   "jp": 40,
    "us": 30,
    "parts": {
     "momentum": 0,
@@ -413,14 +400,14 @@
   },
   {
    "date": "2026-10-16",
-   "jp": 34,
+   "jp": 33,
    "us": 22,
    "parts": {
     "momentum": 1,
     "vol": 43,
     "strength": 40,
     "rsi": 10,
-    "fx": 64,
+    "fx": 63,
     "safe": 37
    }
   },
@@ -433,7 +420,7 @@
     "vol": 42,
     "strength": 38,
     "rsi": 7,
-    "fx": 42,
+    "fx": 45,
     "safe": 29
    }
   },
@@ -446,7 +433,7 @@
     "vol": 42,
     "strength": 25,
     "rsi": 3,
-    "fx": 46,
+    "fx": 42,
     "safe": 22
    }
   },
@@ -459,38 +446,51 @@
     "vol": 42,
     "strength": 27,
     "rsi": 7,
-    "fx": 42,
+    "fx": 32,
     "safe": 25
    }
   },
   {
    "date": "2026-10-22",
-   "jp": 20,
+   "jp": 19,
    "us": 19,
    "parts": {
     "momentum": 0,
     "vol": 38,
     "strength": 14,
     "rsi": 1,
-    "fx": 32,
+    "fx": 17,
     "safe": 12
    }
   },
   {
    "date": "2026-10-23",
-   "jp": 18,
+   "jp": 17,
    "us": 21,
    "parts": {
     "momentum": 0,
     "vol": 39,
     "strength": 11,
     "rsi": 1,
-    "fx": 18,
+    "fx": 17,
     "safe": 10
+   }
+  },
+  {
+   "date": "2026-10-26",
+   "jp": 15,
+   "us": 21,
+   "parts": {
+    "momentum": 0,
+    "vol": 41,
+    "strength": 9,
+    "rsi": 1,
+    "fx": 31,
+    "safe": 6
    }
   }
  ],
- "hash": "8420bd553d257dcf",
- "updated_at": "2026-10-23T23:02:55+00:00",
- "updated_at_jst": "2026年10月24日 08:02"
+ "hash": "c1f557438f3990b9",
+ "updated_at": "2026-10-26T00:20:32+00:00",
+ "updated_at_jst": "2026年10月26日 09:20"
 }
