@@ -10,15 +10,15 @@
    {
     "name": "市場モメンタム",
     "value": 0,
-    "raw": -4.95,
+    "raw": -5.32,
     "median": 12.16,
-    "low": -4.95,
+    "low": -5.32,
     "high": 26.06
    },
    {
     "name": "変動性",
     "value": 39,
-    "raw": 29.27,
+    "raw": 29.32,
     "median": 27.67,
     "low": 16.48,
     "high": 42.59
@@ -26,7 +26,7 @@
    {
     "name": "株価の強さ",
     "value": 11,
-    "raw": -4.3,
+    "raw": -4.53,
     "median": 3.34,
     "low": -10.66,
     "high": 12.52
@@ -34,23 +34,23 @@
    {
     "name": "短期の過熱感",
     "value": 1,
-    "raw": 35.13,
+    "raw": 34.42,
     "median": 55.83,
-    "low": 34.58,
+    "low": 34.42,
     "high": 75.52
    },
    {
     "name": "為替（円）",
-    "value": 21,
-    "raw": -0.35,
+    "value": 23,
+    "raw": -0.06,
     "median": 0.84,
     "low": -3.64,
     "high": 4.59
    },
    {
     "name": "安全資産への選好",
-    "value": 8,
-    "raw": -8.05,
+    "value": 7,
+    "raw": -8.41,
     "median": 4.65,
     "low": -11.71,
     "high": 19.17
@@ -62,10 +62,10 @@
  },
  "us": {
   "score": 21,
-  "previous_close": 20,
-  "previous_1_week": 22,
-  "previous_1_month": 33,
-  "as_of": "2026-10-23",
+  "previous_close": 21,
+  "previous_1_week": 21,
+  "previous_1_month": 37,
+  "as_of": "2026-10-26",
   "indicators": [
    {
     "name": "市場モメンタム",
@@ -85,7 +85,7 @@
    },
    {
     "name": "市場の変動性",
-    "value": 17
+    "value": 19
    },
    {
     "name": "ジャンクボンド需要",
@@ -484,13 +484,13 @@
     "momentum": 0,
     "vol": 41,
     "strength": 9,
-    "rsi": 1,
-    "fx": 29,
-    "safe": 4
+    "rsi": 0,
+    "fx": 34,
+    "safe": 3
    }
   }
  ],
- "hash": "a7afa785c5015274",
- "updated_at": "2026-10-26T04:18:41+00:00",
- "updated_at_jst": "2026年10月26日 13:18"
+ "hash": "cfe59f6c607961ee",
+ "updated_at": "2026-10-26T10:54:57+00:00",
+ "updated_at_jst": "2026年10月26日 19:54"
 }
