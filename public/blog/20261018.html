@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="HoU_nbY9is8mGhPZ6eENVWpMUnDZx3JJAhnjUdSYqHg" />
+<title>恐怖と強欲指数とは？日本株版の6つの指標と計算方法をやさしく解説｜Fear &amp; Greed Index Japan</title>
+<meta name="description" content="恐怖と強欲指数（Fear &amp; Greed Index）の仕組みを、当サイトの日本株版を例にやさしく解説します。6つの指標の意味とウェイト、0〜100への換算方法、3営業日の平均を使う理由、CNNの米国版との違い、よくある誤解までを表で整理しました。">
+<link rel="canonical" href="https://feargreedjapan.com/blog/20261018">
+<meta property="og:title" content="恐怖と強欲指数とは？日本株版の6つの指標と計算方法をやさしく解説｜Fear &amp; Greed Index Japan">
+<meta property="og:description" content="恐怖と強欲指数（Fear &amp; Greed Index）の仕組みを、当サイトの日本株版を例にやさしく解説します。6つの指標の意味とウェイト、0〜100への換算方法、3営業日の平均を使う理由、CNNの米国版との違い、よくある誤解までを表で整理しました。">
+<meta property="og:url" content="https://feargreedjapan.com/blog/20261018">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Fear &amp; Greed Index Japan">
+<meta property="og:image" content="https://feargreedjapan.com/thumbnail.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="恐怖と強欲指数とは？日本株版の6つの指標と計算方法をやさしく解説｜Fear &amp; Greed Index Japan">
+<meta name="twitter:description" content="恐怖と強欲指数（Fear &amp; Greed Index）の仕組みを、当サイトの日本株版を例にやさしく解説します。6つの指標の意味とウェイト、0〜100への換算方法、3営業日の平均を使う理由、CNNの米国版との違い、よくある誤解までを表で整理しました。">
+<meta name="twitter:image" content="https://feargreedjapan.com/thumbnail.png">
+<meta name="theme-color" content="#14284b">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="article:published_time" content="2026-10-18">
+<meta property="article:section" content="市況ブログ">
+<style>
+  .sc-asof { font-size: 13px; font-weight: 700; color: var(--ink-soft); margin: 22px 0 8px; letter-spacing: .02em; }
+  .scoreboard { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .sc-card { background: var(--surface); border: 1px solid var(--line); border-top: 5px solid var(--zc); border-radius: var(--radius); padding: 18px 22px 16px; }
+  .sc-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .sc-name { font-weight: 900; font-size: 17px; }
+  .sc-src { font-size: 12px; color: var(--muted); }
+  .sc-main { display: flex; align-items: center; gap: 18px; margin-top: 8px; }
+  .sc-num { font-size: 76px; font-weight: 900; line-height: 1; color: var(--zc); font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+  .sc-side { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+  .sc-chip { display: inline-block; padding: 4px 16px; border-radius: 999px; background: var(--zc); color: #fff; font-weight: 700; font-size: 16px; white-space: nowrap; }
+  .sc-delta { font-size: 14px; font-weight: 700; white-space: nowrap; }
+  .sc-delta.up { color: var(--c-g); } .sc-delta.down { color: var(--c-ef); } .sc-delta.flat { color: var(--muted); }
+  .sc-bar { position: relative; height: 14px; border-radius: 7px; margin-top: 20px;
+    background: linear-gradient(to right, var(--c-ef) 0 25%, var(--c-f) 25% 45%, var(--c-n) 45% 55%, var(--c-g) 55% 75%, var(--c-eg) 75% 100%); }
+  .sc-pin { position: absolute; top: -7px; width: 5px; height: 28px; background: var(--ink); border-radius: 3px; transform: translateX(-50%); box-shadow: 0 0 0 2px #fff; }
+  .sc-ticks { position: relative; height: 16px; margin-top: 6px; font-size: 11px; color: var(--muted); }
+  .sc-ticks span { position: absolute; transform: translateX(-50%); font-variant-numeric: tabular-nums; }
+  .sc-ticks span:first-child { transform: none; } .sc-ticks span:last-child { transform: translateX(-100%); }
+  .sc-hist { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-soft); }
+  .sc-hist b { font-variant-numeric: tabular-nums; color: var(--ink); font-size: 14px; }
+  .sc-foot { font-size: 13.5px; color: var(--ink-soft); margin: 10px 2px 0; line-height: 1.85; }
+  .sc-foot strong { color: var(--ink); }
+  @media (max-width: 640px) { .scoreboard { grid-template-columns: 1fr; } .sc-num { font-size: 64px; } }
+</style>
+<style>
+  .pn-top { display: flex; justify-content: space-between; gap: 12px; margin: -4px 0 16px; font-size: 13.5px; }
+  .pn-top a { color: var(--c-eg); text-decoration: none; font-weight: 700; padding: 4px 0; }
+  .pn-top a:hover { text-decoration: underline; }
+  .post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 40px; }
+  .pn { display: flex; flex-direction: column; gap: 5px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); }
+  a.pn:hover { border-color: var(--ink-soft); }
+  .pn.next { text-align: right; }
+  .pn-dir { font-size: 12.5px; font-weight: 700; color: var(--c-eg); }
+  .pn-date { font-size: 13px; color: var(--muted); }
+  .pn-title { font-size: 14.5px; font-weight: 700; line-height: 1.65; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .pn-sc { font-size: 13px; color: var(--ink-soft); }
+  .pn.empty { background: transparent; border-style: dashed; }
+  .pn.empty .pn-dir, .pn.empty .pn-title { color: var(--muted); font-weight: 500; }
+  .pn-back { text-align: center; margin-top: 14px; font-size: 14px; }
+  .pn-back a { color: var(--c-eg); text-underline-offset: 3px; }
+  @media (max-width: 640px) { .post-nav { grid-template-columns: 1fr; } .pn.next { text-align: left; } }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "ホーム",
+      "item": "https://feargreedjapan.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "ブログ",
+      "item": "https://feargreedjapan.com/blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "10月18日の市況",
+      "item": "https://feargreedjapan.com/blog/20261018"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "恐怖と強欲指数とは？日本株版の6つの指標と計算方法をやさしく解説｜Fear & Greed Index Japan",
+  "description": "恐怖と強欲指数（Fear & Greed Index）の仕組みを、当サイトの日本株版を例にやさしく解説します。6つの指標の意味とウェイト、0〜100への換算方法、3営業日の平均を使う理由、CNNの米国版との違い、よくある誤解までを表で整理しました。",
+  "datePublished": "2026-10-18",
+  "dateModified": "2026-10-18",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://feargreedjapan.com/blog/20261018",
+  "image": "https://feargreedjapan.com/thumbnail.png",
+  "author": {
+    "@type": "Organization",
+    "name": "Fear & Greed Index Japan 運営事務局"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Fear & Greed Index Japan",
+    "url": "https://feargreedjapan.com/"
+  },
+  "keywords": "恐怖と強欲指数, Fear & Greed Index, 日経平均, 投資心理, 計算方法, RSI, 移動平均線, 投資ガイド, 初心者向け, Fear & Greed Index Japan"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<!-- ▼ 公開前に、新しいGA4のIDに置き換える（index.html と同じ値） -->
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+-->
+<!-- ▼ AdSense（審査と広告表示のためのコード。pub ID は public/ads.txt と同じ） -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9496300145102373" crossorigin="anonymous"></script>
+
+<style>
+  :root {
+    --ink: #14284b; --ink-soft: #3a4d70; --paper: #f6f8fb; --surface: #ffffff;
+    --line: #dfe5ee; --muted: #6b7a94;
+    --c-ef: #b3261e; --c-f: #d9822b; --c-n: #8a94a6; --c-g: #3b8f6b; --c-eg: #1f6fb2;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP','Hiragino Kaku Gothic ProN','Yu Gothic',Meiryo,sans-serif;
+    background: var(--paper); color: var(--ink);
+    line-height: 1.8; font-size: 15px; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--c-eg); outline-offset: 2px; }
+
+  .site-header { background: var(--ink); color: #fff; }
+  .site-header .inner {
+    max-width: 1080px; margin: 0 auto; padding: 0 24px; height: 60px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .brand { font-weight: 900; font-size: 18px; letter-spacing: .02em; text-decoration: none; color: #fff; white-space: nowrap; }
+  .brand small { font-weight: 500; font-size: 12px; opacity: .7; margin-left: 10px; }
+  .nav { display: flex; gap: 4px; }
+  .nav a { color: #cdd7ea; text-decoration: none; font-size: 14px; font-weight: 500; padding: 8px 14px; border-radius: 6px; }
+  .nav a:hover { background: rgba(255,255,255,.08); color: #fff; }
+  .nav a[aria-current="page"] { color: #fff; background: rgba(255,255,255,.14); }
+  @media (max-width: 720px) {
+    .site-header .inner { height: auto; padding: 12px 16px; flex-direction: column; align-items: flex-start; gap: 8px; }
+    .brand small { display: none; }
+    .nav { flex-wrap: wrap; }
+    .nav a { padding: 6px 10px; font-size: 13px; }
+  }
+
+  .notice-bar { background: #eaf0f9; border-bottom: 1px solid var(--line); color: var(--ink-soft); font-size: 12.5px; text-align: center; padding: 8px 16px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  @media (max-width: 720px) { .wrap { padding: 0 16px; } }
+
+  /* ── 記事レイアウト ── */
+  .article { max-width: 760px; margin: 0 auto; padding: 40px 0 8px; }
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 20px; }
+  .crumbs a { text-decoration: none; }
+  .crumbs a:hover { text-decoration: underline; }
+  .crumbs span { margin: 0 6px; }
+
+  .article h1 { font-size: clamp(26px, 4vw, 34px); font-weight: 900; line-height: 1.45; text-wrap: balance; }
+  .article .lead { margin-top: 16px; color: var(--ink-soft); font-size: 16px; line-height: 1.95; }
+
+  .toc { margin: 32px 0 8px; padding: 20px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+  .article .toc h2 { font-size: 14px; font-weight: 700; color: var(--ink-soft); margin: 0 0 8px; padding: 0; border: none; line-height: 1.6; }
+  .toc ol { padding-left: 1.4em; font-size: 14.5px; }
+  .toc li { padding: 3px 0; }
+  .toc a { text-decoration: none; color: var(--ink); }
+  .toc a:hover { text-decoration: underline; }
+
+  .article section { padding-top: 44px; scroll-margin-top: 16px; }
+  .article h2 { font-size: 22px; font-weight: 900; line-height: 1.5; padding-left: 14px; border-left: 5px solid var(--ink); margin-bottom: 16px; }
+  .article h3 { font-size: 17px; font-weight: 700; margin: 26px 0 8px; }
+  .article p { font-size: 16px; line-height: 1.95; color: #24365a; margin-top: 14px; }
+  .article section > h2 + p { margin-top: 0; }
+  .article ul { margin: 14px 0 0 1.3em; }
+  .article li { font-size: 16px; line-height: 1.9; color: #24365a; padding: 2px 0; }
+  .article a.inline { color: var(--c-eg); text-underline-offset: 3px; }
+
+  .table-scroll { overflow-x: auto; margin-top: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+  table.doc { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 520px; }
+  table.doc th, table.doc td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.7; }
+  table.doc tr:last-child th, table.doc tr:last-child td { border-bottom: none; }
+  table.doc thead th { background: #f2f5fa; color: var(--ink-soft); font-weight: 700; white-space: nowrap; }
+  table.doc tbody th { font-weight: 700; white-space: nowrap; background: #fafbfd; width: 9em; }
+  .article ol.clauses { margin: 12px 0 0 1.7em; }
+  .article ol.clauses > li { padding: 3px 0 3px .2em; }
+  .article ol.paren { list-style: none; counter-reset: p; margin: 12px 0 0; }
+  .article ol.paren > li { counter-increment: p; position: relative; padding-left: 2.8em; }
+  .article ol.paren > li::before { content: "(" counter(p) ")"; position: absolute; left: 0; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .enact { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+  @media (max-width: 720px) {
+    table.doc.stack { min-width: 0; }
+    table.doc.stack thead { display: none; }
+    table.doc.stack, table.doc.stack tbody, table.doc.stack tr, table.doc.stack th, table.doc.stack td { display: block; width: auto; }
+    table.doc.stack tr { padding: 12px 0; border-bottom: 1px solid var(--line); }
+    table.doc.stack tr:last-child { border-bottom: none; }
+    table.doc.stack tbody th { background: none; white-space: normal; border: none; padding: 2px 16px 6px; }
+    table.doc.stack td { border: none; padding: 4px 16px; }
+    table.doc.stack td::before { content: attr(data-label); display: block; font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 1px; }
+  }
+  table.doc.narrow { min-width: 0; }
+  table.doc.narrow tbody th { width: 8em; white-space: normal; }
+  @media (max-width: 720px) { table.doc.narrow tbody th { width: 6.5em; } }
+  .zone-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; vertical-align: baseline; }
+
+  .callout { margin-top: 20px; padding: 16px 20px; background: #eef3fb; border-left: 4px solid var(--ink); border-radius: 4px; }
+  .callout p { margin: 0; font-size: 15px; line-height: 1.85; }
+  .callout.warn { background: #fff8ec; border-left-color: #d9a441; }
+  .callout.warn p { color: #6a5320; }
+
+  .faq { margin-top: 8px; }
+  .faq details { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); margin-top: 10px; }
+  .faq summary { cursor: pointer; padding: 16px 20px; font-weight: 700; font-size: 16px; line-height: 1.6; list-style: none; display: flex; gap: 12px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::before { content: 'Q'; color: var(--c-eg); font-weight: 900; }
+  .faq details[open] summary { border-bottom: 1px solid var(--line); }
+  .faq .ans { padding: 14px 20px 18px 48px; font-size: 15.5px; line-height: 1.9; color: #24365a; }
+
+  .todo { background: #fff3a3; padding: 1px 6px; border-radius: 3px; font-weight: 700; color: #6b4e00; }
+
+  .cta { margin: 48px 0 0; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); text-align: center; }
+  .cta p { margin: 0 0 14px; font-size: 15px; }
+  .cta a { display: inline-block; background: var(--ink); color: #fff; text-decoration: none; font-weight: 700; padding: 12px 28px; border-radius: 6px; }
+  .cta a:hover { background: #0e1d38; }
+
+  .disclaimer { margin: 40px auto 0; max-width: 760px; padding: 20px 24px; background: #fff8ec; border: 1px solid #f0dcb6; border-radius: var(--radius); font-size: 13px; color: #6a5320; }
+  .disclaimer strong { display: block; margin-bottom: 4px; }
+
+  footer.site-footer { margin-top: 56px; background: var(--ink); color: #b9c6df; padding: 36px 0 28px; font-size: 13px; }
+  .footer-links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-bottom: 16px; }
+  .footer-links a { color: #dbe4f5; text-decoration: none; }
+  .footer-links a:hover { text-decoration: underline; }
+  .footer-copy { opacity: .8; font-size: 12px; }
+
+  @media (max-width: 720px) {
+    .article { padding-top: 28px; }
+    .article h2 { font-size: 20px; }
+    .article p, .article li { font-size: 15.5px; }
+    .faq .ans { padding-left: 20px; }
+  }
+
+  .article.wide { max-width: 900px; }
+  .article h1 { text-wrap: balance; }
+  .article small.sub { color: var(--muted); font-size: 12.5px; }
+  .eyebrow { font-size: 13px; font-weight: 700; color: var(--c-eg); letter-spacing: .04em; margin-bottom: 8px; }
+
+  /* 区分チップ */
+  .chip { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; color: #fff; background: var(--c-n); white-space: nowrap; }
+  .chip.ef { background: var(--c-ef); } .chip.f { background: var(--c-f); } .chip.n { background: var(--c-n); }
+  .chip.g { background: var(--c-g); } .chip.eg { background: var(--c-eg); }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* 統計バー */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 24px 0 8px; }
+  .stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; }
+  .stat b { display: block; font-size: 24px; font-weight: 900; line-height: 1.3; font-variant-numeric: tabular-nums; }
+  .stat span { font-size: 12px; color: var(--muted); }
+
+  /* フィルター・ページャー */
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 4px; align-items: center; }
+  .filters .lab { font-size: 13px; color: var(--muted); margin-right: 4px; }
+  .filters button, .pager button { font: inherit; font-size: 13.5px; font-weight: 700; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); cursor: pointer; }
+  .filters button:hover, .pager button:hover { border-color: var(--ink-soft); }
+  .filters button[aria-pressed="true"], .pager button[aria-current="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .pager { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 24px 0 0; }
+  .pager button { min-width: 38px; padding: 6px 10px; border-radius: 8px; }
+
+  /* アーカイブの1日分 */
+  .day { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 20px; margin-top: 12px; }
+  .day-head { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+  .day-date { font-weight: 900; font-size: 16px; }
+  .day-score { font-size: 14px; color: var(--ink-soft); display: inline-flex; gap: 6px; align-items: center; }
+  .day-score b { font-size: 18px; font-variant-numeric: tabular-nums; color: var(--ink); }
+  .day p { margin-top: 8px; font-size: 14.5px; line-height: 1.85; color: #24365a; }
+  .day a.more { font-size: 13px; color: var(--c-eg); text-underline-offset: 3px; }
+  .note-small { font-size: 13px; color: var(--muted); margin-top: 16px; line-height: 1.8; }
+
+  /* ブログ一覧 */
+  .post-item { display: block; text-decoration: none; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; margin-top: 14px; }
+  .post-item:hover { border-color: var(--ink-soft); }
+  .post-meta { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; font-size: 13px; color: var(--muted); }
+  .post-title { font-size: 19px; font-weight: 900; line-height: 1.55; margin-top: 8px; color: var(--ink); }
+  .post-excerpt { font-size: 14.5px; color: var(--ink-soft); margin-top: 8px; line-height: 1.85; }
+
+  /* ブログ記事 */
+  .post-label { font-size: 13px; font-weight: 700; color: var(--c-eg); }
+  .summary-box { margin: 24px 0 8px; padding: 18px 22px; background: #eef3fb; border: 1px solid #d5e0f2; border-radius: var(--radius); }
+  .summary-box h2 { font-size: 15px !important; border: none !important; padding: 0 !important; margin: 0 0 8px !important; color: var(--ink-soft); }
+  .summary-box ul { margin: 0 0 0 1.2em; }
+  .summary-box li { font-size: 15.5px; padding: 3px 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  .tags span { font-size: 13px; color: var(--ink-soft); background: #eef2f8; padding: 4px 12px; border-radius: 999px; }
+  .sources { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); line-height: 1.9; }
+  .article table.doc td.r, .article table.doc th.r { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .article h3.tblcap { font-size: 15px; margin: 22px 0 6px; color: var(--ink-soft); }
+  .lead-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .lead-links a { font-size: 14px; font-weight: 700; text-decoration: none; padding: 9px 18px; border-radius: 8px; background: var(--ink); color: #fff; }
+  .lead-links a.sub { background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="/">Fear &amp; Greed Index Japan<small>恐怖と強欲指数</small></a>
+    <nav class="nav" aria-label="メインメニュー">
+      <a href="/">ダッシュボード</a>
+      <a href="/archive">市況アーカイブ</a>
+      <a href="/blog" aria-current="page">ブログ</a>
+      <a href="/guide">投資ガイド</a>
+      <a href="/about">サイトについて</a>
+    </nav>
+  </div>
+</header>
+
+<div class="notice-bar">
+  本サイトは投資判断の助言を目的としたものではありません。投資はご自身の判断と責任でお願いします。
+</div>
+
+<main>
+  <div class="wrap">
+    <article class="article wide">
+      <nav class="crumbs" aria-label="パンくずリスト"><a href="/">ホーム</a><span>&gt;</span><a href="/blog">ブログ</a><span>&gt;</span>10月18日の市況</nav>
+<nav class="pn-top" aria-label="前後の記事"><a rel="prev" href="/blog/20261016">‹ 前の記事 10/16（金）</a><a rel="next" href="/blog/20261019">次の記事 10/19（月） ›</a></nav>
+<div class="post-label">投資ガイド ｜ 恐怖と強欲指数の基本 ｜ 2026年10月18日（日）</div>
+<h1>恐怖と強欲指数とは？<br><span style="font-size:.66em;font-weight:700;color:var(--ink-soft)">日本株版の6つの指標と計算方法をやさしく解説｜Fear &amp; Greed Index Japan</span></h1>
+<p class="lead">「恐怖と強欲指数（Fear &amp; Greed Index）」は、株式市場に参加する人たちの心理が、「恐怖」と「強欲」のどちらに傾いているかを0〜100の数値で表した指標です。もとになったのは米国のCNN Businessが公表している指数で、当サイトではそれとは別に、日本株向けの指数を独自に計算しています。この記事では、当サイトの日本株版の恐怖と強欲指数が、どのようなデータから、どのように計算されているのかを、計算例を使ってやさしく解説します。数値の意味を知っておくと、日々の指数の動きがぐっと読みやすくなります。</p>
+<p class="note-small">掲載日：2026年10月18日（日）｜この記事は、当サイトの指数の仕組みを説明する解説記事です。日々の指数の値は<a href="/">ダッシュボード</a>と<a href="/blog">市況ブログ</a>でご確認いただけます。</p>
+<div class="summary-box"><h2>この記事のポイント</h2><ul><li>恐怖と強欲指数は、<strong>市場の心理を0〜100で表す指標</strong>です。低いほど恐怖、高いほど強欲を示します。</li><li>当サイトの日本株版は、<strong>株価の勢い・値動き・短期の過熱感・為替・国債</strong>など6つの指標を組み合わせています。</li><li>各指標は<strong>過去1年の中での位置</strong>で0〜100に換算し、ウェイトを掛けて合計した後、<strong>直近3営業日の平均</strong>を表示します。</li><li>指数は<strong>売買の合図ではなく、市場の温度計</strong>として使うのが基本です。</li></ul></div>
+<section id="s1"><h2>① 0〜100の数値と5つの区分</h2>
+<h3 class="tblcap">表1：恐怖と強欲指数の5つの区分</h3><div class="table-scroll"><table class="doc"><thead><tr><th>数値</th><th>区分</th><th>市場の状態の目安</th></tr></thead><tbody><tr><td>0〜24</td><td><span class="chip ef">極度の恐怖</span></td><td>不安が極端に強まり、売りが売りを呼びやすい状態</td></tr><tr><td>25〜44</td><td><span class="chip f">恐怖</span></td><td>慎重な姿勢が広がり、様子見が増える状態</td></tr><tr><td>45〜54</td><td><span class="chip n">中立</span></td><td>恐怖と強欲が拮抗し、方向感を探っている状態</td></tr><tr><td>55〜74</td><td><span class="chip g">強欲</span></td><td>上昇への期待が高まり、買いが優勢な状態</td></tr><tr><td>75〜100</td><td><span class="chip eg">極度の強欲</span></td><td>楽観が極端に広がり、過熱感が意識される状態</td></tr></tbody></table></div>
+<p>数値が低いほど市場は「恐怖」に、高いほど「強欲」に傾いていることを示します。50前後は、どちらにも大きく傾いていない「中立」の状態です。大切なのは、この数値が株価の水準そのものではなく、「いまの市場参加者の心理の偏り」を表している点です。同じ日経平均の水準でも、そこに至るまでの動き方によって指数は大きく変わります。</p>
+</section>
+<section id="s2"><h2>② 日本株版を構成する6つの指標</h2>
+<h3 class="tblcap">表2：当サイトの日本株の恐怖と強欲指数を構成する6つの指標</h3><div class="table-scroll"><table class="doc"><thead><tr><th>指標</th><th>見ているもの</th><th class="r">ウェイト</th><th>点数が高くなる（強欲寄り）</th><th>点数が低くなる（恐怖寄り）</th></tr></thead><tbody><tr><td><strong>市場モメンタム</strong></td><td>日経平均と125日移動平均線との乖離率</td><td class="r">25%</td><td>株価が半年ほどの平均を大きく上回っている</td><td>株価が半年ほどの平均を下回っている</td></tr><tr><td><strong>変動性</strong></td><td>株価の20日変動率（年率）</td><td class="r">25%</td><td>値動きが落ち着いている</td><td>値動きが荒くなっている</td></tr><tr><td><strong>株価の強さ</strong></td><td>株価の20営業日の騰落率</td><td class="r">15%</td><td>この1か月ほどで大きく上がっている</td><td>この1か月ほどで大きく下がっている</td></tr><tr><td><strong>短期の過熱感</strong></td><td>株価のRSI（14日）</td><td class="r">15%</td><td>短期的に買われすぎている</td><td>短期的に売られすぎている</td></tr><tr><td><strong>為替（円）</strong></td><td>ドル円の20営業日の変化</td><td class="r">10%</td><td>円安が進んでいる</td><td>円高が進んでいる</td></tr><tr><td><strong>安全資産への選好</strong></td><td>株と国債の20営業日の騰落率の差</td><td class="r">10%</td><td>国債より株が選ばれている</td><td>株より国債が選ばれている</td></tr></tbody></table></div>
+<p>6つの指標は、大きく3つのグループに分けられます。1つめは株価そのものの動き（市場モメンタム、株価の強さ、短期の過熱感）、2つめは値動きの荒さ（変動性）、3つめは株以外の市場の動き（為替、国債）です。株価の動きだけでなく、為替や国債の動きを組み込んでいるのが、日本株版の特徴です。</p>
+<h3 class="tblcap">表3：それぞれの指標が市場の心理を表す理由</h3><div class="table-scroll"><table class="doc"><thead><tr><th>指標</th><th>なぜ心理を表すのか</th></tr></thead><tbody><tr><td>市場モメンタム</td><td>株価が長めの平均を大きく上回っているときは、強気の参加者が多いと考えられます。下回っているときは、弱気が広がっていると考えられます</td></tr><tr><td>変動性</td><td>相場が急に下がる局面では値動きが荒くなりやすく、不安の強まりを表します。値動きが落ち着いているときは、安心感が広がっていると考えられます</td></tr><tr><td>株価の強さ</td><td>直近1か月ほどの騰落率で、短めの期間の勢いを見ます</td></tr><tr><td>短期の過熱感</td><td>RSIは、一定期間の値上がりと値下がりの大きさを比べた指標です。高いほど買われすぎ、低いほど売られすぎとされます</td></tr><tr><td>為替（円）</td><td>日本株は、円安が輸出企業の業績の追い風になりやすいことから、円安の進み方を強気の材料として扱います</td></tr><tr><td>安全資産への選好</td><td>不安が強まると、株より値動きの小さい国債にお金が移りやすくなります。株と国債の騰落率の差で、その動きを見ます</td></tr></tbody></table></div>
+</section>
+<section id="s3"><h2>③ 計算の流れ：3つのステップ</h2>
+<h3 class="tblcap">表4：日本株の指数の計算の流れ</h3><div class="table-scroll"><table class="doc"><thead><tr><th>ステップ</th><th>内容</th></tr></thead><tbody><tr><td>1. 過去1年の中での位置を調べる</td><td>各指標の今日の値が、過去1年（約250営業日）の値の中でどのくらいの位置にあるかを0〜100の点数にします。過去1年で最も強気寄りの水準なら100に近く、最も弱気寄りなら0に近くなります</td></tr><tr><td>2. ウェイトを掛けて合計する</td><td>6つの点数に、それぞれのウェイト（25%・25%・15%・15%・10%・10%）を掛けて合計します。当サイトでは、この値を「日次の素値」と呼んでいます</td></tr><tr><td>3. 直近3営業日の平均をとる</td><td>日次の素値の、直近3営業日の平均を、その日の指数として表示します</td></tr></tbody></table></div>
+<p>ステップ1で「過去1年の中での位置」を使うのは、指標ごとに単位も動く幅も違うためです。たとえば、移動平均線との乖離率と、ドル円の変化率をそのまま足し合わせることはできません。それぞれを「過去1年の中でどのくらい強気寄りか」という共通の物差しにそろえてから合計しています。</p>
+</section>
+<section id="s4"><h2>④ 計算例（仮の数値）</h2>
+<h3 class="tblcap">表5：ある日の日次の素値の計算例（説明用の仮の数値）</h3><div class="table-scroll"><table class="doc narrow"><thead><tr><th>指標</th><th class="r">点数（仮）</th><th class="r">ウェイト</th><th class="r">点数×ウェイト</th></tr></thead><tbody><tr><td>市場モメンタム</td><td class="r">60</td><td class="r">25%</td><td class="r">15.00</td></tr><tr><td>変動性</td><td class="r">40</td><td class="r">25%</td><td class="r">10.00</td></tr><tr><td>株価の強さ</td><td class="r">55</td><td class="r">15%</td><td class="r">8.25</td></tr><tr><td>短期の過熱感</td><td class="r">70</td><td class="r">15%</td><td class="r">10.50</td></tr><tr><td>為替（円）</td><td class="r">80</td><td class="r">10%</td><td class="r">8.00</td></tr><tr><td>安全資産への選好</td><td class="r">50</td><td class="r">10%</td><td class="r">5.00</td></tr><tr><td><strong>合計（日次の素値）</strong></td><td class="r"></td><td class="r">100%</td><td class="r"><strong>56.75</strong></td></tr></tbody></table></div>
+<p>この例では、6つの点数にウェイトを掛けて合計すると、日次の素値は約57になります。前の2営業日の素値が50と45だったとすると、その日に表示される指数は（56.75＋50＋45）÷3＝約51で、「中立」の区分です。</p>
+<div class="callout"><p>3営業日の平均をとるため、その日だけ株価が大きく動いても、指数はゆっくり動きます。反対に、平均から外れる日の素値が高いか低いかによって、「株価が上がったのに指数が下がる」「株価が下がったのに指数が上がる」ことも起こります。当サイトの市況ブログでは、こうした日にその理由を表で説明しています。</p></div>
+</section>
+<section id="s5"><h2>⑤ なぜ3営業日の平均を使うのか</h2>
+<h3 class="tblcap">表6：その日の値と3営業日の平均の違い</h3><div class="table-scroll"><table class="doc"><thead><tr><th></th><th>その日の素値をそのまま表示</th><th>3営業日の平均で表示（当サイト）</th></tr></thead><tbody><tr><td>日々の振れ</td><td>大きい。1日の値動きで区分が大きく変わりやすい</td><td>小さい。区分の変化が落ち着いて見える</td></tr><tr><td>変化への反応</td><td>速い</td><td>少し遅れる</td></tr><tr><td>向いている使い方</td><td>その日の値動きの強さを知る</td><td>市場の雰囲気の流れを知る</td></tr></tbody></table></div>
+<p>恐怖と強欲指数の目的は、その日の値動きを測ることではなく、市場の雰囲気の「流れ」を知ることです。1日だけの急な上げ下げに振り回されないよう、当サイトでは3営業日の平均を採用しています。その代わり、変化への反応は少し遅れます。当サイトの市況ブログでは、平均する前の「日次の素値」もあわせて紹介し、その日の動きも分かるようにしています。</p>
+</section>
+<section id="s6"><h2>⑥ CNNの米国版との違い</h2>
+<h3 class="tblcap">表7：日本株版と米国株版の違い</h3><div class="table-scroll"><table class="doc"><thead><tr><th>項目</th><th>日本株版（当サイト）</th><th>米国株版（CNN Business）</th></tr></thead><tbody><tr><td>対象</td><td>日経平均など日本株</td><td>S&amp;P500など米国株</td></tr><tr><td>指標の数</td><td>6つ</td><td>7つ</td></tr><tr><td>主な指標</td><td>株価のモメンタム・強さ・過熱感、変動性、為替、国債との比較</td><td>株価のモメンタム、株価の強さ、株価の幅、プット／コール比率、市場の変動性（VIX）、ジャンクボンド需要、安全資産への需要</td></tr><tr><td>特徴</td><td>為替（ドル円）を組み込んでいる</td><td>オプションや社債の市場の動きを組み込んでいる</td></tr><tr><td>当サイトでの表示</td><td>当サイトが独自に計算した値</td><td>CNN Businessの公表値をそのまま表示</td></tr></tbody></table></div>
+<p>日本株版と米国株版は、構成も計算方法も異なります。そのため、日本株が30で米国株が40だったとしても、「日本の方が10ポイント悲観的」と単純に比べることはできません。それぞれの推移や、区分の変化を見るのが適した使い方です。そのうえで、日米の指数が同じ方向に動いているか、離れているかを見ると、市場ごとの事情を考える手がかりになります。</p>
+</section>
+<section id="s7"><h2>⑦ よくある誤解</h2>
+<h3 class="tblcap">表8：恐怖と強欲指数についてのよくある誤解</h3><div class="table-scroll"><table class="doc"><thead><tr><th>誤解</th><th>実際</th></tr></thead><tbody><tr><td>「極度の恐怖」は買いの合図</td><td>指数は将来の値動きを予測しません。恐怖の水準からさらに下がることもあります</td></tr><tr><td>指数が高いほど株価が高い</td><td>指数は株価の水準ではなく、心理の偏りを表します。株価が高値圏でも、勢いが鈍れば指数は下がります</td></tr><tr><td>毎日の上下が大事</td><td>1日の変化より、区分の変化や1週間・1か月の流れを見る方が役立ちます</td></tr><tr><td>指数だけで判断できる</td><td>企業業績、金利、為替、経済指標など、ほかの情報とあわせて判断することが大切です</td></tr></tbody></table></div>
+<p>過去のデータで、指数の区分ごとにその後の日経平均がどう動いたかは、当サイトの<a href="/stats">統計データ</a>のページで確認できます。指数の読み方の基本や、ほかの指標との違いは<a href="/guide">投資ガイド</a>でも紹介しています。</p>
+</section>
+<section id="operator" style="margin-top:36px"><div style="background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--ink);border-radius:var(--radius);padding:20px 24px"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="font-weight:900;font-size:16px">運営者のひとこと</span><span style="font-size:12.5px;color:var(--muted)">Fear &amp; Greed Index Japan 運営事務局</span></div><p style="margin:10px 0 0;line-height:1.95">恐怖と強欲指数は、数字が1つだけなのでとても分かりやすい反面、「なぜこの数字なのか」が見えにくい指標でもあります。そこで今回は、当サイトの計算方法をできるだけそのままお伝えしました。</p><p style="margin:10px 0 0;line-height:1.95">法人営業でも、取引先の状況を1つの点数で評価する仕組みは便利ですが、点数の内訳を知らないと、思わぬ判断の誤りにつながります。数字を使う人が中身を理解していることが、数字を正しく使う一番の近道だと考えています。</p><p style="margin:10px 0 0;line-height:1.95">日々の市況ブログでは、6つの指標の内訳もあわせてお伝えしています。この記事とあわせてご覧いただければ、指数の動きがより読みやすくなると思います。</p><p style="margin:12px 0 0;font-size:12.5px;color:var(--muted)">※運営者の個人的な見方であり、特定の金融商品の売買を勧めるものではありません。</p></div></section>
+<section id="s8"><h2>⑧ 用語ミニ解説</h2>
+<h3 class="tblcap">表9：この記事に出てきた用語</h3><div class="table-scroll"><table class="doc"><thead><tr><th>用語</th><th>意味</th></tr></thead><tbody><tr><td>移動平均線</td><td>一定期間の終値の平均をつないだ線。125日線はおよそ半年分の平均</td></tr><tr><td>乖離率</td><td>株価が移動平均線からどれだけ離れているかを示す割合</td></tr><tr><td>変動率（ボラティリティ）</td><td>価格の変動の大きさ。年率に換算して比べることが多い</td></tr><tr><td>RSI</td><td>一定期間の値上がり幅と値下がり幅から計算する、買われすぎ・売られすぎの目安</td></tr><tr><td>営業日</td><td>取引所が開いている日。土日・祝日などを除く</td></tr></tbody></table></div>
+</section>
+<section id="s9"><h2>まとめ</h2><ol class="clauses"><li>恐怖と強欲指数は、<strong>市場の心理を0〜100で表す指標</strong>です。</li><li>当サイトの日本株版は、<strong>6つの指標</strong>を過去1年の中での位置で点数化し、ウェイトを掛けて合計しています。</li><li>表示する指数は<strong>直近3営業日の平均</strong>で、日々の振れをならしています。</li><li>指数は<strong>売買の合図ではなく、市場の温度計</strong>として、ほかの情報とあわせて使うのが基本です。</li></ol></section>
+<div class="sources"><strong>出典・参考：</strong>当サイトの日本株の恐怖と強欲指数の算出方法／CNN Business（Fear &amp; Greed Index）の公表内容。計算例は説明のための仮の数値です。算出方法は改善のために見直す場合があります。</div>
+<div class="callout warn"><p>本記事は恐怖と強欲指数の仕組みについての情報提供であり、特定の金融商品の売買を勧誘・推奨するものではありません。投資に関する最終判断は、ご自身の責任で行ってください。</p></div>
+<div class="tags"><span>#恐怖と強欲指数</span><span>#Fear &amp; Greed Index</span><span>#日経平均</span><span>#投資心理</span><span>#計算方法</span><span>#RSI</span><span>#移動平均線</span><span>#投資ガイド</span><span>#初心者向け</span><span>#Fear &amp; Greed Index Japan</span></div>
+<div class="lead-links"><a href="/guide">投資ガイドを見る</a><a class="sub" href="/">ダッシュボードで最新の指数を見る</a></div>
+<nav class="post-nav" aria-label="前後の記事"><a class="pn prev" rel="prev" href="/blog/20261016"><span class="pn-dir">← 前の記事</span><span class="pn-date">2026年10月16日（金）</span><span class="pn-title">日経平均3,318円安で6日続落、恐怖と強欲指数は52から40の「恐怖」に急低下｜下げ幅は過去3番目（10月16日）｜Fear & Greed Index Japan</span><span class="pn-sc">日本株 40（恐怖）｜米国株 32（恐怖）</span></a><a class="pn next" rel="next" href="/blog/20261019"><span class="pn-dir">次の記事 →</span><span class="pn-date">2026年10月19日（月）</span><span class="pn-title">日経平均は反落、恐怖と強欲指数は取引時間中に26と「極度の恐怖」目前｜先週5.4%安・今週の見通し（10月19日）｜Fear & Greed Index Japan</span><span class="pn-sc">日本株 26（恐怖）｜米国株 18（極度の恐怖）</span></a></nav>
+<p class="pn-back"><a href="/blog">ブログ一覧へ戻る</a></p>
+    </article>
+
+    <div class="disclaimer">
+      <strong>ご利用にあたっての注意</strong>
+      本サイトの情報は、投資家心理を数値化した参考情報であり、特定の金融商品の売買を勧誘・推奨するものではありません。指数は過去のデータに基づく参考値で、将来の値動きを予測・保証するものではありません。掲載データの正確性には努めていますが、遅延・誤り・欠落が生じる場合があります。投資に関する最終判断は、ご自身の責任で行ってください。
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="/">ダッシュボード</a>
+      <a href="/archive">市況アーカイブ</a>
+      <a href="/blog">ブログ</a>
+      <a href="/guide">投資ガイド</a>
+      <a href="/about">サイトについて</a>
+      <a href="/terms">利用規約</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+    <p class="footer-copy">© 2026 Fear &amp; Greed Index Japan. All rights reserved.<br>「日経225」は株式会社日本経済新聞社の登録商標です。本サイトは同社とは関係ありません。</p>
+  </div>
+</footer>
+
+</body>
+</html>
