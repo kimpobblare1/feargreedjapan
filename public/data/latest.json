@@ -61,7 +61,7 @@
   "stale": false
  },
  "us": {
-  "score": 20,
+  "score": 19,
   "previous_close": 23,
   "previous_1_week": 33,
   "previous_1_month": 38,
@@ -77,11 +77,11 @@
    },
    {
     "name": "株価の幅",
-    "value": 43
+    "value": 42
    },
    {
     "name": "プット／コール",
-    "value": 26
+    "value": 18
    },
    {
     "name": "市場の変動性",
@@ -490,7 +490,7 @@
    }
   }
  ],
- "hash": "96d9be0e5a9c9b8b",
- "updated_at": "2026-11-03T14:56:54+00:00",
- "updated_at_jst": "2026年11月3日 23:56"
+ "hash": "e2b2d8c238a3c448",
+ "updated_at": "2026-11-03T20:28:14+00:00",
+ "updated_at_jst": "2026年11月4日 05:28"
 }
