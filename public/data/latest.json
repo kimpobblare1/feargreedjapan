@@ -1,58 +1,58 @@
 {
  "success": true,
  "jp": {
-  "score": 20,
+  "score": 18,
   "previous_close": 20,
-  "previous_1_week": 14,
-  "previous_1_month": 43,
-  "as_of": "2026-11-02",
+  "previous_1_week": 15,
+  "previous_1_month": 48,
+  "as_of": "2026-11-04",
   "indicators": [
    {
     "name": "市場モメンタム",
-    "value": 2,
-    "raw": -4.19,
-    "median": 11.91,
-    "low": -5.32,
+    "value": 1,
+    "raw": -7.17,
+    "median": 11.88,
+    "low": -7.17,
     "high": 26.06
    },
    {
     "name": "変動性",
-    "value": 47,
-    "raw": 27.68,
+    "value": 52,
+    "raw": 27.27,
     "median": 27.87,
     "low": 16.48,
     "high": 42.59
    },
    {
     "name": "株価の強さ",
-    "value": 8,
-    "raw": -5.83,
-    "median": 2.92,
+    "value": 4,
+    "raw": -9.8,
+    "median": 2.91,
     "low": -10.66,
     "high": 12.52
    },
    {
     "name": "短期の過熱感",
-    "value": 13,
-    "raw": 41.08,
-    "median": 55.49,
+    "value": 6,
+    "raw": 34.81,
+    "median": 55.13,
     "low": 34.42,
     "high": 75.52
    },
    {
     "name": "為替（円）",
-    "value": 37,
-    "raw": -0.04,
-    "median": 0.76,
+    "value": 33,
+    "raw": -0.31,
+    "median": 0.75,
     "low": -3.64,
     "high": 4.59
    },
    {
     "name": "安全資産への選好",
-    "value": 5,
-    "raw": -10.13,
-    "median": 4.47,
-    "low": -11.71,
+    "value": 1,
+    "raw": -15.12,
+    "median": 4.46,
+    "low": -15.12,
     "high": 19.17
    }
   ],
@@ -99,19 +99,6 @@
   "stale": false
  },
  "history": [
-  {
-   "date": "2026-09-16",
-   "jp": 26,
-   "us": 27,
-   "parts": {
-    "momentum": 2,
-    "vol": 90,
-    "strength": 23,
-    "rsi": 7,
-    "fx": 16,
-    "safe": 19
-   }
-  },
   {
    "date": "2026-09-17",
    "jp": 29,
@@ -488,9 +475,22 @@
     "fx": 36,
     "safe": 1
    }
+  },
+  {
+   "date": "2026-11-04",
+   "jp": 18,
+   "us": 19,
+   "parts": {
+    "momentum": 0,
+    "vol": 55,
+    "strength": 1,
+    "rsi": 1,
+    "fx": 30,
+    "safe": 0
+   }
   }
  ],
- "hash": "cc80540c94020e59",
- "updated_at": "2026-11-03T23:35:51+00:00",
- "updated_at_jst": "2026年11月4日 08:35"
+ "hash": "423aea3387f2123c",
+ "updated_at": "2026-11-04T02:08:44+00:00",
+ "updated_at_jst": "2026年11月4日 11:08"
 }
