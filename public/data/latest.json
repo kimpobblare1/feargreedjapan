@@ -41,8 +41,8 @@
    },
    {
     "name": "為替（円）",
-    "value": 42,
-    "raw": 0.17,
+    "value": 38,
+    "raw": -0.36,
     "median": 0.7,
     "low": -3.64,
     "high": 4.59
@@ -61,7 +61,7 @@
   "stale": false
  },
  "us": {
-  "score": 24,
+  "score": 22,
   "previous_close": 20,
   "previous_1_week": 26,
   "previous_1_month": 47,
@@ -69,7 +69,7 @@
   "indicators": [
    {
     "name": "市場モメンタム",
-    "value": 9
+    "value": 8
    },
    {
     "name": "株価の強さ",
@@ -77,19 +77,19 @@
    },
    {
     "name": "株価の幅",
-    "value": 46
+    "value": 45
    },
    {
     "name": "プット／コール",
-    "value": 15
+    "value": 13
    },
    {
     "name": "市場の変動性",
-    "value": 15
+    "value": 9
    },
    {
     "name": "ジャンクボンド需要",
-    "value": 37
+    "value": 36
    },
    {
     "name": "安全資産への需要",
@@ -479,18 +479,18 @@
   {
    "date": "2026-11-06",
    "jp": 17,
-   "us": 24,
+   "us": 22,
    "parts": {
     "momentum": 0,
     "vol": 32,
     "strength": 0,
     "rsi": 0,
-    "fx": 42,
+    "fx": 29,
     "safe": 0
    }
   }
  ],
- "hash": "8c392005deebf4bb",
- "updated_at": "2026-11-06T20:22:48+00:00",
- "updated_at_jst": "2026年11月7日 05:22"
+ "hash": "08aa86e6bcca7656",
+ "updated_at": "2026-11-07T01:47:29+00:00",
+ "updated_at_jst": "2026年11月7日 10:47"
 }
