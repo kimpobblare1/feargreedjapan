@@ -292,6 +292,67 @@
 
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 </style>
+<style id="guide-hub-css">
+  .guide-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin-top: 16px; }
+  .guide-card { display: flex; flex-direction: column; gap: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; text-decoration: none; color: var(--ink); }
+  .guide-card:hover { border-color: var(--ink-soft); }
+  .guide-card .g-date { font-size: 12.5px; color: var(--muted); }
+  .guide-card .g-ttl { font-size: 16px; font-weight: 900; line-height: 1.6; }
+  .guide-card .g-sub { font-size: 13.5px; font-weight: 700; color: var(--c-eg); line-height: 1.6; }
+  .guide-card .g-ex { font-size: 14px; color: var(--ink-soft); line-height: 1.8; }
+  .guide-hub-note { font-size: 13px; color: var(--muted); margin-top: 12px; line-height: 1.8; }
+</style>
+<script type="application/ld+json" id="guide-itemlist">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "恐怖と強欲指数の解説記事",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "url": "https://feargreedjapan.com/blog/20261106-smoothing",
+      "name": "なぜ恐怖と強欲指数は3営業日の平均をとるのか"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "url": "https://feargreedjapan.com/blog/20261103-japan-us",
+      "name": "日本と米国の恐怖と強欲指数はどれくらい連動している？"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "url": "https://feargreedjapan.com/blog/20261101-indicators",
+      "name": "恐怖と強欲指数の6つの指標の読み方"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "url": "https://feargreedjapan.com/blog/20261030-nisa",
+      "name": "新NISAの積立と恐怖と強欲指数の付き合い方"
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "url": "https://feargreedjapan.com/blog/20261027-vix",
+      "name": "VIX・日経平均VIと恐怖と強欲指数の違いとは？「恐怖指数」との使い分けを解説"
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "url": "https://feargreedjapan.com/blog/20261024",
+      "name": "「極度の恐怖」のあと日経平均はどう動いた？恐怖と強欲指数で約8年分を検証"
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "url": "https://feargreedjapan.com/blog/20261018",
+      "name": "恐怖と強欲指数とは？日本株版の6つの指標と計算方法をやさしく解説"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -323,6 +384,7 @@
       <nav class="toc" aria-label="目次">
         <h2>このページの内容</h2>
         <ol>
+        <li><a href="#guide-articles">独自データで読み解く解説記事</a></li>
         <li><a href="#what">恐怖と強欲指数とは</a></li>
         <li><a href="#read">数値の読み方</a></li>
         <li><a href="#contrarian">「逆張りの指標」と言われる理由と限界</a></li>
@@ -332,6 +394,23 @@
         <li><a href="#faq">よくある質問</a></li>
         </ol>
       </nav>
+
+      <!-- guide-articles:start -->
+      <section id="guide-articles">
+        <h2>独自データで読み解く解説記事</h2>
+        <p>当サイトの指数の記録をもとに、指数の仕組みや読み方、過去の傾向を分析した記事です（全7本、新しい順）。</p>
+        <div class="guide-grid">
+        <a class="guide-card" href="/blog/20261106-smoothing"><span class="g-date">2026年11月6日（金）</span><span class="g-ttl">なぜ恐怖と強欲指数は3営業日の平均をとるのか</span><span class="g-sub">素値と表示値を約2か月分比べて分かったこと</span><span class="g-ex">素値は36営業日で18回向きが入れ替わり、表示値は4回。3営業日の平均は日々のぶれを抑える代わりに、区分の変化を約1日遅らせます。</span></a>
+        <a class="guide-card" href="/blog/20261103-japan-us"><span class="g-date">2026年11月3日（火）</span><span class="g-ttl">日本と米国の恐怖と強欲指数はどれくらい連動している？</span><span class="g-sub">米国の変化は翌日の日本に表れやすい</span><span class="g-ex">日米の指数の同じ日の連動は弱め（相関0.25）。一方、米国の変化は翌営業日の日本と連動（相関0.53）。約2か月のデータで比較。</span></a>
+        <a class="guide-card" href="/blog/20261101-indicators"><span class="g-date">2026年11月1日（日）</span><span class="g-ttl">恐怖と強欲指数の6つの指標の読み方</span><span class="g-sub">10月の急落で何が指数を押し下げたか</span><span class="g-ex">10月の急落で指数を最も押し下げたのは、ウェイト15%の「短期の過熱感」。6つの指標の読み方と、動きの速さの違いを実データで解説。</span></a>
+        <a class="guide-card" href="/blog/20261030-nisa"><span class="g-date">2026年10月30日（金）</span><span class="g-ttl">新NISAの積立と恐怖と強欲指数の付き合い方</span><span class="g-sub">「恐怖」の日に積立を止めたら？約8年分のデータで考える</span><span class="g-ex">「恐怖」以下の日は約8年間の42.2%。その日から60営業日後の騰落率は平均+4.47%で、ほかの日を上回りました。積立と指数の付き合い方をデータで整理。</span></a>
+        <a class="guide-card" href="/blog/20261027-vix"><span class="g-date">2026年10月27日（火）</span><span class="g-ttl">VIX・日経平均VIと恐怖と強欲指数の違いとは？「恐怖指数」との使い分けを解説</span><span class="g-ex">VIX・日経平均VIと恐怖と強欲指数の違いを、測っているもの・数値の向き・時間軸で比較。2つを組み合わせた市場の読み方も解説。</span></a>
+        <a class="guide-card" href="/blog/20261024"><span class="g-date">2026年10月24日（土）</span><span class="g-ttl">「極度の恐怖」のあと日経平均はどう動いた？恐怖と強欲指数で約8年分を検証</span><span class="g-ex">「極度の恐怖」の日から20営業日後の日経平均は、中央値+2.26%（全期間+1.23%）。約8年分のデータで、値動きの幅や注意点も検証。</span></a>
+        <a class="guide-card" href="/blog/20261018"><span class="g-date">2026年10月18日（日）</span><span class="g-ttl">恐怖と強欲指数とは？日本株版の6つの指標と計算方法をやさしく解説</span><span class="g-ex">恐怖と強欲指数の仕組みを、日本株版の6つの指標・ウェイト・計算例でやさしく解説。米国版との違いやよくある誤解も表で整理。</span></a>
+        </div>
+        <p class="guide-hub-note">分析は当サイトの算出データにもとづくもので、将来の値動きを予測・保証するものではありません。</p>
+      </section>
+      <!-- guide-articles:end -->
 
       <section id="what">
         <h2>恐怖と強欲指数とは</h2>
