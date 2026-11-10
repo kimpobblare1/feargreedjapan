@@ -134,6 +134,53 @@ LATEST = f"""
   </section>
 """
 
+# ───────── 投資ガイド記事の一覧（ARCHIVE_LINK = False の解説記事を自動で集める） ─────────
+import html as _h
+_GUIDES = sorted([m for m in _P.POSTS if getattr(m, "ARCHIVE_LINK", True) is False],
+                 key=lambda m: (m.DATE_ISO, m.DATE_ID), reverse=True)
+
+
+def _guide_cards(limit=None):
+    out = []
+    for m in _GUIDES[:limit]:
+        t = m.TITLE.split("｜")
+        main, sub = t[0], (t[1] if len(t) > 2 else "")
+        ex = getattr(m, "CARD_EXCERPT", m.EXCERPT)
+        out.append(
+            f'        <a class="guide-card" href="/blog/{m.DATE_ID}">'
+            f'<span class="g-date">{_P.full_label(m)}</span>'
+            f'<span class="g-ttl">{_h.escape(main)}</span>'
+            + (f'<span class="g-sub">{_h.escape(sub)}</span>' if sub else "")
+            + f'<span class="g-ex">{_h.escape(ex)}</span></a>')
+    return "\n".join(out)
+
+
+GUIDE_CSS = """<style id="guide-hub-css">
+  .guide-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin-top: 16px; }
+  .guide-card { display: flex; flex-direction: column; gap: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; text-decoration: none; color: var(--ink); }
+  .guide-card:hover { border-color: var(--ink-soft); }
+  .guide-card .g-date { font-size: 12.5px; color: var(--muted); }
+  .guide-card .g-ttl { font-size: 16px; font-weight: 900; line-height: 1.6; }
+  .guide-card .g-sub { font-size: 13.5px; font-weight: 700; color: var(--c-eg); line-height: 1.6; }
+  .guide-card .g-ex { font-size: 14px; color: var(--ink-soft); line-height: 1.8; }
+  .guide-hub-note { font-size: 13px; color: var(--muted); margin-top: 12px; line-height: 1.8; }
+</style>
+"""
+
+GUIDES_SEC = f"""
+  <!-- 独自データの解説記事（投資ガイド記事） -->
+  <section class="block" id="guides">
+    <div class="wrap">
+      <h2>独自データで読み解く解説記事</h2>
+      <p class="sec-lead">当サイトの指数の記録をもとに、指数の仕組みや読み方、過去の傾向を分析した記事です。日々の市況ブログとあわせてお読みください。</p>
+      <div class="guide-grid">
+{_guide_cards(6)}
+      </div>
+      <div class="btn-row"><a href="/guide#guide-articles">解説記事をすべて見る（{len(_GUIDES)}本）</a><a class="sub" href="/guide">恐怖と強欲指数の読み方ガイド</a></div>
+    </div>
+  </section>
+""" if _GUIDES else ""
+
 STATS_TEASER = """
   <!-- 独自データ（統計） -->
   <section class="block" id="stats-teaser">
@@ -317,18 +364,50 @@ faq_ld = {
 FAQ_LD = '<script type="application/ld+json">\n' + json.dumps(faq_ld, ensure_ascii=False, indent=2) + "\n</script>\n"
 
 # ───────── 挿入（既に入っていれば一旦取り除いてから入れ直す：冪等） ─────────
-for sid in ("latest", "about-index", "stats-teaser", "zone-guide", "howto", "cautions", "faq"):
+for sid in ("latest", "guides", "about-index", "stats-teaser", "zone-guide", "howto", "cautions", "faq"):
     s = re.sub(r'\n  <!-- [^\n]*-->\n  <section class="block" id="%s">.*?</section>\n' % sid, "", s, flags=re.S)
 s = re.sub(r'<script type="application/ld\+json">\s*\{\s*"@context": "https://schema.org",\s*"@type": "FAQPage".*?</script>\n', "", s, flags=re.S)
 
 # 推移(#history)の直後：最新ブログ + 指数とは
-s, n = re.subn(r'(  </section>\n)(\n  <!-- ゾーン -->)', lambda m: m.group(1) + LATEST + WHAT + STATS_TEASER + m.group(2), s, count=1)
+s, n = re.subn(r'(  </section>\n)(\n  <!-- ゾーン -->)', lambda m: m.group(1) + LATEST + GUIDES_SEC + WHAT + STATS_TEASER + m.group(2), s, count=1)
 assert n == 1, "history/zones boundary not found"
 # 数値の見方(#zones)の直後：区間別ガイド + 使い方 + 注意事項 + FAQ
 s, n = re.subn(r'(  </section>\n)(\n  <!-- 算出方法 -->)', lambda m: m.group(1) + ZONE_GUIDE + HOWTO + CAUTIONS + FAQ_SEC + m.group(2), s, count=1)
 assert n == 1, "zones/method boundary not found"
+s = re.sub(r'<style id="guide-hub-css">.*?</style>\n', "", s, flags=re.S)
+s = s.replace("</head>", GUIDE_CSS + "</head>", 1)
 # FAQ 構造化データ（head の WebSite の後）
 s = s.replace('<link rel="preconnect" href="https://fonts.googleapis.com">', FAQ_LD + '<link rel="preconnect" href="https://fonts.googleapis.com">', 1)
 
 open(PATH, "w", encoding="utf-8").write(s)
 print("index.html を更新しました：", len(s), "bytes")
+
+# ───────── 投資ガイド（guide.html）にも解説記事の一覧を入れる（冪等） ─────────
+GPATH = _os.path.join(_os.path.dirname(_os.path.abspath(PATH)), "guide.html")
+if _GUIDES and _os.path.isfile(GPATH):
+    g = open(GPATH, encoding="utf-8").read()
+    g = re.sub(r"      <!-- guide-articles:start -->.*?<!-- guide-articles:end -->\n\n?", "", g, flags=re.S)
+    g = re.sub(r'<style id="guide-hub-css">.*?</style>\n', "", g, flags=re.S)
+    g = re.sub(r'<script type="application/ld\+json" id="guide-itemlist">.*?</script>\n', "", g, flags=re.S)
+    g = re.sub(r'\n        <li><a href="#guide-articles">[^<]*</a></li>', "", g)
+    _items = {"@context": "https://schema.org", "@type": "ItemList", "name": "恐怖と強欲指数の解説記事",
+              "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": "https://feargreedjapan.com/blog/" + m.DATE_ID,
+                                   "name": m.TITLE.split("｜")[0]} for i, m in enumerate(_GUIDES)]}
+    _sec = ('      <!-- guide-articles:start -->\n'
+            '      <section id="guide-articles">\n'
+            '        <h2>独自データで読み解く解説記事</h2>\n'
+            f'        <p>当サイトの指数の記録をもとに、指数の仕組みや読み方、過去の傾向を分析した記事です（全{len(_GUIDES)}本、新しい順）。</p>\n'
+            '        <div class="guide-grid">\n' + _guide_cards() + '\n        </div>\n'
+            '        <p class="guide-hub-note">分析は当サイトの算出データにもとづくもので、将来の値動きを予測・保証するものではありません。</p>\n'
+            '      </section>\n'
+            '      <!-- guide-articles:end -->\n')
+    n1 = g.count('<section id="what">')
+    if n1 == 1:
+        g = g.replace('      <section id="what">', _sec + '\n      <section id="what">', 1)
+        g = g.replace('<li><a href="#what">', '<li><a href="#guide-articles">独自データで読み解く解説記事</a></li>\n        <li><a href="#what">', 1)
+        g = g.replace("</head>", GUIDE_CSS + '<script type="application/ld+json" id="guide-itemlist">\n'
+                      + json.dumps(_items, ensure_ascii=False, indent=2) + "\n</script>\n</head>", 1)
+        open(GPATH, "w", encoding="utf-8").write(g)
+        print("guide.html に解説記事の一覧を入れました：", len(_GUIDES), "本")
+    else:
+        print("【お知らせ】guide.html の挿入位置が見つからないため、一覧は入れませんでした")
