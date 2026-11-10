@@ -61,7 +61,7 @@
   "stale": false
  },
  "us": {
-  "score": 35,
+  "score": 33,
   "previous_close": 32,
   "previous_1_week": 24,
   "previous_1_month": 44,
@@ -81,7 +81,7 @@
    },
    {
     "name": "プット／コール",
-    "value": 19
+    "value": 15
    },
    {
     "name": "市場の変動性",
@@ -89,7 +89,7 @@
    },
    {
     "name": "ジャンクボンド需要",
-    "value": 51
+    "value": 48
    },
    {
     "name": "安全資産への需要",
@@ -479,7 +479,7 @@
   {
    "date": "2026-11-10",
    "jp": 10,
-   "us": 35,
+   "us": 33,
    "parts": {
     "momentum": 1,
     "vol": 17,
@@ -490,7 +490,7 @@
    }
   }
  ],
- "hash": "95edcfc14244ac3a",
- "updated_at": "2026-11-10T15:29:46+00:00",
- "updated_at_jst": "2026年11月11日 00:29"
+ "hash": "dd556ee29742b638",
+ "updated_at": "2026-11-10T20:45:51+00:00",
+ "updated_at_jst": "2026年11月11日 05:45"
 }
