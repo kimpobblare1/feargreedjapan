@@ -1,57 +1,57 @@
 {
  "success": true,
  "jp": {
-  "score": 17,
+  "score": 16,
   "previous_close": 17,
-  "previous_1_week": 10,
-  "previous_1_month": 33,
-  "as_of": "2026-11-17",
+  "previous_1_week": 11,
+  "previous_1_month": 26,
+  "as_of": "2026-11-18",
   "indicators": [
    {
     "name": "市場モメンタム",
     "value": 1,
-    "raw": -10.44,
-    "median": 11.33,
+    "raw": -10.17,
+    "median": 11.27,
     "low": -12.79,
     "high": 26.06
    },
    {
     "name": "変動性",
     "value": 30,
-    "raw": 33.04,
-    "median": 27.97,
+    "raw": 33.0,
+    "median": 28.11,
     "low": 16.48,
     "high": 42.59
    },
    {
     "name": "株価の強さ",
-    "value": 9,
-    "raw": -7.31,
-    "median": 2.16,
+    "value": 7,
+    "raw": -6.3,
+    "median": 2.1,
     "low": -14.53,
     "high": 12.52
    },
    {
     "name": "短期の過熱感",
-    "value": 7,
-    "raw": 36.39,
-    "median": 53.98,
+    "value": 4,
+    "raw": 37.18,
+    "median": 53.91,
     "low": 25.94,
     "high": 75.1
    },
    {
     "name": "為替（円）",
-    "value": 59,
-    "raw": 0.43,
+    "value": 56,
+    "raw": 0.62,
     "median": 0.63,
     "low": -3.64,
     "high": 4.44
    },
    {
     "name": "安全資産への選好",
-    "value": 8,
-    "raw": -9.61,
-    "median": 3.73,
+    "value": 7,
+    "raw": -7.97,
+    "median": 3.65,
     "low": -21.73,
     "high": 19.17
    }
@@ -62,10 +62,10 @@
  },
  "us": {
   "score": 25,
-  "previous_close": 31,
-  "previous_1_week": 37,
+  "previous_close": 25,
+  "previous_1_week": 36,
   "previous_1_month": 18,
-  "as_of": "2026-11-17",
+  "as_of": "2026-11-18",
   "indicators": [
    {
     "name": "市場モメンタム",
@@ -99,19 +99,6 @@
   "stale": false
  },
  "history": [
-  {
-   "date": "2026-10-05",
-   "jp": 57,
-   "us": 43,
-   "parts": {
-    "momentum": 26,
-    "vol": 81,
-    "strength": 70,
-    "rsi": 83,
-    "fx": 91,
-    "safe": 78
-   }
-  },
   {
    "date": "2026-10-06",
    "jp": 62,
@@ -485,12 +472,25 @@
     "vol": 29,
     "strength": 5,
     "rsi": 3,
-    "fx": 47,
-    "safe": 5
+    "fx": 50,
+    "safe": 6
+   }
+  },
+  {
+   "date": "2026-11-18",
+   "jp": 16,
+   "us": 25,
+   "parts": {
+    "momentum": 1,
+    "vol": 30,
+    "strength": 9,
+    "rsi": 4,
+    "fx": 50,
+    "safe": 9
    }
   }
  ],
- "hash": "4200a6b134458247",
- "updated_at": "2026-11-17T22:10:25+00:00",
- "updated_at_jst": "2026年11月18日 07:10"
+ "hash": "76c33ad94be7595a",
+ "updated_at": "2026-11-18T06:56:32+00:00",
+ "updated_at_jst": "2026年11月18日 15:56"
 }
