@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="HoU_nbY9is8mGhPZ6eENVWpMUnDZx3JJAhnjUdSYqHg" />
+<title>AI決算と恐怖と強欲指数｜この秋の6回の決算翌日の動きをデータで検証｜Fear &amp; Greed Index Japan</title>
+<meta name="description" content="エヌビディアの決算が予想を上回った11月18日。この秋に発表されたAI関連の大型決算6回について、日本時間で結果が出た当日の日経平均と、当サイトの恐怖と強欲指数の動きを検証しました。好決算でも日経平均が下がった日が多く、指数を大きく動かしたのは決算より政策や規制のニュースでした。">
+<link rel="canonical" href="https://feargreedjapan.com/blog/20261118-earnings">
+<meta property="og:title" content="AI決算と恐怖と強欲指数｜この秋の6回の決算翌日の動きをデータで検証｜Fear &amp; Greed Index Japan">
+<meta property="og:description" content="エヌビディアの決算が予想を上回った11月18日。この秋に発表されたAI関連の大型決算6回について、日本時間で結果が出た当日の日経平均と、当サイトの恐怖と強欲指数の動きを検証しました。好決算でも日経平均が下がった日が多く、指数を大きく動かしたのは決算より政策や規制のニュースでした。">
+<meta property="og:url" content="https://feargreedjapan.com/blog/20261118-earnings">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Fear &amp; Greed Index Japan">
+<meta property="og:image" content="https://feargreedjapan.com/thumbnail.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI決算と恐怖と強欲指数｜この秋の6回の決算翌日の動きをデータで検証｜Fear &amp; Greed Index Japan">
+<meta name="twitter:description" content="エヌビディアの決算が予想を上回った11月18日。この秋に発表されたAI関連の大型決算6回について、日本時間で結果が出た当日の日経平均と、当サイトの恐怖と強欲指数の動きを検証しました。好決算でも日経平均が下がった日が多く、指数を大きく動かしたのは決算より政策や規制のニュースでした。">
+<meta name="twitter:image" content="https://feargreedjapan.com/thumbnail.png">
+<meta name="theme-color" content="#14284b">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="article:published_time" content="2026-11-18">
+<meta property="article:section" content="市況ブログ">
+<style>
+  .sc-asof { font-size: 13px; font-weight: 700; color: var(--ink-soft); margin: 22px 0 8px; letter-spacing: .02em; }
+  .scoreboard { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .sc-card { background: var(--surface); border: 1px solid var(--line); border-top: 5px solid var(--zc); border-radius: var(--radius); padding: 18px 22px 16px; }
+  .sc-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .sc-name { font-weight: 900; font-size: 17px; }
+  .sc-src { font-size: 12px; color: var(--muted); }
+  .sc-main { display: flex; align-items: center; gap: 18px; margin-top: 8px; }
+  .sc-num { font-size: 76px; font-weight: 900; line-height: 1; color: var(--zc); font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+  .sc-side { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+  .sc-chip { display: inline-block; padding: 4px 16px; border-radius: 999px; background: var(--zc); color: #fff; font-weight: 700; font-size: 16px; white-space: nowrap; }
+  .sc-delta { font-size: 14px; font-weight: 700; white-space: nowrap; }
+  .sc-delta.up { color: var(--c-g); } .sc-delta.down { color: var(--c-ef); } .sc-delta.flat { color: var(--muted); }
+  .sc-bar { position: relative; height: 14px; border-radius: 7px; margin-top: 20px;
+    background: linear-gradient(to right, var(--c-ef) 0 25%, var(--c-f) 25% 45%, var(--c-n) 45% 55%, var(--c-g) 55% 75%, var(--c-eg) 75% 100%); }
+  .sc-pin { position: absolute; top: -7px; width: 5px; height: 28px; background: var(--ink); border-radius: 3px; transform: translateX(-50%); box-shadow: 0 0 0 2px #fff; }
+  .sc-ticks { position: relative; height: 16px; margin-top: 6px; font-size: 11px; color: var(--muted); }
+  .sc-ticks span { position: absolute; transform: translateX(-50%); font-variant-numeric: tabular-nums; }
+  .sc-ticks span:first-child { transform: none; } .sc-ticks span:last-child { transform: translateX(-100%); }
+  .sc-hist { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-soft); }
+  .sc-hist b { font-variant-numeric: tabular-nums; color: var(--ink); font-size: 14px; }
+  .sc-foot { font-size: 13.5px; color: var(--ink-soft); margin: 10px 2px 0; line-height: 1.85; }
+  .sc-foot strong { color: var(--ink); }
+  @media (max-width: 640px) { .scoreboard { grid-template-columns: 1fr; } .sc-num { font-size: 64px; } }
+</style>
+<style>
+  .pn-top { display: flex; justify-content: space-between; gap: 12px; margin: -4px 0 16px; font-size: 13.5px; }
+  .pn-top a { color: var(--c-eg); text-decoration: none; font-weight: 700; padding: 4px 0; }
+  .pn-top a:hover { text-decoration: underline; }
+  .post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 40px; }
+  .pn { display: flex; flex-direction: column; gap: 5px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); }
+  a.pn:hover { border-color: var(--ink-soft); }
+  .pn.next { text-align: right; }
+  .pn-dir { font-size: 12.5px; font-weight: 700; color: var(--c-eg); }
+  .pn-date { font-size: 13px; color: var(--muted); }
+  .pn-title { font-size: 14.5px; font-weight: 700; line-height: 1.65; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .pn-sc { font-size: 13px; color: var(--ink-soft); }
+  .pn.empty { background: transparent; border-style: dashed; }
+  .pn.empty .pn-dir, .pn.empty .pn-title { color: var(--muted); font-weight: 500; }
+  .pn-back { text-align: center; margin-top: 14px; font-size: 14px; }
+  .pn-back a { color: var(--c-eg); text-underline-offset: 3px; }
+  @media (max-width: 640px) { .post-nav { grid-template-columns: 1fr; } .pn.next { text-align: left; } }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "ホーム",
+      "item": "https://feargreedjapan.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "ブログ",
+      "item": "https://feargreedjapan.com/blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "AI大型決算と恐怖と強欲指数（投資ガイド）",
+      "item": "https://feargreedjapan.com/blog/20261118-earnings"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI大型決算の翌日、恐怖と強欲指数はどう動いた？｜エヌビディア決算の日に、この秋の6回の決算をデータで検証｜Fear & Greed Index Japan",
+  "description": "エヌビディアの決算が予想を上回った11月18日。この秋に発表されたAI関連の大型決算6回について、日本時間で結果が出た当日の日経平均と、当サイトの恐怖と強欲指数の動きを検証しました。好決算でも日経平均が下がった日が多く、指数を大きく動かしたのは決算より政策や規制のニュースでした。",
+  "datePublished": "2026-11-18",
+  "dateModified": "2026-11-18",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://feargreedjapan.com/blog/20261118-earnings",
+  "image": "https://feargreedjapan.com/thumbnail.png",
+  "author": {
+    "@type": "Organization",
+    "name": "Fear & Greed Index Japan 運営事務局"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Fear & Greed Index Japan",
+    "url": "https://feargreedjapan.com/"
+  },
+  "keywords": "恐怖と強欲指数, エヌビディア決算, 決算シーズン, AI関連株, 日経平均, 半導体株, 投資心理, データ分析, 投資ガイド, Fear & Greed Index Japan"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<!-- ▼ 公開前に、新しいGA4のIDに置き換える（index.html と同じ値） -->
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+-->
+<!-- ▼ AdSense（審査と広告表示のためのコード。pub ID は public/ads.txt と同じ） -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9496300145102373" crossorigin="anonymous"></script>
+
+<style>
+  :root {
+    --ink: #14284b; --ink-soft: #3a4d70; --paper: #f6f8fb; --surface: #ffffff;
+    --line: #dfe5ee; --muted: #6b7a94;
+    --c-ef: #b3261e; --c-f: #d9822b; --c-n: #8a94a6; --c-g: #3b8f6b; --c-eg: #1f6fb2;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP','Hiragino Kaku Gothic ProN','Yu Gothic',Meiryo,sans-serif;
+    background: var(--paper); color: var(--ink);
+    line-height: 1.8; font-size: 15px; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--c-eg); outline-offset: 2px; }
+
+  .site-header { background: var(--ink); color: #fff; }
+  .site-header .inner {
+    max-width: 1080px; margin: 0 auto; padding: 0 24px; height: 60px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .brand { font-weight: 900; font-size: 18px; letter-spacing: .02em; text-decoration: none; color: #fff; white-space: nowrap; }
+  .brand small { font-weight: 500; font-size: 12px; opacity: .7; margin-left: 10px; }
+  .nav { display: flex; gap: 4px; }
+  .nav a { color: #cdd7ea; text-decoration: none; font-size: 14px; font-weight: 500; padding: 8px 14px; border-radius: 6px; }
+  .nav a:hover { background: rgba(255,255,255,.08); color: #fff; }
+  .nav a[aria-current="page"] { color: #fff; background: rgba(255,255,255,.14); }
+  @media (max-width: 720px) {
+    .site-header .inner { height: auto; padding: 12px 16px; flex-direction: column; align-items: flex-start; gap: 8px; }
+    .brand small { display: none; }
+    .nav { flex-wrap: wrap; }
+    .nav a { padding: 6px 10px; font-size: 13px; }
+  }
+
+  .notice-bar { background: #eaf0f9; border-bottom: 1px solid var(--line); color: var(--ink-soft); font-size: 12.5px; text-align: center; padding: 8px 16px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  @media (max-width: 720px) { .wrap { padding: 0 16px; } }
+
+  /* ── 記事レイアウト ── */
+  .article { max-width: 760px; margin: 0 auto; padding: 40px 0 8px; }
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 20px; }
+  .crumbs a { text-decoration: none; }
+  .crumbs a:hover { text-decoration: underline; }
+  .crumbs span { margin: 0 6px; }
+
+  .article h1 { font-size: clamp(26px, 4vw, 34px); font-weight: 900; line-height: 1.45; text-wrap: balance; }
+  .article .lead { margin-top: 16px; color: var(--ink-soft); font-size: 16px; line-height: 1.95; }
+
+  .toc { margin: 32px 0 8px; padding: 20px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+  .article .toc h2 { font-size: 14px; font-weight: 700; color: var(--ink-soft); margin: 0 0 8px; padding: 0; border: none; line-height: 1.6; }
+  .toc ol { padding-left: 1.4em; font-size: 14.5px; }
+  .toc li { padding: 3px 0; }
+  .toc a { text-decoration: none; color: var(--ink); }
+  .toc a:hover { text-decoration: underline; }
+
+  .article section { padding-top: 44px; scroll-margin-top: 16px; }
+  .article h2 { font-size: 22px; font-weight: 900; line-height: 1.5; padding-left: 14px; border-left: 5px solid var(--ink); margin-bottom: 16px; }
+  .article h3 { font-size: 17px; font-weight: 700; margin: 26px 0 8px; }
+  .article p { font-size: 16px; line-height: 1.95; color: #24365a; margin-top: 14px; }
+  .article section > h2 + p { margin-top: 0; }
+  .article ul { margin: 14px 0 0 1.3em; }
+  .article li { font-size: 16px; line-height: 1.9; color: #24365a; padding: 2px 0; }
+  .article a.inline { color: var(--c-eg); text-underline-offset: 3px; }
+
+  .table-scroll { overflow-x: auto; margin-top: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+  table.doc { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 520px; }
+  table.doc th, table.doc td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.7; }
+  table.doc tr:last-child th, table.doc tr:last-child td { border-bottom: none; }
+  table.doc thead th { background: #f2f5fa; color: var(--ink-soft); font-weight: 700; white-space: nowrap; }
+  table.doc tbody th { font-weight: 700; white-space: nowrap; background: #fafbfd; width: 9em; }
+  .article ol.clauses { margin: 12px 0 0 1.7em; }
+  .article ol.clauses > li { padding: 3px 0 3px .2em; }
+  .article ol.paren { list-style: none; counter-reset: p; margin: 12px 0 0; }
+  .article ol.paren > li { counter-increment: p; position: relative; padding-left: 2.8em; }
+  .article ol.paren > li::before { content: "(" counter(p) ")"; position: absolute; left: 0; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .enact { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+  @media (max-width: 720px) {
+    table.doc.stack { min-width: 0; }
+    table.doc.stack thead { display: none; }
+    table.doc.stack, table.doc.stack tbody, table.doc.stack tr, table.doc.stack th, table.doc.stack td { display: block; width: auto; }
+    table.doc.stack tr { padding: 12px 0; border-bottom: 1px solid var(--line); }
+    table.doc.stack tr:last-child { border-bottom: none; }
+    table.doc.stack tbody th { background: none; white-space: normal; border: none; padding: 2px 16px 6px; }
+    table.doc.stack td { border: none; padding: 4px 16px; }
+    table.doc.stack td::before { content: attr(data-label); display: block; font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 1px; }
+  }
+  table.doc.narrow { min-width: 0; }
+  table.doc.narrow tbody th { width: 8em; white-space: normal; }
+  @media (max-width: 720px) { table.doc.narrow tbody th { width: 6.5em; } }
+  .zone-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; vertical-align: baseline; }
+
+  .callout { margin-top: 20px; padding: 16px 20px; background: #eef3fb; border-left: 4px solid var(--ink); border-radius: 4px; }
+  .callout p { margin: 0; font-size: 15px; line-height: 1.85; }
+  .callout.warn { background: #fff8ec; border-left-color: #d9a441; }
+  .callout.warn p { color: #6a5320; }
+
+  .faq { margin-top: 8px; }
+  .faq details { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); margin-top: 10px; }
+  .faq summary { cursor: pointer; padding: 16px 20px; font-weight: 700; font-size: 16px; line-height: 1.6; list-style: none; display: flex; gap: 12px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::before { content: 'Q'; color: var(--c-eg); font-weight: 900; }
+  .faq details[open] summary { border-bottom: 1px solid var(--line); }
+  .faq .ans { padding: 14px 20px 18px 48px; font-size: 15.5px; line-height: 1.9; color: #24365a; }
+
+  .todo { background: #fff3a3; padding: 1px 6px; border-radius: 3px; font-weight: 700; color: #6b4e00; }
+
+  .cta { margin: 48px 0 0; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); text-align: center; }
+  .cta p { margin: 0 0 14px; font-size: 15px; }
+  .cta a { display: inline-block; background: var(--ink); color: #fff; text-decoration: none; font-weight: 700; padding: 12px 28px; border-radius: 6px; }
+  .cta a:hover { background: #0e1d38; }
+
+  .disclaimer { margin: 40px auto 0; max-width: 760px; padding: 20px 24px; background: #fff8ec; border: 1px solid #f0dcb6; border-radius: var(--radius); font-size: 13px; color: #6a5320; }
+  .disclaimer strong { display: block; margin-bottom: 4px; }
+
+  footer.site-footer { margin-top: 56px; background: var(--ink); color: #b9c6df; padding: 36px 0 28px; font-size: 13px; }
+  .footer-links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-bottom: 16px; }
+  .footer-links a { color: #dbe4f5; text-decoration: none; }
+  .footer-links a:hover { text-decoration: underline; }
+  .footer-copy { opacity: .8; font-size: 12px; }
+
+  @media (max-width: 720px) {
+    .article { padding-top: 28px; }
+    .article h2 { font-size: 20px; }
+    .article p, .article li { font-size: 15.5px; }
+    .faq .ans { padding-left: 20px; }
+  }
+
+  .article.wide { max-width: 900px; }
+  .article h1 { text-wrap: balance; }
+  .article small.sub { color: var(--muted); font-size: 12.5px; }
+  .eyebrow { font-size: 13px; font-weight: 700; color: var(--c-eg); letter-spacing: .04em; margin-bottom: 8px; }
+
+  /* 区分チップ */
+  .chip { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; color: #fff; background: var(--c-n); white-space: nowrap; }
+  .chip.ef { background: var(--c-ef); } .chip.f { background: var(--c-f); } .chip.n { background: var(--c-n); }
+  .chip.g { background: var(--c-g); } .chip.eg { background: var(--c-eg); }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* 統計バー */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 24px 0 8px; }
+  .stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; }
+  .stat b { display: block; font-size: 24px; font-weight: 900; line-height: 1.3; font-variant-numeric: tabular-nums; }
+  .stat span { font-size: 12px; color: var(--muted); }
+
+  /* フィルター・ページャー */
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 4px; align-items: center; }
+  .filters .lab { font-size: 13px; color: var(--muted); margin-right: 4px; }
+  .filters button, .pager button { font: inherit; font-size: 13.5px; font-weight: 700; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); cursor: pointer; }
+  .filters button:hover, .pager button:hover { border-color: var(--ink-soft); }
+  .filters button[aria-pressed="true"], .pager button[aria-current="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .pager { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 24px 0 0; }
+  .pager button { min-width: 38px; padding: 6px 10px; border-radius: 8px; }
+
+  /* アーカイブの1日分 */
+  .day { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 20px; margin-top: 12px; }
+  .day-head { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+  .day-date { font-weight: 900; font-size: 16px; }
+  .day-score { font-size: 14px; color: var(--ink-soft); display: inline-flex; gap: 6px; align-items: center; }
+  .day-score b { font-size: 18px; font-variant-numeric: tabular-nums; color: var(--ink); }
+  .day p { margin-top: 8px; font-size: 14.5px; line-height: 1.85; color: #24365a; }
+  .day a.more { font-size: 13px; color: var(--c-eg); text-underline-offset: 3px; }
+  .note-small { font-size: 13px; color: var(--muted); margin-top: 16px; line-height: 1.8; }
+
+  /* ブログ一覧 */
+  .post-item { display: block; text-decoration: none; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; margin-top: 14px; }
+  .post-item:hover { border-color: var(--ink-soft); }
+  .post-meta { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; font-size: 13px; color: var(--muted); }
+  .post-title { font-size: 19px; font-weight: 900; line-height: 1.55; margin-top: 8px; color: var(--ink); }
+  .post-excerpt { font-size: 14.5px; color: var(--ink-soft); margin-top: 8px; line-height: 1.85; }
+
+  /* ブログ記事 */
+  .post-label { font-size: 13px; font-weight: 700; color: var(--c-eg); }
+  .summary-box { margin: 24px 0 8px; padding: 18px 22px; background: #eef3fb; border: 1px solid #d5e0f2; border-radius: var(--radius); }
+  .summary-box h2 { font-size: 15px !important; border: none !important; padding: 0 !important; margin: 0 0 8px !important; color: var(--ink-soft); }
+  .summary-box ul { margin: 0 0 0 1.2em; }
+  .summary-box li { font-size: 15.5px; padding: 3px 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  .tags span { font-size: 13px; color: var(--ink-soft); background: #eef2f8; padding: 4px 12px; border-radius: 999px; }
+  .sources { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); line-height: 1.9; }
+  .article table.doc td.r, .article table.doc th.r { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .article h3.tblcap { font-size: 15px; margin: 22px 0 6px; color: var(--ink-soft); }
+  .lead-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .lead-links a { font-size: 14px; font-weight: 700; text-decoration: none; padding: 9px 18px; border-radius: 8px; background: var(--ink); color: #fff; }
+  .lead-links a.sub { background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="/">Fear &amp; Greed Index Japan<small>恐怖と強欲指数</small></a>
+    <nav class="nav" aria-label="メインメニュー">
+      <a href="/">ダッシュボード</a>
+      <a href="/archive">市況アーカイブ</a>
+      <a href="/blog" aria-current="page">ブログ</a>
+      <a href="/guide">投資ガイド</a>
+      <a href="/about">サイトについて</a>
+    </nav>
+  </div>
+</header>
+
+<div class="notice-bar">
+  本サイトは投資判断の助言を目的としたものではありません。投資はご自身の判断と責任でお願いします。
+</div>
+
+<main>
+  <div class="wrap">
+    <article class="article wide">
+      <nav class="crumbs" aria-label="パンくずリスト"><a href="/">ホーム</a><span>&gt;</span><a href="/blog">ブログ</a><span>&gt;</span>AI大型決算と恐怖と強欲指数（投資ガイド）</nav>
+<nav class="pn-top" aria-label="前後の記事"><a rel="prev" href="/blog/20261117">‹ 前の記事 11/17（火）</a><a rel="next" href="/blog/20261118">次の記事 11/18（水） ›</a></nav>
+<div class="post-label">投資ガイド ｜ データ分析 ｜ 2026年11月18日（水）</div>
+<h1>AI大型決算の翌日、恐怖と強欲指数はどう動いた？<br><span style="font-size:.66em;font-weight:700;color:var(--ink-soft)">エヌビディア決算の日に、この秋の6回の決算をデータで検証｜Fear &amp; Greed Index Japan</span></h1>
+<div class="sc-asof">参考：2026年11月17日（火）の終値時点の指数｜米国株は17日の米国市場の終値時点</div>
+<div class="scoreboard">
+<div class="sc-card" style="--zc:var(--c-ef)">
+  <div class="sc-top"><span class="sc-name">日本株</span><span class="sc-src">日経225ほか（当サイト算出）</span></div>
+  <div class="sc-main">
+    <div class="sc-num">17</div>
+    <div class="sc-side"><span class="sc-chip">極度の恐怖</span><span class="sc-delta flat">― 前日比 ±0</span></div>
+  </div>
+  <div class="sc-bar" role="img" aria-label="日本株の指数は17で「極度の恐怖」の区分です（0が極度の恐怖、100が極度の強欲）"><span class="sc-pin" style="left:17%"></span></div>
+  <div class="sc-ticks" aria-hidden="true"><span style="left:0%">0</span><span style="left:25%">25</span><span style="left:45%">45</span><span style="left:55%">55</span><span style="left:75%">75</span><span style="left:100%">100</span></div>
+  <div class="sc-hist"><span>前日 <b>17</b></span><span>1週間前 <b>10</b></span><span>1か月前 <b>33</b></span></div>
+</div>
+<div class="sc-card" style="--zc:var(--c-f)">
+  <div class="sc-top"><span class="sc-name">米国株</span><span class="sc-src">S&amp;P500基準（CNN Business）</span></div>
+  <div class="sc-main">
+    <div class="sc-num">25</div>
+    <div class="sc-side"><span class="sc-chip">恐怖</span><span class="sc-delta down">▼ 前日比 −6</span></div>
+  </div>
+  <div class="sc-bar" role="img" aria-label="米国株の指数は25で「恐怖」の区分です（0が極度の恐怖、100が極度の強欲）"><span class="sc-pin" style="left:25%"></span></div>
+  <div class="sc-ticks" aria-hidden="true"><span style="left:0%">0</span><span style="left:25%">25</span><span style="left:45%">45</span><span style="left:55%">55</span><span style="left:75%">75</span><span style="left:100%">100</span></div>
+  <div class="sc-hist"><span>前日 <b>31</b></span><span>1週間前 <b>37</b></span><span>1か月前 <b>18</b></span></div>
+</div>
+</div>
+<p class="sc-foot"><strong>日米差（日本−米国）：−8（米国株が上）</strong>　日本時間11月18日の朝、エヌビディアの8〜10月期決算が発表されました。</p>
+<p class="lead">日本時間11月18日の朝、エヌビディアの8〜10月期決算が発表されました。売上高は1,158億ドルと市場予想の1,088.5億ドルを上回り、11〜1月期の売上高見通しも1,300億ドルと強い内容で、株価は時間外で一時約4.6%上がりました。「好決算なら、きょうの東京市場も上がり、恐怖と強欲指数も持ち直すのでは」と考える方も多いと思います。そこでこの記事では、この秋に発表されたAI関連の大型決算6回について、結果が日本時間で反映された日の日経平均と、当サイトの指数がどう動いたかを検証しました。結果は、多くの人の直感とは少し違うものでした。</p>
+<p class="note-small">掲載日：2026年11月18日（水）｜対象：2026年10月29日〜11月12日に日本時間で結果が反映された6回の決算。日経平均の終値と決算の内容は、当サイトの市況ブログに出典つきで掲載した値です。エヌビディアの決算の詳細は<a href="/blog/20261118">11月18日の朝の市況</a>をご覧ください。</p>
+<div class="summary-box"><h2>この記事のポイント</h2><ul><li>6回の決算のうち、結果が反映された日に日経平均が上がったのは<strong>2回</strong>だけでした。</li><li>好決算だった<strong>AMDとコアウィーブの日は、どちらも日経平均が下落</strong>。赤字決算のソフトバンクグループの翌日は上昇しました。</li><li>決算の日の素値の変化は平均<strong>1.6ポイント</strong>で、ふだんの日の平均（4.7ポイント）より<strong>小さい</strong>結果でした。</li><li>指数を大きく動かしたのは、決算よりも<strong>物価統計や規制など、政策に関わるニュース</strong>でした。</li></ul></div>
+<section id="s1"><h2>① この秋のAI大型決算6回と、その日の動き</h2>
+<h3 class="tblcap">表1：AI関連の大型決算と、結果が日本時間で反映された日の日経平均・恐怖と強欲指数（当サイト算出）</h3><div class="table-scroll"><table class="doc"><thead><tr><th>反映された日</th><th>決算の内容</th><th class="r">日経平均</th><th class="r">素値の変化</th><th>表示される指数</th><th>同じ日のほかの材料</th></tr></thead><tbody><tr><td>10/29（木）<br><small class='sub'>マイクロソフト・アルファベット</small></td><td>マイクロソフトはクラウド48%増で予想超え。アルファベットは利益が予想に届かず</td><td class="r">+1.10%</td><td class="r">+1.6</td><td>17→<strong>19</strong></td><td>FOMCは据え置き（2人が利上げを主張）</td></tr><tr><td>10/30（金）<br><small class='sub'>アマゾン・インテル</small></td><td>アマゾンは売上高・1株利益が予想に届かず。インテルは見通しが予想を下回る</td><td class="r">−2.12%</td><td class="r">−2.7</td><td>19→<strong>20</strong></td><td>日銀会合（据え置き）</td></tr><tr><td>11/2（月）<br><small class='sub'>キオクシア</small></td><td>10〜12月期の純利益15倍の見通しも、市場の期待に届かず</td><td class="r">−0.33%</td><td class="r">+0.3</td><td>20→<strong>20</strong></td><td>—</td></tr><tr><td>11/4（水）<br><small class='sub'>AMD</small></td><td>売上高・利益とも予想を上回り、強気の見通し</td><td class="r">−1.42%</td><td class="r">+0.8</td><td>20→<strong>19</strong></td><td>米中間選挙の開票、休場明け</td></tr><tr><td>11/11（水）<br><small class='sub'>ソフトバンクグループ</small></td><td>4〜9月期は7,680億円の赤字</td><td class="r">+1.31%</td><td class="r">+2.9</td><td>10→<strong>11</strong></td><td>—</td></tr><tr><td>11/12（木）<br><small class='sub'>コアウィーブ</small></td><td>好決算で米国株は24.71%高</td><td class="r">−0.70%</td><td class="r">+1.2</td><td>11→<strong>12</strong></td><td>エヌビディアの経営を巡る報道（時間外約8%安）</td></tr></tbody></table></div>
+<p>6回のうち、結果が反映された日に日経平均が上がったのは、マイクロソフトの決算が評価された10月29日と、ソフトバンクグループの決算の翌日の11月11日の2回でした。AMDが予想を上回る決算を発表した11月4日は、同じ日に米中間選挙の開票が進み、日経平均は893円下がっています。コアウィーブの好決算が伝わった11月12日も、エヌビディアの経営を巡る報道が重なり、日経平均は反落しました。反対に、7,680億円の赤字を発表したソフトバンクグループの翌日は、日経平均が789円上がっています。</p>
+<p>決算の良し悪しと、その日の株価の方向は、必ずしも一致していませんでした。決算の日には、金融政策や選挙、ほかの企業のニュースなど、別の材料も同時に動いているためです。また、市場は「予想を上回ったか」に加えて、「事前の期待をどれだけ上回ったか」を見ています。キオクシアのように大幅増益の見通しでも、期待に届かなければ売られることがあります。</p>
+</section>
+<section id="s2"><h2>② 決算は指数をどれだけ動かしたか</h2>
+<h3 class="tblcap">表2：決算の日とふだんの日の、指数の動きの大きさ（当サイト算出）</h3><div class="table-scroll"><table class="doc narrow"><thead><tr><th>比べた日</th><th class="r">素値の1日の変化（絶対値の平均）</th><th class="r">表示される指数の1日の変化（絶対値の平均）</th></tr></thead><tbody><tr><td>AI大型決算の結果が反映された6日</td><td class="r"><strong>1.6</strong></td><td class="r">1.0</td></tr><tr><td>ふだんの日（9月10日〜11月5日の平均）</td><td class="r">4.7</td><td class="r">3.2</td></tr></tbody></table></div>
+<p>決算の結果が反映された6日の素値の変化は、平均1.6ポイントでした。ふだんの日の平均（4.7ポイント）を下回っており、大型決算の日に指数が特に大きく動いたわけではありません。表示される指数の変化も、6日の平均で約1ポイントにとどまっています。</p>
+<h3 class="tblcap">表3：比較：政策・規制のニュースで指数が大きく動いた日（当サイト算出）</h3><div class="table-scroll"><table class="doc narrow"><thead><tr><th>日付</th><th>主なニュース</th><th class="r">日経平均</th><th class="r">素値の変化</th></tr></thead><tbody><tr><td>10月15日</td><td>米9月CPIが予想を上回る</td><td class="r">−4.90%</td><td class="r">約−21</td></tr><tr><td>11月6日</td><td>米中間選挙後のAI規制への懸念、SOX指数12%超安</td><td class="r">−5.96%</td><td class="r">約−9</td></tr></tbody></table></div>
+<p>この秋に指数を最も大きく動かしたのは、決算ではありませんでした。米国の物価統計が予想を上回った10月15日には素値が約21ポイント、米中間選挙後にAI規制への懸念が広がった11月6日には約9ポイント下がっています。個別企業の決算は、その企業や同業の株価を大きく動かしますが、6つの指標で市場全体の気持ちを測る恐怖と強欲指数には、金利や政策のように市場全体に関わるニュースのほうが強く表れやすいと考えられます。</p>
+<div class="callout"><p>今回の検証は6回の決算と短い期間にもとづくもので、決算と同じ日にほかの材料が重なっているため、決算だけの影響を取り出したものではありません。過去の傾向が今後も続くとは限りません。</p></div>
+</section>
+<section id="s3"><h2>③ エヌビディア決算の日、指数をどう見るか</h2>
+<h3 class="tblcap">表4：11月18日の指数の見方（当サイトの考え方の整理）</h3><div class="table-scroll"><table class="doc"><thead><tr><th>確認するポイント</th><th>見方</th></tr></thead><tbody><tr><td>決算の数字</td><td>売上高1,158億ドル（予想1,088.5億ドル）、11〜1月期見通し1,300億ドル。数字は強い</td></tr><tr><td>事前の期待との比較</td><td>時間外の上昇は約4.6%。期待をどれだけ上回ったかは、きょうの株価の反応で分かる</td></tr><tr><td>同じ日のほかの材料</td><td>米国の輸出規制強化、システム障害を巡る懸念、19日朝のFOMC議事要旨、20日の全国CPI</td></tr><tr><td>当サイトの指数</td><td>18日に17を保つには素値が約19以上必要（平均から素値約20の13日が外れるため）</td></tr><tr><td>数日単位の流れ</td><td>1日の反応より、株価の指標が続けて戻り、「変動性」が落ち着くかを確かめる</td></tr></tbody></table></div>
+<p>今回のエヌビディアの決算は、数字の面では強い内容でした。ただ、この秋の6回の決算を振り返ると、好決算がそのまま東京市場の上昇や指数の回復につながるとは限らず、同じ日に重なる金利や政策のニュースが流れを左右していました。きょうの反応だけで判断せず、数日かけて指数の中身がどう変わるかを見ていくことが大切です。日々の動きは、朝の市況ブログでお伝えします。</p>
+</section>
+<section id="operator" style="margin-top:36px"><div style="background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--ink);border-radius:var(--radius);padding:20px 24px"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="font-weight:900;font-size:16px">運営者のひとこと</span><span style="font-size:12.5px;color:var(--muted)">Fear &amp; Greed Index Japan 運営事務局</span></div><p style="margin:10px 0 0;line-height:1.95">法人営業では、大口の取引先の決算がよかったからといって、翌月の注文が増えるとは限りませんでした。その会社の予算の方針や、業界全体の景気のほうが、注文の量を大きく左右していたからです。</p><p style="margin:10px 0 0;line-height:1.95">今回のデータでも、好決算の日に日経平均が下がり、赤字決算の翌日に上がるという、直感とは逆の動きが見られました。1社の決算より、市場全体の空気のほうが強かったということだと思います。</p><p style="margin:10px 0 0;line-height:1.95">エヌビディアの決算が、この流れを変えるきっかけになるのかどうか。明日以降の指数の動きで、この記事の続きを確かめていきます。</p><p style="margin:12px 0 0;font-size:12.5px;color:var(--muted)">※運営者の個人的な見方であり、特定の金融商品の売買を勧めるものではありません。</p></div></section>
+<section id="s4"><h2>④ 用語ミニ解説</h2>
+<h3 class="tblcap">表5：この記事に出てきた用語</h3><div class="table-scroll"><table class="doc"><thead><tr><th>用語</th><th>意味</th></tr></thead><tbody><tr><td>市場予想</td><td>アナリストが事前に予想した売上高や利益の平均的な値</td></tr><tr><td>時間外取引</td><td>通常の取引時間が終わったあとに行われる取引。決算への反応が先に出やすい</td></tr><tr><td>見通し（ガイダンス）</td><td>企業が示す、次の期の売上高や利益の予想</td></tr><tr><td>素値</td><td>当サイトの用語。3営業日の平均をとる前の、その日だけの指数の値</td></tr></tbody></table></div>
+</section>
+<section id="s5"><h2>まとめ</h2><ol class="clauses"><li>この秋のAI大型決算6回のうち、結果が反映された日に日経平均が上がったのは<strong>2回</strong>でした。</li><li><strong>好決算でも日経平均が下がった日</strong>があり、決算の良し悪しと株価の方向は一致しませんでした。</li><li>決算の日の素値の変化は平均<strong>1.6ポイント</strong>と、ふだんの日より小さい結果でした。</li><li>指数を大きく動かしたのは、<strong>政策や規制など市場全体に関わるニュース</strong>でした。</li></ol></section>
+<div class="sources"><strong>出典：</strong>当サイトの恐怖と強欲指数（各指標の点数と表示値の記録、2026年11月18日 07:10更新）／当サイトの市況ブログ（2026年10月29日〜11月18日。決算の内容と日経平均の終値は各記事に記載の出典による）／エヌビディア、2026年度第3四半期決算で予想を上回り見通しを引き上げ（Investing.com、11/18）。素値などは当サイトが計算した概算です。</div>
+<div class="callout warn"><p>本記事は公開情報と当サイトの算出データに基づく情報提供であり、特定の金融商品の売買を勧誘・推奨するものではありません。過去のデータは将来の成果を保証するものではありません。投資に関する最終判断は、ご自身の責任で行ってください。</p></div>
+<div class="tags"><span>#恐怖と強欲指数</span><span>#エヌビディア決算</span><span>#決算シーズン</span><span>#AI関連株</span><span>#日経平均</span><span>#半導体株</span><span>#投資心理</span><span>#データ分析</span><span>#投資ガイド</span><span>#Fear &amp; Greed Index Japan</span></div>
+<div class="lead-links"><a href="/blog/20261118">11月18日の朝の市況を読む</a><a class="sub" href="/guide#guide-articles">解説記事の一覧を見る</a></div>
+<nav class="post-nav" aria-label="前後の記事"><a class="pn prev" rel="prev" href="/blog/20261117"><span class="pn-dir">← 前の記事</span><span class="pn-date">2026年11月17日（火）</span><span class="pn-title">日経平均は1,480円安で再び6万円割れ、恐怖と強欲指数は17｜米AI半導体の輸出規制強化でダウ739ドル安（11月17日）｜Fear & Greed Index Japan</span><span class="pn-sc">日本株 17（極度の恐怖）｜米国株 31（恐怖）</span></a><a class="pn next" rel="next" href="/blog/20261118"><span class="pn-dir">次の記事 →</span><span class="pn-date">2026年11月18日（水）</span><span class="pn-title">日経平均は801円安で5万9,000円割れ、恐怖と強欲指数は17｜エヌビディア決算は予想上回り時間外で上昇（11月18日）｜Fear & Greed Index Japan</span><span class="pn-sc">日本株 17（極度の恐怖）｜米国株 25（恐怖）</span></a></nav>
+<p class="pn-back"><a href="/blog">ブログ一覧へ戻る</a></p>
+    </article>
+
+    <div class="disclaimer">
+      <strong>ご利用にあたっての注意</strong>
+      本サイトの情報は、投資家心理を数値化した参考情報であり、特定の金融商品の売買を勧誘・推奨するものではありません。指数は過去のデータに基づく参考値で、将来の値動きを予測・保証するものではありません。掲載データの正確性には努めていますが、遅延・誤り・欠落が生じる場合があります。投資に関する最終判断は、ご自身の責任で行ってください。
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="/">ダッシュボード</a>
+      <a href="/archive">市況アーカイブ</a>
+      <a href="/blog">ブログ</a>
+      <a href="/guide">投資ガイド</a>
+      <a href="/about">サイトについて</a>
+      <a href="/terms">利用規約</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+    <p class="footer-copy">© 2026 Fear &amp; Greed Index Japan. All rights reserved.<br>「日経225」は株式会社日本経済新聞社の登録商標です。本サイトは同社とは関係ありません。</p>
+  </div>
+</footer>
+
+</body>
+</html>
