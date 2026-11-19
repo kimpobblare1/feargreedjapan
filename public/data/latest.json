@@ -10,7 +10,7 @@
    {
     "name": "市場モメンタム",
     "value": 1,
-    "raw": -9.98,
+    "raw": -9.52,
     "median": 11.17,
     "low": -12.79,
     "high": 26.06
@@ -18,7 +18,7 @@
    {
     "name": "変動性",
     "value": 30,
-    "raw": 32.76,
+    "raw": 32.94,
     "median": 28.15,
     "low": 16.48,
     "high": 42.59
@@ -26,15 +26,15 @@
    {
     "name": "株価の強さ",
     "value": 7,
-    "raw": -7.12,
+    "raw": -6.75,
     "median": 2.09,
     "low": -14.53,
     "high": 12.52
    },
    {
     "name": "短期の過熱感",
-    "value": 4,
-    "raw": 37.76,
+    "value": 5,
+    "raw": 39.23,
     "median": 53.9,
     "low": 25.94,
     "high": 75.1
@@ -42,7 +42,7 @@
    {
     "name": "為替（円）",
     "value": 53,
-    "raw": 0.85,
+    "raw": 0.9,
     "median": 0.67,
     "low": -3.64,
     "high": 4.44
@@ -50,7 +50,7 @@
    {
     "name": "安全資産への選好",
     "value": 8,
-    "raw": -8.58,
+    "raw": -8.11,
     "median": 3.62,
     "low": -21.73,
     "high": 19.17
@@ -63,9 +63,9 @@
  "us": {
   "score": 25,
   "previous_close": 25,
-  "previous_1_week": 36,
-  "previous_1_month": 18,
-  "as_of": "2026-11-18",
+  "previous_1_week": 40,
+  "previous_1_month": 20,
+  "as_of": "2026-11-19",
   "indicators": [
    {
     "name": "市場モメンタム",
@@ -482,15 +482,15 @@
    "us": 25,
    "parts": {
     "momentum": 2,
-    "vol": 32,
-    "strength": 6,
-    "rsi": 5,
-    "fx": 55,
+    "vol": 31,
+    "strength": 7,
+    "rsi": 7,
+    "fx": 57,
     "safe": 8
    }
   }
  ],
- "hash": "25ad5cebf1bdfb85",
- "updated_at": "2026-11-19T03:10:49+00:00",
- "updated_at_jst": "2026年11月19日 12:10"
+ "hash": "8cf99e0ef954943a",
+ "updated_at": "2026-11-19T06:57:41+00:00",
+ "updated_at_jst": "2026年11月19日 15:57"
 }
