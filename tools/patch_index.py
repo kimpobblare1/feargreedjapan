@@ -411,3 +411,26 @@ if _GUIDES and _os.path.isfile(GPATH):
         print("guide.html に解説記事の一覧を入れました：", len(_GUIDES), "本")
     else:
         print("【お知らせ】guide.html の挿入位置が見つからないため、一覧は入れませんでした")
+
+# ───────── 公式Xアカウント：全ページのフッターにリンク＋twitter:site（冪等） ─────────
+X_URL = "https://x.com/feargreedjapan"
+X_LINK = f'<a href="{X_URL}" target="_blank" rel="me noopener">公式X（@feargreedjapan）</a>'
+X_META = '<meta name="twitter:site" content="@feargreedjapan">'
+_ROOTDIR = _os.path.dirname(_os.path.abspath(PATH))
+_nx = 0
+for _dp, _dn, _fs in _os.walk(_ROOTDIR):
+    _dn[:] = [d for d in _dn if d != "data"]
+    for _f in _fs:
+        if not _f.endswith(".html"):
+            continue
+        _fp = _os.path.join(_dp, _f)
+        h = open(_fp, encoding="utf-8").read()
+        h0 = h
+        if X_URL not in h:
+            h = re.sub(r'(<div class="footer-links">.*?)(\n\s*</div>)', lambda m: m.group(1) + "\n      " + X_LINK + m.group(2), h, count=1, flags=re.S)
+        if 'name="twitter:site"' not in h and 'name="twitter:card"' in h:
+            h = re.sub(r'(<meta name="twitter:card"[^>]*>)', lambda m: m.group(1) + "\n" + X_META, h, count=1)
+        if h != h0:
+            open(_fp, "w", encoding="utf-8").write(h)
+            _nx += 1
+print("公式Xのリンクを追加したページ：", _nx)
