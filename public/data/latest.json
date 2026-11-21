@@ -1,7 +1,7 @@
 {
  "success": true,
  "jp": {
-  "score": 15,
+  "score": 16,
   "previous_close": 16,
   "previous_1_week": 15,
   "previous_1_month": 23,
@@ -41,8 +41,8 @@
    },
    {
     "name": "為替（円）",
-    "value": 63,
-    "raw": 1.69,
+    "value": 65,
+    "raw": 2.05,
     "median": 0.67,
     "low": -3.64,
     "high": 4.44
@@ -478,19 +478,19 @@
   },
   {
    "date": "2026-11-20",
-   "jp": 15,
+   "jp": 16,
    "us": 10,
    "parts": {
     "momentum": 0,
     "vol": 18,
     "strength": 3,
     "rsi": 1,
-    "fx": 83,
+    "fx": 88,
     "safe": 4
    }
   }
  ],
- "hash": "b293df0e517527f9",
- "updated_at": "2026-11-20T21:45:09+00:00",
- "updated_at_jst": "2026年11月21日 06:45"
+ "hash": "762b5bfaca60a3bf",
+ "updated_at": "2026-11-21T03:06:07+00:00",
+ "updated_at_jst": "2026年11月21日 12:06"
 }
