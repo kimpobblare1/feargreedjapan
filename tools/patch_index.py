@@ -416,6 +416,9 @@ if _GUIDES and _os.path.isfile(GPATH):
 X_URL = "https://x.com/feargreedjapan"
 X_LINK = f'<a href="{X_URL}" target="_blank" rel="me noopener">公式X（@feargreedjapan）</a>'
 X_META = '<meta name="twitter:site" content="@feargreedjapan">'
+# Google アナリティクス（GA4）の測定ID：仮の値を本番のIDに置き換える
+GA_ID = "G-1HCYV3JWGD"
+GA_PLACEHOLDER = "G-" + "X" * 10
 _ROOTDIR = _os.path.dirname(_os.path.abspath(PATH))
 _nx = 0
 for _dp, _dn, _fs in _os.walk(_ROOTDIR):
@@ -426,6 +429,8 @@ for _dp, _dn, _fs in _os.walk(_ROOTDIR):
         _fp = _os.path.join(_dp, _f)
         h = open(_fp, encoding="utf-8").read()
         h0 = h
+        if GA_PLACEHOLDER in h:
+            h = h.replace(GA_PLACEHOLDER, GA_ID)
         if X_URL not in h:
             h = re.sub(r'(<div class="footer-links">.*?)(\n\s*</div>)', lambda m: m.group(1) + "\n      " + X_LINK + m.group(2), h, count=1, flags=re.S)
         if 'name="twitter:site"' not in h and 'name="twitter:card"' in h:
@@ -433,4 +438,4 @@ for _dp, _dn, _fs in _os.walk(_ROOTDIR):
         if h != h0:
             open(_fp, "w", encoding="utf-8").write(h)
             _nx += 1
-print("公式Xのリンクを追加したページ：", _nx)
+print("公式Xのリンク・GA4の測定IDを反映したページ：", _nx)
