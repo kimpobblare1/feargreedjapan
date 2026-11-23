@@ -419,6 +419,7 @@ X_META = '<meta name="twitter:site" content="@feargreedjapan">'
 # Google アナリティクス（GA4）の測定ID：仮の値を本番のIDに置き換える
 GA_ID = "G-1HCYV3JWGD"
 GA_PLACEHOLDER = "G-" + "X" * 10
+GA_COMMENTED = re.compile(r'<!--[ \t]*\n(<script async src="https://www\.googletagmanager\.com/gtag/js\?id=G-[A-Z0-9]+"></script>[ \t]*\n<script>[^<]*?</script>)[ \t]*\n-->')
 _ROOTDIR = _os.path.dirname(_os.path.abspath(PATH))
 _nx = 0
 for _dp, _dn, _fs in _os.walk(_ROOTDIR):
@@ -431,6 +432,8 @@ for _dp, _dn, _fs in _os.walk(_ROOTDIR):
         h0 = h
         if GA_PLACEHOLDER in h:
             h = h.replace(GA_PLACEHOLDER, GA_ID)
+        # GA4 のコードが <!-- --> で無効化されていたら、コメントを外して有効にする
+        h = GA_COMMENTED.sub(lambda m: m.group(1), h)
         if X_URL not in h:
             h = re.sub(r'(<div class="footer-links">.*?)(\n\s*</div>)', lambda m: m.group(1) + "\n      " + X_LINK + m.group(2), h, count=1, flags=re.S)
         if 'name="twitter:site"' not in h and 'name="twitter:card"' in h:
