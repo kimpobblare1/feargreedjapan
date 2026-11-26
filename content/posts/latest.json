@@ -1,0 +1,496 @@
+{
+ "success": true,
+ "jp": {
+  "score": 10,
+  "previous_close": 12,
+  "previous_1_week": 16,
+  "previous_1_month": 14,
+  "as_of": "2026-11-26",
+  "indicators": [
+   {
+    "name": "市場モメンタム",
+    "value": 1,
+    "raw": -12.26,
+    "median": 10.79,
+    "low": -14.06,
+    "high": 26.06
+   },
+   {
+    "name": "変動性",
+    "value": 4,
+    "raw": 39.92,
+    "median": 28.78,
+    "low": 16.48,
+    "high": 42.59
+   },
+   {
+    "name": "株価の強さ",
+    "value": 8,
+    "raw": -7.65,
+    "median": 1.92,
+    "low": -14.53,
+    "high": 12.52
+   },
+   {
+    "name": "短期の過熱感",
+    "value": 8,
+    "raw": 38.69,
+    "median": 53.16,
+    "low": 25.94,
+    "high": 75.1
+   },
+   {
+    "name": "為替（円）",
+    "value": 57,
+    "raw": 0.86,
+    "median": 0.67,
+    "low": -3.64,
+    "high": 4.44
+   },
+   {
+    "name": "安全資産への選好",
+    "value": 8,
+    "raw": -10.12,
+    "median": 3.18,
+    "low": -21.73,
+    "high": 19.17
+   }
+  ],
+  "missing": [],
+  "notes": [],
+  "stale": false
+ },
+ "us": {
+  "score": 15,
+  "previous_close": 15,
+  "previous_1_week": 16,
+  "previous_1_month": 30,
+  "as_of": "2026-11-26",
+  "indicators": [
+   {
+    "name": "市場モメンタム",
+    "value": 3
+   },
+   {
+    "name": "株価の強さ",
+    "value": 26
+   },
+   {
+    "name": "株価の幅",
+    "value": 21
+   },
+   {
+    "name": "プット／コール",
+    "value": 7
+   },
+   {
+    "name": "市場の変動性",
+    "value": 34
+   },
+   {
+    "name": "ジャンクボンド需要",
+    "value": 13
+   },
+   {
+    "name": "安全資産への需要",
+    "value": 5
+   }
+  ],
+  "stale": false
+ },
+ "history": [
+  {
+   "date": "2026-10-14",
+   "jp": 51,
+   "us": 29,
+   "parts": {
+    "momentum": 11,
+    "vol": 79,
+    "strength": 45,
+    "rsi": 38,
+    "fx": 62,
+    "safe": 47
+   }
+  },
+  {
+   "date": "2026-10-15",
+   "jp": 40,
+   "us": 32,
+   "parts": {
+    "momentum": 0,
+    "vol": 44,
+    "strength": 29,
+    "rsi": 4,
+    "fx": 63,
+    "safe": 25
+   }
+  },
+  {
+   "date": "2026-10-16",
+   "jp": 33,
+   "us": 18,
+   "parts": {
+    "momentum": 1,
+    "vol": 43,
+    "strength": 40,
+    "rsi": 10,
+    "fx": 63,
+    "safe": 37
+   }
+  },
+  {
+   "date": "2026-10-19",
+   "jp": 26,
+   "us": 20,
+   "parts": {
+    "momentum": 1,
+    "vol": 42,
+    "strength": 38,
+    "rsi": 7,
+    "fx": 45,
+    "safe": 29
+   }
+  },
+  {
+   "date": "2026-10-20",
+   "jp": 25,
+   "us": 29,
+   "parts": {
+    "momentum": 0,
+    "vol": 42,
+    "strength": 25,
+    "rsi": 3,
+    "fx": 42,
+    "safe": 22
+   }
+  },
+  {
+   "date": "2026-10-21",
+   "jp": 23,
+   "us": 30,
+   "parts": {
+    "momentum": 1,
+    "vol": 42,
+    "strength": 27,
+    "rsi": 7,
+    "fx": 32,
+    "safe": 25
+   }
+  },
+  {
+   "date": "2026-10-22",
+   "jp": 19,
+   "us": 20,
+   "parts": {
+    "momentum": 0,
+    "vol": 38,
+    "strength": 14,
+    "rsi": 1,
+    "fx": 17,
+    "safe": 12
+   }
+  },
+  {
+   "date": "2026-10-23",
+   "jp": 17,
+   "us": 17,
+   "parts": {
+    "momentum": 0,
+    "vol": 39,
+    "strength": 11,
+    "rsi": 1,
+    "fx": 17,
+    "safe": 7
+   }
+  },
+  {
+   "date": "2026-10-26",
+   "jp": 14,
+   "us": 30,
+   "parts": {
+    "momentum": 0,
+    "vol": 41,
+    "strength": 9,
+    "rsi": 0,
+    "fx": 28,
+    "safe": 3
+   }
+  },
+  {
+   "date": "2026-10-27",
+   "jp": 15,
+   "us": 33,
+   "parts": {
+    "momentum": 1,
+    "vol": 38,
+    "strength": 13,
+    "rsi": 6,
+    "fx": 40,
+    "safe": 7
+   }
+  },
+  {
+   "date": "2026-10-28",
+   "jp": 17,
+   "us": 34,
+   "parts": {
+    "momentum": 2,
+    "vol": 37,
+    "strength": 17,
+    "rsi": 13,
+    "fx": 42,
+    "safe": 12
+   }
+  },
+  {
+   "date": "2026-10-29",
+   "jp": 19,
+   "us": 31,
+   "parts": {
+    "momentum": 3,
+    "vol": 39,
+    "strength": 13,
+    "rsi": 23,
+    "fx": 41,
+    "safe": 12
+   }
+  },
+  {
+   "date": "2026-10-30",
+   "jp": 20,
+   "us": 26,
+   "parts": {
+    "momentum": 1,
+    "vol": 51,
+    "strength": 5,
+    "rsi": 9,
+    "fx": 33,
+    "safe": 1
+   }
+  },
+  {
+   "date": "2026-11-02",
+   "jp": 20,
+   "us": 19,
+   "parts": {
+    "momentum": 1,
+    "vol": 51,
+    "strength": 7,
+    "rsi": 7,
+    "fx": 36,
+    "safe": 1
+   }
+  },
+  {
+   "date": "2026-11-04",
+   "jp": 19,
+   "us": 34,
+   "parts": {
+    "momentum": 0,
+    "vol": 59,
+    "strength": 1,
+    "rsi": 4,
+    "fx": 41,
+    "safe": 0
+   }
+  },
+  {
+   "date": "2026-11-05",
+   "jp": 20,
+   "us": 20,
+   "parts": {
+    "momentum": 0,
+    "vol": 61,
+    "strength": 1,
+    "rsi": 1,
+    "fx": 43,
+    "safe": 0
+   }
+  },
+  {
+   "date": "2026-11-06",
+   "jp": 17,
+   "us": 24,
+   "parts": {
+    "momentum": 0,
+    "vol": 32,
+    "strength": 0,
+    "rsi": 0,
+    "fx": 29,
+    "safe": 0
+   }
+  },
+  {
+   "date": "2026-11-09",
+   "jp": 14,
+   "us": 32,
+   "parts": {
+    "momentum": 1,
+    "vol": 24,
+    "strength": 1,
+    "rsi": 1,
+    "fx": 40,
+    "safe": 1
+   }
+  },
+  {
+   "date": "2026-11-10",
+   "jp": 10,
+   "us": 37,
+   "parts": {
+    "momentum": 1,
+    "vol": 17,
+    "strength": 3,
+    "rsi": 7,
+    "fx": 30,
+    "safe": 1
+   }
+  },
+  {
+   "date": "2026-11-11",
+   "jp": 11,
+   "us": 36,
+   "parts": {
+    "momentum": 2,
+    "vol": 16,
+    "strength": 5,
+    "rsi": 13,
+    "fx": 45,
+    "safe": 3
+   }
+  },
+  {
+   "date": "2026-11-12",
+   "jp": 12,
+   "us": 40,
+   "parts": {
+    "momentum": 1,
+    "vol": 16,
+    "strength": 5,
+    "rsi": 11,
+    "fx": 64,
+    "safe": 2
+   }
+  },
+  {
+   "date": "2026-11-13",
+   "jp": 15,
+   "us": 37,
+   "parts": {
+    "momentum": 2,
+    "vol": 32,
+    "strength": 15,
+    "rsi": 14,
+    "fx": 61,
+    "safe": 13
+   }
+  },
+  {
+   "date": "2026-11-16",
+   "jp": 17,
+   "us": 31,
+   "parts": {
+    "momentum": 1,
+    "vol": 30,
+    "strength": 8,
+    "rsi": 5,
+    "fx": 69,
+    "safe": 7
+   }
+  },
+  {
+   "date": "2026-11-17",
+   "jp": 17,
+   "us": 26,
+   "parts": {
+    "momentum": 1,
+    "vol": 29,
+    "strength": 5,
+    "rsi": 3,
+    "fx": 50,
+    "safe": 6
+   }
+  },
+  {
+   "date": "2026-11-18",
+   "jp": 16,
+   "us": 30,
+   "parts": {
+    "momentum": 1,
+    "vol": 30,
+    "strength": 9,
+    "rsi": 4,
+    "fx": 53,
+    "safe": 9
+   }
+  },
+  {
+   "date": "2026-11-19",
+   "jp": 16,
+   "us": 16,
+   "parts": {
+    "momentum": 2,
+    "vol": 31,
+    "strength": 7,
+    "rsi": 7,
+    "fx": 53,
+    "safe": 8
+   }
+  },
+  {
+   "date": "2026-11-20",
+   "jp": 16,
+   "us": 19,
+   "parts": {
+    "momentum": 0,
+    "vol": 18,
+    "strength": 3,
+    "rsi": 1,
+    "fx": 88,
+    "safe": 4
+   }
+  },
+  {
+   "date": "2026-11-24",
+   "jp": 14,
+   "us": 11,
+   "parts": {
+    "momentum": 1,
+    "vol": 6,
+    "strength": 12,
+    "rsi": 11,
+    "fx": 59,
+    "safe": 12
+   }
+  },
+  {
+   "date": "2026-11-25",
+   "jp": 12,
+   "us": 16,
+   "parts": {
+    "momentum": 1,
+    "vol": 2,
+    "strength": 7,
+    "rsi": 5,
+    "fx": 54,
+    "safe": 7
+   }
+  },
+  {
+   "date": "2026-11-26",
+   "jp": 10,
+   "us": 15,
+   "parts": {
+    "momentum": 1,
+    "vol": 5,
+    "strength": 4,
+    "rsi": 7,
+    "fx": 57,
+    "safe": 5
+   }
+  }
+ ],
+ "hash": "dcfcf05c62a55875",
+ "updated_at": "2026-11-26T21:51:02+00:00",
+ "updated_at_jst": "2026年11月27日 06:51"
+}
