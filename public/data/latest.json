@@ -2,56 +2,56 @@
  "success": true,
  "jp": {
   "score": 10,
-  "previous_close": 12,
+  "previous_close": 10,
   "previous_1_week": 16,
-  "previous_1_month": 14,
-  "as_of": "2026-11-26",
+  "previous_1_month": 15,
+  "as_of": "2026-11-27",
   "indicators": [
    {
     "name": "市場モメンタム",
-    "value": 1,
-    "raw": -12.26,
-    "median": 10.79,
+    "value": 2,
+    "raw": -10.34,
+    "median": 10.77,
     "low": -14.06,
     "high": 26.06
    },
    {
     "name": "変動性",
-    "value": 4,
-    "raw": 39.92,
-    "median": 28.78,
+    "value": 3,
+    "raw": 40.6,
+    "median": 28.91,
     "low": 16.48,
     "high": 42.59
    },
    {
     "name": "株価の強さ",
-    "value": 8,
-    "raw": -7.65,
-    "median": 1.92,
+    "value": 7,
+    "raw": -6.31,
+    "median": 1.9,
     "low": -14.53,
     "high": 12.52
    },
    {
     "name": "短期の過熱感",
-    "value": 8,
-    "raw": 38.69,
-    "median": 53.16,
+    "value": 10,
+    "raw": 43.35,
+    "median": 52.99,
     "low": 25.94,
     "high": 75.1
    },
    {
     "name": "為替（円）",
     "value": 57,
-    "raw": 0.86,
+    "raw": 0.96,
     "median": 0.67,
     "low": -3.64,
     "high": 4.44
    },
    {
     "name": "安全資産への選好",
-    "value": 8,
-    "raw": -10.12,
-    "median": 3.18,
+    "value": 6,
+    "raw": -9.32,
+    "median": 3.11,
     "low": -21.73,
     "high": 19.17
    }
@@ -99,19 +99,6 @@
   "stale": false
  },
  "history": [
-  {
-   "date": "2026-10-14",
-   "jp": 51,
-   "us": 29,
-   "parts": {
-    "momentum": 11,
-    "vol": 79,
-    "strength": 45,
-    "rsi": 38,
-    "fx": 62,
-    "safe": 47
-   }
-  },
   {
    "date": "2026-10-15",
    "jp": 40,
@@ -488,9 +475,22 @@
     "fx": 57,
     "safe": 5
    }
+  },
+  {
+   "date": "2026-11-27",
+   "jp": 10,
+   "us": 15,
+   "parts": {
+    "momentum": 3,
+    "vol": 2,
+    "strength": 11,
+    "rsi": 19,
+    "fx": 61,
+    "safe": 7
+   }
   }
  ],
- "hash": "dcfcf05c62a55875",
- "updated_at": "2026-11-26T21:51:02+00:00",
- "updated_at_jst": "2026年11月27日 06:51"
+ "hash": "be930aca75dfc60f",
+ "updated_at": "2026-11-27T07:52:30+00:00",
+ "updated_at_jst": "2026年11月27日 16:52"
 }
